@@ -45,8 +45,8 @@ export function NavigationSection() {
                 <CardContent className="p-6">
                   <a href={item.href} className="block">
                     <div className="flex flex-col items-center text-center space-y-4">
-                      <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                        <IconComponent className="w-6 h-6 text-primary" />
+                      <div className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                        <IconComponent className="w-10 h-10 text-primary" />
                       </div>
                       <h3 className="text-lg font-semibold text-card-foreground group-hover:text-primary transition-colors">
                         {item.title}
