@@ -1,10 +1,27 @@
-import { Button } from "@/components/ui/button";
+import { Package, HelpCircle, MessageSquare, Phone } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
 
 const navigationItems = [
-  { title: "Unsere Produkte", href: "#produkte" },
-  { title: "FAQ", href: "#faq" },  
-  { title: "Ihre Anfrage", href: "#anfrage" },
-  { title: "Kontakt", href: "#kontakt" }
+  {
+    title: "Unsere Produkte",
+    icon: Package,
+    href: "#produkte"
+  },
+  {
+    title: "FAQ",
+    icon: HelpCircle,
+    href: "#faq"
+  },
+  {
+    title: "Ihre Anfrage",
+    icon: MessageSquare,
+    href: "#anfrage"
+  },
+  {
+    title: "Kontakt",
+    icon: Phone,
+    href: "#kontakt"
+  }
 ];
 
 export function NavigationSection() {
@@ -17,20 +34,29 @@ export function NavigationSection() {
           </h2>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-4">
-          {navigationItems.map((item, index) => (
-            <Button 
-              key={index}
-              variant="outline" 
-              size="lg"
-              className="min-w-40"
-              asChild
-            >
-              <a href={item.href}>
-                {item.title}
-              </a>
-            </Button>
-          ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {navigationItems.map((item, index) => {
+            const IconComponent = item.icon;
+            return (
+              <Card 
+                key={index}
+                className="group hover:shadow-lg transition-all duration-300 hover:border-primary/50 cursor-pointer"
+              >
+                <CardContent className="p-6">
+                  <a href={item.href} className="block">
+                    <div className="flex flex-col items-center text-center space-y-4">
+                      <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                        <IconComponent className="w-6 h-6 text-primary" />
+                      </div>
+                      <h3 className="text-lg font-semibold text-card-foreground group-hover:text-primary transition-colors">
+                        {item.title}
+                      </h3>
+                    </div>
+                  </a>
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
       </div>
     </section>
