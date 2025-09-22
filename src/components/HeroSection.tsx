@@ -36,7 +36,7 @@ export function HeroSection() {
             style={{ color: '#0c2a3e' }}
           >
             Heizöl kaufen
-            <ArrowUpRight className="w-12 h-12 text-white" />
+            <ArrowUpRight className="w-8 h-8 text-white" />
           </Button>
         </div>
       </div>
