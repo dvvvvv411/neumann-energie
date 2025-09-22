@@ -33,10 +33,10 @@ export function HeroSection() {
           <Button 
             variant="modern" 
             size="lg"
-            className="text-lg px-8 py-6 h-auto gap-3"
+            className="text-lg px-8 py-6 h-auto gap-3 rounded-2xl"
           >
             Heizöl kaufen
-            <ArrowUpRight className="w-5 h-5" />
+            <ArrowUpRight className="w-7 h-7 text-white" />
           </Button>
         </div>
       </div>
