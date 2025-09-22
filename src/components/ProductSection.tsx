@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Check, Star, Award, Shield, ArrowUpRight } from "lucide-react";
+import { Check, Star, Award, Shield, ArrowUpRight, Plus } from "lucide-react";
 
 const products = [
   {
@@ -77,7 +77,7 @@ export function ProductSection() {
                   <div className="space-y-3 mt-auto">
                     <Button 
                       size="lg"
-                      className="w-full text-lg font-bold py-4 h-auto transition-all duration-300 text-white group gap-3"
+                      className="w-full text-xl font-bold py-4 h-auto transition-all duration-300 text-white group gap-3"
                       style={{ backgroundColor: '#0c2a3e' }}
                     >
                       Jetzt anfragen!
@@ -86,9 +86,10 @@ export function ProductSection() {
                     <Button 
                       variant="outline" 
                       size="lg"
-                      className="w-full py-4 h-auto font-semibold border-2 hover:bg-muted/50"
+                      className="w-full py-4 h-auto font-semibold border-2 hover:bg-muted/50 text-xl gap-3"
                     >
-                      Produktdetails ansehen
+                      Produktdetails
+                      <Plus className="w-6 h-6 text-primary" />
                     </Button>
                   </div>
                 </CardContent>
