@@ -16,7 +16,7 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         knauber: "bg-primary text-primary-foreground hover:bg-primary-hover font-semibold shadow-lg hover:shadow-xl transition-all duration-300",
-        modern: "bg-primary text-green-800 hover:bg-primary-hover font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300",
+        modern: "bg-primary hover:bg-primary-hover font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300" ,
       },
       size: {
         default: "h-10 px-4 py-2",
