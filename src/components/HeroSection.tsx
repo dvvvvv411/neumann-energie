@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { ArrowUpRight } from "lucide-react";
 import heroImage from "@/assets/hero-image-real.jpg";
 
 export function HeroSection() {
@@ -18,23 +19,24 @@ export function HeroSection() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 text-center text-white">
-        <div className="max-w-4xl mx-auto">
+      <div className="relative z-10 container mx-auto px-4 text-white">
+        <div className="max-w-2xl">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
             Zuverlässige Heizölversorgung für Ihr Unternehmen
           </h1>
           
-          <p className="text-xl md:text-2xl mb-8 leading-relaxed text-white/90 max-w-3xl mx-auto">
+          <p className="text-xl md:text-2xl mb-8 leading-relaxed text-white/90 max-w-xl">
             Professionelle Energielösungen für Geschäftskunden. 
             Qualität, Zuverlässigkeit und Service, auf den Sie sich verlassen können.
           </p>
           
           <Button 
-            variant="knauber" 
+            variant="modern" 
             size="lg"
-            className="text-lg px-8 py-6 h-auto"
+            className="text-lg px-8 py-6 h-auto gap-3"
           >
             Heizöl kaufen
+            <ArrowUpRight className="w-5 h-5" />
           </Button>
         </div>
       </div>
