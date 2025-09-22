@@ -32,11 +32,11 @@ export function HeroSection() {
           <Button 
             variant="modern" 
             size="lg"
-            className="text-2xl px-8 py-6 h-auto gap-4 rounded-2xl"
+            className="text-2xl px-8 py-6 h-auto gap-4 rounded-2xl group"
             style={{ color: '#0c2a3e' }}
           >
             Heizöl kaufen
-            <ArrowUpRight className="w-8 h-8 text-white" />
+            <ArrowUpRight className="w-8 h-8 text-white transition-transform duration-300 group-hover:rotate-45" />
           </Button>
         </div>
       </div>
