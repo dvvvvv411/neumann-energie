@@ -51,7 +51,7 @@ export function ProductSection() {
             return (
               <Card 
                 key={product.id} 
-                className="relative h-full flex flex-col transition-all duration-500 hover:scale-[1.02] bg-gradient-to-br from-white to-secondary/20 hover:shadow-[var(--shadow-card)] hover:ring-2 hover:ring-primary/30"
+                className="relative h-full flex flex-col transition-all duration-500 hover:scale-[1.02] bg-gradient-to-br from-white to-secondary/20 hover:shadow-[var(--shadow-card)] hover:border-2 hover:border-primary"
               >
                 <CardHeader className="pb-6 pt-8">
                   <div className="flex items-center gap-3 mb-4">
