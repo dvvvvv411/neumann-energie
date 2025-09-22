@@ -54,13 +54,7 @@ export function ProductSection() {
                 className="relative h-full flex flex-col transition-all duration-500 hover:scale-[1.02] bg-gradient-to-br from-white to-secondary/20 hover:shadow-[var(--shadow-card)] hover:border-2 hover:border-primary"
               >
                 <CardHeader className="pb-6 pt-8">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="p-3 rounded-xl bg-primary/10">
-                      <IconComponent className="w-6 h-6 text-primary" />
-                    </div>
-                  </div>
-                  
-                  <CardTitle className="text-2xl font-bold text-foreground mb-2">
+                  <CardTitle className="text-4xl font-bold text-primary mb-2">
                     {product.title}
                   </CardTitle>
                   <p className="text-lg text-muted-foreground font-medium">
@@ -72,9 +66,7 @@ export function ProductSection() {
                   <ul className="space-y-4 mb-8 flex-1">
                     {product.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex items-start gap-4">
-                        <div className="p-1 rounded-full bg-success/20 mt-1">
-                          <Check className="w-4 h-4 text-success flex-shrink-0" />
-                        </div>
+                        <Check className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                         <span className="text-card-foreground leading-relaxed font-medium">
                           {feature}
                         </span>
