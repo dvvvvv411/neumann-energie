@@ -25,7 +25,7 @@ export function HeroSection() {
             Heizöl von Knauber – Effizient und CO₂-kompensiert
           </h1>
           
-          <p className="text-xl md:text-2xl mb-8 leading-relaxed text-white/90 max-w-xl">
+          <p className="text-xl md:text-2xl mb-8 leading-relaxed text-white/90 max-w-3xl">
             Ob klassisch schwefelarm oder effektiv sparsam, mit Knauber Heizöl heizen Sie Ihr Unternehmen effizient und zuverlässig. Profitieren Sie von höchster Qualität und der Option auf CO₂-Kompensation – eine flexible Lösung für Ihren Energiebedarf.
           </p>
           
