@@ -66,7 +66,7 @@ export const ContactSection = () => {
 
           {/* Right Column - 2/3 */}
           <div className="lg:col-span-2">
-            <div className="bg-card p-8 rounded-2xl shadow-soft border border-border">
+            <div className="bg-card p-12 rounded-2xl shadow-soft">
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -76,10 +76,10 @@ export const ContactSection = () => {
                       name="salutation"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-foreground font-medium">Anrede *</FormLabel>
+                          <FormLabel className="text-foreground font-medium text-lg">Anrede *</FormLabel>
                           <FormControl>
                             <Select onValueChange={field.onChange} defaultValue={field.value}>
-                              <SelectTrigger className="rounded-xl border-input bg-background">
+                              <SelectTrigger className="rounded-xl border-input bg-background h-14 text-lg">
                                 <SelectValue placeholder="Bitte wählen" />
                               </SelectTrigger>
                               <SelectContent>
@@ -99,14 +99,14 @@ export const ContactSection = () => {
                       control={form.control}
                       name="company"
                       render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="text-foreground font-medium">Firma *</FormLabel>
-                          <FormControl>
-                            <Input 
-                              {...field} 
-                              className="rounded-xl border-input bg-background"
-                              placeholder="Ihr Firmenname"
-                            />
+                         <FormItem>
+                           <FormLabel className="text-foreground font-medium text-lg">Firma *</FormLabel>
+                           <FormControl>
+                             <Input 
+                               {...field} 
+                               className="rounded-xl border-input bg-background h-14 text-lg px-4"
+                               placeholder="Ihr Firmenname"
+                             />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -120,14 +120,14 @@ export const ContactSection = () => {
                       control={form.control}
                       name="firstName"
                       render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="text-foreground font-medium">Vorname *</FormLabel>
-                          <FormControl>
-                            <Input 
-                              {...field} 
-                              className="rounded-xl border-input bg-background"
-                              placeholder="Ihr Vorname"
-                            />
+                         <FormItem>
+                           <FormLabel className="text-foreground font-medium text-lg">Vorname *</FormLabel>
+                           <FormControl>
+                             <Input 
+                               {...field} 
+                               className="rounded-xl border-input bg-background h-14 text-lg px-4"
+                               placeholder="Ihr Vorname"
+                             />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -139,14 +139,14 @@ export const ContactSection = () => {
                       control={form.control}
                       name="lastName"
                       render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="text-foreground font-medium">Nachname *</FormLabel>
-                          <FormControl>
-                            <Input 
-                              {...field} 
-                              className="rounded-xl border-input bg-background"
-                              placeholder="Ihr Nachname"
-                            />
+                         <FormItem>
+                           <FormLabel className="text-foreground font-medium text-lg">Nachname *</FormLabel>
+                           <FormControl>
+                             <Input 
+                               {...field} 
+                               className="rounded-xl border-input bg-background h-14 text-lg px-4"
+                               placeholder="Ihr Nachname"
+                             />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -160,15 +160,15 @@ export const ContactSection = () => {
                       control={form.control}
                       name="email"
                       render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="text-foreground font-medium">E-Mail *</FormLabel>
-                          <FormControl>
-                            <Input 
-                              {...field} 
-                              type="email"
-                              className="rounded-xl border-input bg-background"
-                              placeholder="ihre.email@beispiel.de"
-                            />
+                         <FormItem>
+                           <FormLabel className="text-foreground font-medium text-lg">E-Mail *</FormLabel>
+                           <FormControl>
+                             <Input 
+                               {...field} 
+                               type="email"
+                               className="rounded-xl border-input bg-background h-14 text-lg px-4"
+                               placeholder="ihre.email@beispiel.de"
+                             />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -180,15 +180,15 @@ export const ContactSection = () => {
                       control={form.control}
                       name="phone"
                       render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="text-foreground font-medium">Telefonnummer *</FormLabel>
-                          <FormControl>
-                            <Input 
-                              {...field} 
-                              type="tel"
-                              className="rounded-xl border-input bg-background"
-                              placeholder="+49 123 456789"
-                            />
+                         <FormItem>
+                           <FormLabel className="text-foreground font-medium text-lg">Telefonnummer *</FormLabel>
+                           <FormControl>
+                             <Input 
+                               {...field} 
+                               type="tel"
+                               className="rounded-xl border-input bg-background h-14 text-lg px-4"
+                               placeholder="+49 123 456789"
+                             />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -201,14 +201,14 @@ export const ContactSection = () => {
                     control={form.control}
                     name="message"
                     render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-foreground font-medium">Ihr Anliegen *</FormLabel>
-                        <FormControl>
-                          <Textarea 
-                            {...field} 
-                            className="rounded-xl border-input bg-background min-h-[120px] resize-none"
-                            placeholder="Beschreiben Sie bitte Ihr Anliegen..."
-                          />
+                     <FormItem>
+                       <FormLabel className="text-foreground font-medium text-lg">Ihr Anliegen *</FormLabel>
+                       <FormControl>
+                         <Textarea 
+                           {...field} 
+                           className="rounded-xl border-input bg-background min-h-[150px] resize-none text-lg px-4 py-4"
+                           placeholder="Beschreiben Sie bitte Ihr Anliegen..."
+                         />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -228,10 +228,10 @@ export const ContactSection = () => {
                             className="rounded-md"
                           />
                         </FormControl>
-                        <div className="space-y-1 leading-none">
-                          <FormLabel className="text-sm text-foreground font-normal cursor-pointer">
-                            Ich habe die Datenschutzerklärung zur Kenntnis genommen und stimme zu. *
-                          </FormLabel>
+                         <div className="space-y-1 leading-none">
+                           <FormLabel className="text-lg text-foreground font-normal cursor-pointer">
+                             Ich habe die Datenschutzerklärung zur Kenntnis genommen und stimme zu. *
+                           </FormLabel>
                           <FormMessage />
                         </div>
                       </FormItem>
@@ -239,16 +239,16 @@ export const ContactSection = () => {
                   />
 
                   {/* Submit Button */}
-                  <div className="pt-4">
-                    <Button 
-                      type="submit" 
-                      variant="knauber"
-                      size="lg"
-                      className="w-full md:w-auto px-12 py-3 rounded-xl font-semibold"
-                    >
-                      Anfrage absenden
-                    </Button>
-                  </div>
+                   <div className="pt-6">
+                     <Button 
+                       type="submit" 
+                       variant="default"
+                       size="lg"
+                       className="w-full px-12 py-4 rounded-xl font-semibold text-lg h-14 bg-primary text-primary-foreground hover:bg-primary/90"
+                     >
+                       Anfrage absenden
+                     </Button>
+                   </div>
                 </form>
               </Form>
             </div>
