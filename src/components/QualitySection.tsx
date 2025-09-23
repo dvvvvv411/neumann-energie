@@ -10,7 +10,7 @@ const QualitySection = () => {
             <img 
               src={ralLogo} 
               alt="RAL Gütezeichen für Energiehandel - Heizöl, Dieselkraftstoff, Biodiesel" 
-              className="max-w-md w-full h-auto"
+              className="max-w-xl w-full h-auto"
             />
           </div>
           
