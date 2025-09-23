@@ -3,7 +3,7 @@ import martinBoisImage from "@/assets/martin-bois-kontakt.jpg";
 
 export function PersonalContactSection() {
   return (
-    <section className="py-16 bg-muted/50">
+    <section id="kontakt" className="py-16 bg-muted/50">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left side - Contact Information */}

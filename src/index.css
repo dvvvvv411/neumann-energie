@@ -123,6 +123,10 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   /* Footer logo styling to keep KNAUBER green and text white */
   .footer-logo svg .cls-1 {
     fill: white !important; /* "Immer weiter: Energie." text */

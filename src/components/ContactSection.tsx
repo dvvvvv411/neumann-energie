@@ -46,7 +46,7 @@ export const ContactSection = () => {
   };
 
   return (
-    <section className="py-24 bg-background">
+    <section id="anfrage" className="py-24 bg-background">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 lg:gap-16">
           {/* Left Column - 1/4 */}
