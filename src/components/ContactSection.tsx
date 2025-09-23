@@ -82,10 +82,10 @@ export const ContactSection = () => {
                               <SelectTrigger className="rounded-xl border-input bg-background h-16 text-lg">
                                 <SelectValue placeholder="Bitte wählen" className="text-lg" />
                               </SelectTrigger>
-                              <SelectContent className="bg-background border border-border rounded-xl shadow-lg z-50">
-                                <SelectItem value="herr" className="text-lg py-3 px-4">Herr</SelectItem>
-                                <SelectItem value="frau" className="text-lg py-3 px-4">Frau</SelectItem>
-                                <SelectItem value="divers" className="text-lg py-3 px-4">Divers</SelectItem>
+                              <SelectContent className="bg-background border border-border rounded-xl shadow-lg z-50 min-w-[200px]">
+                                <SelectItem value="herr" className="text-lg py-3 px-4 pl-8 focus:bg-accent focus:text-accent-foreground">Herr</SelectItem>
+                                <SelectItem value="frau" className="text-lg py-3 px-4 pl-8 focus:bg-accent focus:text-accent-foreground">Frau</SelectItem>
+                                <SelectItem value="divers" className="text-lg py-3 px-4 pl-8 focus:bg-accent focus:text-accent-foreground">Divers</SelectItem>
                               </SelectContent>
                             </Select>
                           </FormControl>
