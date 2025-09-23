@@ -71,23 +71,22 @@ export function ProductSection() {
       <Dialog open={openDialog === productId} onOpenChange={(open) => setOpenDialog(open ? productId : null)}>
         <DialogContent className={
           isMobile 
-            ? "fixed !inset-0 !left-0 !top-0 !right-0 !bottom-0 !translate-x-0 !translate-y-0 !transform-none w-full h-full max-w-none rounded-none border-0 bg-white shadow-none p-4 overflow-y-auto z-50"
+            ? "fixed !inset-0 !left-0 !top-0 !right-0 !bottom-0 !translate-x-0 !translate-y-0 !transform-none w-full h-full max-w-none rounded-none border-0 bg-white shadow-none p-0 overflow-y-auto z-50"
             : "max-w-4xl !rounded-[50px] border-0 bg-white/95 backdrop-blur-xl shadow-2xl p-10"
         }>
-          <DialogHeader className={isMobile ? "pb-6 pt-2" : "pb-10"}>
-            <DialogTitle className={
-              isMobile 
-                ? "text-2xl font-bold text-primary pr-8"
-                : "text-4xl font-bold text-primary pr-12"
-            }>
-              {productTitle}
-            </DialogTitle>
-            <DialogDescription className="text-muted-foreground">
-              Detaillierte Informationen zu {productTitle}
-            </DialogDescription>
-          </DialogHeader>
-          
-          <div className={isMobile ? "space-y-8" : "space-y-12"}>
+          <div className={isMobile ? "p-6 space-y-8" : "space-y-12"}>
+            <DialogHeader className={isMobile ? "pb-6" : "pb-10"}>
+              <DialogTitle className={
+                isMobile 
+                  ? "text-2xl font-bold text-primary pr-8"
+                  : "text-4xl font-bold text-primary pr-12"
+              }>
+                {productTitle}
+              </DialogTitle>
+              <DialogDescription className="text-muted-foreground">
+                Detaillierte Informationen zu {productTitle}
+              </DialogDescription>
+            </DialogHeader>
             {/* Zubuchbare Leistungen */}
             <div>
               <h3 className={
