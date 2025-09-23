@@ -1,4 +1,4 @@
-import { Mail, Phone, Headset } from "lucide-react";
+import { Mail, Phone, Headset, ArrowUpRight } from "lucide-react";
 import martinBoisImage from "@/assets/martin-bois-kontakt.jpg";
 
 export function PersonalContactSection() {
@@ -28,9 +28,10 @@ export function PersonalContactSection() {
                 </div>
                 <a 
                   href="mailto:heizoel@knauber.de"
-                  className="text-lg text-foreground hover:text-primary transition-colors font-medium"
+                  className="group flex items-center gap-2 text-2xl text-foreground hover:text-primary transition-colors font-medium"
                 >
                   heizoel@knauber.de
+                  <ArrowUpRight className="w-6 h-6 text-primary group-hover:rotate-45 transition-transform duration-300" />
                 </a>
               </div>
 
@@ -41,9 +42,10 @@ export function PersonalContactSection() {
                 </div>
                 <a 
                   href="tel:0228512710"
-                  className="text-lg text-foreground hover:text-primary transition-colors font-medium"
+                  className="group flex items-center gap-2 text-2xl text-foreground hover:text-primary transition-colors font-medium"
                 >
                   0228 512-710
+                  <ArrowUpRight className="w-6 h-6 text-primary group-hover:rotate-45 transition-transform duration-300" />
                 </a>
               </div>
             </div>
