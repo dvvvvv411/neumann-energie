@@ -4,10 +4,13 @@ import { Button } from "@/components/ui/button";
 import knauberLogo from "@/assets/knauber-logo.svg";
 
 const navigationItems = [
-  { name: "Unsere Produkte", href: "#produkte" },
-  { name: "FAQ", href: "#faq" },
-  { name: "Ihre Anfrage", href: "#anfrage" },
-  { name: "Kontakt", href: "#kontakt" },
+  { name: "Über uns", href: "/ueber-uns" },
+  { name: "Service", href: "/service" },
+  { name: "Nachhaltigkeit", href: "/nachhaltigkeit" },
+  { name: "Referenzen", href: "/referenzen" },
+  { name: "Unsere Produkte", href: "/#produkte" },
+  { name: "FAQ", href: "/#faq" },
+  { name: "Kontakt", href: "/#kontakt" },
 ];
 
 export function Header() {
