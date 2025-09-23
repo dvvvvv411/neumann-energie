@@ -67,30 +67,30 @@ export function ProductSection() {
     
     return (
       <Dialog open={openDialog === productId} onOpenChange={(open) => setOpenDialog(open ? productId : null)}>
-        <DialogContent className="max-w-2xl rounded-3xl border-0 bg-white/95 backdrop-blur-xl shadow-2xl">
-          <DialogHeader className="pb-6">
-            <DialogTitle className="text-3xl font-bold text-primary pr-8">
+        <DialogContent className="max-w-3xl rounded-3xl border-0 bg-white/95 backdrop-blur-xl shadow-2xl">
+          <DialogHeader className="pb-8">
+            <DialogTitle className="text-4xl font-bold text-primary pr-8">
               {productTitle}
             </DialogTitle>
           </DialogHeader>
           
-          <div className="space-y-8">
+          <div className="space-y-10">
             {/* Zubuchbare Leistungen */}
             <div>
-              <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
-                <Star className="w-5 h-5 text-primary" />
+              <h3 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-3">
+                <Star className="w-6 h-6 text-primary" />
                 Zubuchbare Leistungen
               </h3>
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {details.services.map((service, index) => {
                   const ServiceIcon = service.icon;
                   return (
-                    <div key={index} className="flex items-center justify-between p-4 rounded-2xl bg-muted/30 border border-border/20">
-                      <div className="flex items-center gap-3">
-                        <ServiceIcon className="w-5 h-5 text-primary" />
-                        <span className="font-medium text-foreground">{service.name}</span>
+                    <div key={index} className="flex items-center justify-between p-5 rounded-2xl bg-muted/30 border border-border/20">
+                      <div className="flex items-center gap-4">
+                        <ServiceIcon className="w-6 h-6 text-primary" />
+                        <span className="text-lg font-semibold text-foreground">{service.name}</span>
                       </div>
-                      <Badge variant="secondary" className="font-medium rounded-full">
+                      <Badge className="font-semibold rounded-full px-4 py-2 text-sm bg-green-100 text-green-800 hover:bg-green-200">
                         {service.value}
                       </Badge>
                     </div>
@@ -101,34 +101,34 @@ export function ProductSection() {
 
             {/* Produktqualität */}
             <div>
-              <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
-                <Award className="w-5 h-5 text-primary" />
+              <h3 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-3">
+                <Award className="w-6 h-6 text-primary" />
                 Produktqualität
               </h3>
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {details.quality.map((item, index) => {
                   const ItemIcon = item.icon;
                   return (
-                    <div key={index} className="flex items-center justify-between p-4 rounded-2xl bg-muted/30 border border-border/20">
-                      <div className="flex items-center gap-3">
-                        <ItemIcon className="w-5 h-5 text-primary" />
-                        <span className="font-medium text-foreground">{item.name}</span>
+                    <div key={index} className="flex items-center justify-between p-5 rounded-2xl bg-muted/30 border border-border/20">
+                      <div className="flex items-center gap-4">
+                        <ItemIcon className="w-6 h-6 text-primary" />
+                        <span className="text-lg font-semibold text-foreground">{item.name}</span>
                       </div>
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-3">
                         {item.value === true && (
                           <>
-                            <Check className="w-5 h-5 text-green-600" />
-                            <span className="text-green-600 font-medium">Ja</span>
+                            <Check className="w-6 h-6 text-green-600" />
+                            <span className="text-green-600 font-semibold text-lg">Ja</span>
                           </>
                         )}
                         {item.value === false && (
                           <>
-                            <X className="w-5 h-5 text-red-500" />
-                            <span className="text-red-500 font-medium">Nein</span>
+                            <X className="w-6 h-6 text-red-500" />
+                            <span className="text-red-500 font-semibold text-lg">Nein</span>
                           </>
                         )}
                         {typeof item.value === 'string' && item.value !== 'true' && item.value !== 'false' && (
-                          <Badge variant="outline" className="font-medium rounded-full">
+                          <Badge variant="outline" className="font-semibold rounded-full px-4 py-2 text-sm">
                             {item.value}
                           </Badge>
                         )}
