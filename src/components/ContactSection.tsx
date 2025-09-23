@@ -245,7 +245,7 @@ export const ContactSection = () => {
                         type="submit" 
                         variant="modern"
                         size="lg"
-                        className="w-full px-12 py-4 rounded-xl font-semibold text-lg h-16 gap-4 group"
+                        className="w-full px-12 py-4 rounded-xl font-bold text-xl h-16 gap-4 group"
                         style={{ color: '#0c2a3e' }}
                       >
                         Anfrage absenden
