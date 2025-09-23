@@ -82,10 +82,10 @@ export const ContactSection = () => {
                               <SelectTrigger className="rounded-xl border-input bg-background h-16 text-lg">
                                 <SelectValue placeholder="Bitte wählen" className="text-lg" />
                               </SelectTrigger>
-                              <SelectContent>
-                                <SelectItem value="herr">Herr</SelectItem>
-                                <SelectItem value="frau">Frau</SelectItem>
-                                <SelectItem value="divers">Divers</SelectItem>
+                              <SelectContent className="bg-background border border-border rounded-xl shadow-lg z-50">
+                                <SelectItem value="herr" className="text-lg py-3 px-4">Herr</SelectItem>
+                                <SelectItem value="frau" className="text-lg py-3 px-4">Frau</SelectItem>
+                                <SelectItem value="divers" className="text-lg py-3 px-4">Divers</SelectItem>
                               </SelectContent>
                             </Select>
                           </FormControl>
@@ -220,18 +220,18 @@ export const ContactSection = () => {
                     control={form.control}
                     name="privacy"
                     render={({ field }) => (
-                      <FormItem className="flex flex-row items-start space-x-3 space-y-0">
-                        <FormControl>
-                          <Checkbox
-                            checked={field.value}
-                            onCheckedChange={field.onChange}
-                            className="rounded-md"
-                          />
-                        </FormControl>
-                         <div className="space-y-1 leading-none">
-                           <FormLabel className="text-lg text-foreground font-normal cursor-pointer">
-                             Ich habe die Datenschutzerklärung zur Kenntnis genommen und stimme zu. *
-                           </FormLabel>
+                     <FormItem className="flex flex-row items-center space-x-3 space-y-0">
+                       <FormControl>
+                         <Checkbox
+                           checked={field.value}
+                           onCheckedChange={field.onChange}
+                           className="rounded-md w-5 h-5"
+                         />
+                       </FormControl>
+                       <div className="space-y-1 leading-none">
+                         <FormLabel className="text-lg text-foreground font-normal cursor-pointer">
+                           Ich habe die Datenschutzerklärung zur Kenntnis genommen und stimme zu. *
+                         </FormLabel>
                           <FormMessage />
                         </div>
                       </FormItem>
