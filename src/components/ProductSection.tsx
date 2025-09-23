@@ -71,10 +71,10 @@ export function ProductSection() {
       <Dialog open={openDialog === productId} onOpenChange={(open) => setOpenDialog(open ? productId : null)}>
         <DialogContent className={
           isMobile 
-            ? "fixed !inset-0 !left-0 !top-0 !right-0 !bottom-0 !translate-x-0 !translate-y-0 !transform-none w-full h-full max-w-none rounded-none border-0 bg-black/50 shadow-none p-4 flex items-center justify-center z-50"
+            ? "fixed !inset-0 !left-0 !top-0 !right-0 !bottom-0 !translate-x-0 !translate-y-0 !transform-none w-full h-full max-w-none rounded-none border-0 bg-white shadow-none flex items-center justify-center p-4 z-50"
             : "max-w-4xl !rounded-[50px] border-0 bg-white/95 backdrop-blur-xl shadow-2xl p-10"
         }>
-          <div className={isMobile ? "w-full max-h-[90vh] overflow-y-auto bg-white rounded-3xl shadow-xl p-6 space-y-8" : "space-y-12"}>
+          <div className={isMobile ? "w-full max-h-[90vh] overflow-y-auto space-y-8" : "space-y-12"}>
             <DialogHeader className={isMobile ? "pb-6" : "pb-10"}>
               <DialogTitle className={
                 isMobile 
