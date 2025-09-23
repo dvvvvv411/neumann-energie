@@ -30,7 +30,7 @@ export const Footer = () => {
                 <img 
                   src={knauberLogo} 
                   alt="Knauber Energie" 
-                  className="h-12 w-auto mx-auto md:mx-0 opacity-90 footer-logo cursor-pointer"
+                  className="h-12 w-auto mx-auto md:mx-0 opacity-90 footer-logo cursor-pointer hover-scale"
                 />
               </Link>
             </div>

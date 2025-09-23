@@ -24,7 +24,7 @@ export function Header() {
               <img 
                 src={knauberLogo} 
                 alt="Knauber Energie" 
-                className="h-16 w-auto cursor-pointer"
+                className="h-16 w-auto cursor-pointer hover-scale"
               />
             </Link>
           </div>
