@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from "@/components/ui/dialog";
 import { Check, Star, Award, Shield, ArrowUpRight, Plus, X, Truck, Leaf, Droplets } from "lucide-react";
 import { useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -71,7 +71,7 @@ export function ProductSection() {
       <Dialog open={openDialog === productId} onOpenChange={(open) => setOpenDialog(open ? productId : null)}>
         <DialogContent className={
           isMobile 
-            ? "w-full h-full max-w-none rounded-none border-0 bg-white backdrop-blur-xl shadow-none p-4 inset-0 overflow-y-auto"
+            ? "fixed !inset-0 !left-0 !top-0 !right-0 !bottom-0 !translate-x-0 !translate-y-0 !transform-none w-full h-full max-w-none rounded-none border-0 bg-white shadow-none p-4 overflow-y-auto z-50"
             : "max-w-4xl !rounded-[50px] border-0 bg-white/95 backdrop-blur-xl shadow-2xl p-10"
         }>
           <DialogHeader className={isMobile ? "pb-6 pt-4" : "pb-10"}>
@@ -82,6 +82,9 @@ export function ProductSection() {
             }>
               {productTitle}
             </DialogTitle>
+            <DialogDescription className="text-muted-foreground">
+              Detaillierte Informationen zu {productTitle}
+            </DialogDescription>
           </DialogHeader>
           
           <div className={isMobile ? "space-y-8" : "space-y-12"}>
