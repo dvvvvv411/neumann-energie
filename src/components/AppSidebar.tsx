@@ -13,9 +13,6 @@ const navigationItems = [
   { name: "Service", href: "/service" },
   { name: "Nachhaltigkeit", href: "/nachhaltigkeit" },
   { name: "Referenzen", href: "/referenzen" },
-  { name: "Unsere Produkte", href: "/#produkte" },
-  { name: "FAQ", href: "/#faq" },
-  { name: "Kontakt", href: "/#kontakt" },
 ];
 
 interface AppSidebarProps {
