@@ -125,10 +125,10 @@ All colors MUST be HSL.
 
   /* Footer logo styling to keep KNAUBER green and text white */
   .footer-logo svg .cls-1 {
-    fill: white !important;
+    fill: white !important; /* "Immer weiter: Energie." text */
   }
   
   .footer-logo svg .cls-2 {
-    fill: hsl(124 80% 49%) !important;
+    fill: hsl(124 80% 49%) !important; /* "KNAUBER" text in brand green */
   }
 }
