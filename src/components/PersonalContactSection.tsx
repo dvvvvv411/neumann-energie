@@ -15,7 +15,7 @@ export function PersonalContactSection() {
               <p className="text-6xl font-bold text-foreground mb-6">
                 Sie möchten persönlich beraten werden?
               </p>
-              <p className="text-2xl text-muted-foreground">
+              <p className="text-2xl text-foreground">
                 Unser Team hilft Ihnen gerne weiter.
               </p>
             </div>
