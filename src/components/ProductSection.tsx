@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Check, Star, Award, Shield, ArrowUpRight, Plus, X, Truck, Leaf, Droplets } from "lucide-react";
 import { useState } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const products = [
   {
@@ -36,6 +37,7 @@ const products = [
 
 export function ProductSection() {
   const [openDialog, setOpenDialog] = useState<string | null>(null);
+  const isMobile = useIsMobile();
 
   const productDetails = {
     standard: {
@@ -67,28 +69,48 @@ export function ProductSection() {
     
     return (
       <Dialog open={openDialog === productId} onOpenChange={(open) => setOpenDialog(open ? productId : null)}>
-        <DialogContent className="max-w-4xl !rounded-[50px] border-0 bg-white/95 backdrop-blur-xl shadow-2xl p-10">
-          <DialogHeader className="pb-10">
-            <DialogTitle className="text-4xl font-bold text-primary pr-12">
+        <DialogContent className={
+          isMobile 
+            ? "w-full h-full max-w-none rounded-none border-0 bg-white backdrop-blur-xl shadow-none p-4 inset-0 overflow-y-auto"
+            : "max-w-4xl !rounded-[50px] border-0 bg-white/95 backdrop-blur-xl shadow-2xl p-10"
+        }>
+          <DialogHeader className={isMobile ? "pb-6 pt-4" : "pb-10"}>
+            <DialogTitle className={
+              isMobile 
+                ? "text-2xl font-bold text-primary pr-8"
+                : "text-4xl font-bold text-primary pr-12"
+            }>
               {productTitle}
             </DialogTitle>
           </DialogHeader>
           
-          <div className="space-y-12">
+          <div className={isMobile ? "space-y-8" : "space-y-12"}>
             {/* Zubuchbare Leistungen */}
             <div>
-              <h3 className="text-2xl font-bold text-foreground mb-8 flex items-center gap-3">
+              <h3 className={
+                isMobile 
+                  ? "text-xl font-bold text-foreground mb-6 flex items-center gap-3"
+                  : "text-2xl font-bold text-foreground mb-8 flex items-center gap-3"
+              }>
                 <Star className="w-6 h-6 text-primary" />
                 Zubuchbare Leistungen
               </h3>
-              <div className="space-y-6">
+              <div className={isMobile ? "space-y-4" : "space-y-6"}>
                 {details.services.map((service, index) => {
                   const ServiceIcon = service.icon;
                   return (
-                    <div key={index} className="flex items-center justify-between p-6 !rounded-[25px] bg-muted/30 border border-border/20">
+                    <div key={index} className={
+                      isMobile 
+                        ? "flex items-center justify-between p-4 !rounded-[15px] bg-muted/30 border border-border/20"
+                        : "flex items-center justify-between p-6 !rounded-[25px] bg-muted/30 border border-border/20"
+                    }>
                       <div className="flex items-center gap-4">
                         <ServiceIcon className="w-6 h-6 text-primary" />
-                        <span className="text-lg font-semibold text-foreground">{service.name}</span>
+                        <span className={
+                          isMobile 
+                            ? "text-base font-semibold text-foreground"
+                            : "text-lg font-semibold text-foreground"
+                        }>{service.name}</span>
                       </div>
                       <Badge className="font-semibold rounded-full px-4 py-2 text-sm bg-green-100 text-green-800 hover:bg-green-200">
                         {service.value}
@@ -101,18 +123,30 @@ export function ProductSection() {
 
             {/* Produktqualität */}
             <div>
-              <h3 className="text-2xl font-bold text-foreground mb-8 flex items-center gap-3">
+              <h3 className={
+                isMobile 
+                  ? "text-xl font-bold text-foreground mb-6 flex items-center gap-3"
+                  : "text-2xl font-bold text-foreground mb-8 flex items-center gap-3"
+              }>
                 <Award className="w-6 h-6 text-primary" />
                 Produktqualität
               </h3>
-              <div className="space-y-6">
+              <div className={isMobile ? "space-y-4" : "space-y-6"}>
                 {details.quality.map((item, index) => {
                   const ItemIcon = item.icon;
                   return (
-                    <div key={index} className="flex items-center justify-between p-6 !rounded-[25px] bg-muted/30 border border-border/20">
+                    <div key={index} className={
+                      isMobile 
+                        ? "flex items-center justify-between p-4 !rounded-[15px] bg-muted/30 border border-border/20"
+                        : "flex items-center justify-between p-6 !rounded-[25px] bg-muted/30 border border-border/20"
+                    }>
                       <div className="flex items-center gap-4">
                         <ItemIcon className="w-6 h-6 text-primary" />
-                        <span className="text-lg font-semibold text-foreground">{item.name}</span>
+                        <span className={
+                          isMobile 
+                            ? "text-base font-semibold text-foreground"
+                            : "text-lg font-semibold text-foreground"
+                        }>{item.name}</span>
                       </div>
                       <div className="flex items-center gap-3">
                         {item.value === true && (
