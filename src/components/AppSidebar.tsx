@@ -31,7 +31,7 @@ export function AppSidebar({ isOpen, onOpenChange }: AppSidebarProps) {
           className="flex items-center gap-2"
         >
           <Menu className="h-6 w-6" />
-          <span className="text-base font-medium">Menü</span>
+          <span className="text-base font-medium hidden sm:inline">Menü</span>
         </Button>
       </SheetTrigger>
       
