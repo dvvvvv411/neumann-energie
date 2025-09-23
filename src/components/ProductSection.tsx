@@ -51,7 +51,7 @@ export function ProductSection() {
             return (
               <Card 
                 key={product.id} 
-                className="relative h-full flex flex-col transition-all duration-500 hover:scale-[1.02] bg-gradient-to-br from-white to-secondary/20 hover:shadow-[var(--shadow-card)] hover:border-2 hover:border-primary"
+                className="relative h-full flex flex-col transition-all duration-500 hover:scale-[1.02] bg-gradient-to-br from-white to-secondary/20 hover:shadow-[var(--shadow-card)] hover:border-2 hover:border-primary rounded-3xl"
               >
                 <CardHeader className="pb-6 pt-8">
                   <CardTitle className="text-4xl font-bold text-primary mb-2">
@@ -77,7 +77,7 @@ export function ProductSection() {
                   <div className="space-y-3 mt-auto">
                     <Button 
                       size="lg"
-                      className="w-full text-xl font-bold py-4 h-auto transition-all duration-300 text-white group gap-3"
+                      className="w-full text-xl font-bold py-4 h-auto transition-all duration-300 text-white group gap-3 rounded-2xl"
                       style={{ backgroundColor: '#0c2a3e' }}
                     >
                       Jetzt anfragen!
@@ -86,7 +86,7 @@ export function ProductSection() {
                     <Button 
                       variant="outline" 
                       size="lg"
-                      className="w-full py-4 h-auto font-semibold border-2 hover:bg-muted/50 text-xl gap-3"
+                      className="w-full py-4 h-auto font-semibold border-2 hover:bg-muted/50 text-xl gap-3 rounded-2xl"
                     >
                       Produktdetails
                       <Plus className="w-6 h-6 text-primary" />
