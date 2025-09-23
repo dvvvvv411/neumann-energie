@@ -9,6 +9,7 @@ import { Menu, X } from "lucide-react";
 import knauberLogo from "@/assets/knauber-logo.svg";
 
 const navigationItems = [
+  { name: "Heizöl", href: "/" },
   { name: "Über uns", href: "/ueber-uns" },
   { name: "Service", href: "/service" },
   { name: "Nachhaltigkeit", href: "/nachhaltigkeit" },
