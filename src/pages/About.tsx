@@ -50,7 +50,7 @@ const About = () => {
           </div>
         </section>
 
-        {/* Geschichte Timeline */}
+        {/* Geschichte Timeline - Vertical Design */}
         <section className="py-20 bg-background">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
@@ -58,23 +58,40 @@ const About = () => {
                 Unsere Geschichte
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Über 100 Jahre Erfahrung im Energiehandel
+                Über 100 Jahre Tradition und Innovation
               </p>
             </div>
 
-            <div className="grid md:grid-cols-5 gap-8">
-              {milestones.map((milestone, index) => (
-                <Card key={index} className="group hover:shadow-lg transition-all duration-300">
-                  <CardContent className="p-6 text-center">
-                    <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
-                      <Calendar className="w-8 h-8 text-primary" />
+            <div className="relative max-w-4xl mx-auto">
+              {/* Timeline Line */}
+              <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-primary via-primary to-primary/50"></div>
+              
+              <div className="space-y-16">
+                {milestones.map((milestone, index) => (
+                  <div key={index} className={`flex items-center gap-8 ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
+                    {/* Content */}
+                    <div className={`flex-1 ${index % 2 === 0 ? 'text-right pr-8' : 'text-left pl-8'}`}>
+                      <div className="bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 group border border-primary/10">
+                        <div className="inline-block bg-primary text-white px-4 py-2 rounded-full text-sm font-bold mb-4">
+                          {milestone.year}
+                        </div>
+                        <h3 className="text-2xl font-bold text-foreground mb-3">{milestone.title}</h3>
+                        <p className="text-muted-foreground leading-relaxed">{milestone.description}</p>
+                      </div>
                     </div>
-                    <h3 className="text-2xl font-bold text-primary mb-2">{milestone.year}</h3>
-                    <h4 className="font-semibold text-foreground mb-2">{milestone.title}</h4>
-                    <p className="text-sm text-muted-foreground">{milestone.description}</p>
-                  </CardContent>
-                </Card>
-              ))}
+                    
+                    {/* Timeline Node */}
+                    <div className="relative z-10">
+                      <div className="w-20 h-20 bg-gradient-to-br from-primary to-primary/70 rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform">
+                        <Calendar className="w-10 h-10 text-white" />
+                      </div>
+                    </div>
+                    
+                    {/* Empty space for balance */}
+                    <div className="flex-1"></div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>

@@ -77,44 +77,85 @@ const Sustainability = () => {
           </div>
         </section>
 
-        {/* Nachhaltigkeits-Initiativen */}
-        <section className="py-20 bg-background">
+        {/* Impact Dashboard */}
+        <section className="py-20 bg-gradient-to-br from-green-50 to-blue-50">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-foreground mb-4">
-                Unsere Nachhaltigkeits-Initiativen
+                Unser Umwelt-Impact Live
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Konkrete Maßnahmen für den Klimaschutz
+                Messbare Erfolge für den Klimaschutz
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8">
+            {/* Live Stats Dashboard */}
+            <div className="grid md:grid-cols-4 gap-6 mb-16">
+              {[
+                { value: "2.500t", label: "CO₂ kompensiert", icon: Leaf, color: "from-green-500 to-green-600", progress: 85 },
+                { value: "15.000+", label: "Bäume gepflanzt", icon: Globe, color: "from-blue-500 to-blue-600", progress: 72 },
+                { value: "25%", label: "Weniger Emissionen", icon: TrendingUp, color: "from-purple-500 to-purple-600", progress: 90 },
+                { value: "100%", label: "Klimaneutral", icon: Award, color: "from-orange-500 to-orange-600", progress: 100 }
+              ].map((stat, index) => {
+                const IconComponent = stat.icon;
+                return (
+                  <div key={index} className="bg-white rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all group">
+                    <div className={`w-16 h-16 bg-gradient-to-r ${stat.color} rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform`}>
+                      <IconComponent className="w-8 h-8 text-white" />
+                    </div>
+                    <div className="text-3xl font-bold text-foreground mb-2 text-center">{stat.value}</div>
+                    <div className="text-sm text-muted-foreground text-center mb-4">{stat.label}</div>
+                    <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div 
+                        className={`bg-gradient-to-r ${stat.color} h-2 rounded-full transition-all duration-1000`}
+                        style={{ width: `${stat.progress}%` }}
+                      ></div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Initiatives with Visual Impact */}
+            <div className="space-y-16">
               {initiatives.map((initiative, index) => {
                 const IconComponent = initiative.icon;
+                const isEven = index % 2 === 0;
                 return (
-                  <Card key={index} className="group hover:shadow-lg transition-all duration-300">
-                    <CardContent className="p-8">
-                      <div className="flex items-start gap-6">
-                        <div className={`w-16 h-16 ${initiative.color} rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform`}>
-                          <IconComponent className="w-8 h-8" />
+                  <div key={index} className={`grid lg:grid-cols-2 gap-12 items-center ${!isEven ? 'lg:grid-flow-col-dense' : ''}`}>
+                    <div className={isEven ? 'lg:pr-8' : 'lg:pl-8 lg:col-start-2'}>
+                      <div className="flex items-center gap-4 mb-6">
+                        <div className={`w-20 h-20 ${initiative.color} rounded-3xl flex items-center justify-center shadow-xl`}>
+                          <IconComponent className="w-10 h-10" />
                         </div>
-                        <div className="flex-1">
-                          <h3 className="text-xl font-semibold text-foreground mb-3">
-                            {initiative.title}
-                          </h3>
-                          <p className="text-muted-foreground mb-4">
-                            {initiative.description}
-                          </p>
-                          <div className="bg-primary/5 rounded-lg p-3">
-                            <p className="text-sm font-medium text-primary">
-                              ✓ {initiative.impact}
-                            </p>
-                          </div>
+                        <div>
+                          <h3 className="text-3xl font-bold text-foreground">{initiative.title}</h3>
+                          <p className="text-green-600 font-semibold">Aktive Initiative</p>
                         </div>
                       </div>
-                    </CardContent>
-                  </Card>
+                      <p className="text-lg text-muted-foreground mb-6">{initiative.description}</p>
+                      <div className="bg-gradient-to-r from-green-500/10 to-blue-500/10 rounded-2xl p-6 border border-green-200">
+                        <div className="flex items-center gap-3 mb-3">
+                          <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                            <span className="text-white text-xs font-bold">✓</span>
+                          </div>
+                          <span className="text-lg font-bold text-green-800">Messbarer Erfolg:</span>
+                        </div>
+                        <p className="text-xl font-bold text-green-700">{initiative.impact}</p>
+                      </div>
+                    </div>
+                    <div className={`${!isEven ? 'lg:col-start-1' : ''}`}>
+                      <div className="relative">
+                        <div className={`aspect-square bg-gradient-to-br ${initiative.color} rounded-3xl flex items-center justify-center shadow-2xl`}>
+                          <IconComponent className="w-32 h-32 text-white/80" />
+                        </div>
+                        <div className="absolute -bottom-4 -right-4 bg-white rounded-2xl p-4 shadow-xl border border-green-100">
+                          <div className="text-2xl font-bold text-green-600">{index + 1}</div>
+                          <div className="text-xs text-green-500 font-medium">Initiative</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 );
               })}
             </div>

@@ -81,50 +81,93 @@ const Service = () => {
           </div>
         </section>
 
-        {/* Hauptleistungen */}
+        {/* Service-Prozess Flow */}
         <section className="py-20 bg-background">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold text-foreground mb-4">
+                So einfach funktioniert's
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Ihr Weg zur zuverlässigen Energieversorgung in 4 Schritten
+              </p>
+            </div>
+
+            <div className="relative">
+              {/* Process Steps */}
+              <div className="grid md:grid-cols-4 gap-8 relative">
+                <div className="hidden md:block absolute top-16 left-1/8 right-1/8 h-0.5 bg-gradient-to-r from-primary via-primary to-primary"></div>
+                
+                {[
+                  { step: "01", title: "Beratung", desc: "Kostenlose Analyse Ihres Energiebedarfs", icon: MessageSquare, color: "bg-blue-500" },
+                  { step: "02", title: "Angebot", desc: "Individuelles Preisangebot binnen 24h", icon: Calendar, color: "bg-green-500" },  
+                  { step: "03", title: "Lieferung", desc: "Termingerechte Lieferung zu Ihnen", icon: Truck, color: "bg-orange-500" },
+                  { step: "04", title: "Service", desc: "Laufende Betreuung und Support", icon: Wrench, color: "bg-purple-500" }
+                ].map((process, index) => {
+                  const IconComponent = process.icon;
+                  return (
+                    <div key={index} className="relative text-center group">
+                      <div className={`w-20 h-20 ${process.color} rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform`}>
+                        <IconComponent className="w-10 h-10 text-white" />
+                      </div>
+                      <div className="absolute -top-2 -right-2 w-8 h-8 bg-white rounded-full border-2 border-primary flex items-center justify-center text-sm font-bold text-primary">
+                        {process.step}
+                      </div>
+                      <h3 className="text-lg font-semibold text-foreground mb-2">{process.title}</h3>
+                      <p className="text-sm text-muted-foreground">{process.desc}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Hauptleistungen - Alternating Layout */}
+        <section className="py-20 bg-muted/30">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-foreground mb-4">
                 Unsere Hauptleistungen
               </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Alles aus einer Hand für Ihre Energieversorgung
-              </p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="space-y-16">
               {services.map((service, index) => {
                 const IconComponent = service.icon;
+                const isEven = index % 2 === 0;
                 return (
-                  <Card key={index} className="group hover:shadow-lg transition-all duration-300">
-                    <CardContent className="p-8">
-                      <div className="flex items-start gap-6">
-                        <div className="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                          <IconComponent className="w-8 h-8 text-primary" />
+                  <div key={index} className={`grid lg:grid-cols-2 gap-12 items-center ${!isEven ? 'lg:grid-flow-col-dense' : ''}`}>
+                    <div className={isEven ? 'lg:pr-8' : 'lg:pl-8 lg:col-start-2'}>
+                      <div className="flex items-center gap-4 mb-6">
+                        <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center shadow-lg">
+                          <IconComponent className="w-8 h-8 text-white" />
                         </div>
-                        <div className="flex-1">
-                          <h3 className="text-xl font-semibold text-foreground mb-3">
-                            {service.title}
-                          </h3>
-                          <p className="text-muted-foreground mb-4">
-                            {service.description}
-                          </p>
-                          <ul className="space-y-2">
-                            {service.features.map((feature, fIndex) => (
-                              <li key={fIndex} className="flex items-center gap-2 text-sm text-muted-foreground">
-                                <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
-                                {feature}
-                              </li>
-                            ))}
-                          </ul>
-                          <Button variant="outline" className="mt-6 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                            Mehr erfahren
-                          </Button>
+                        <div>
+                          <h3 className="text-2xl font-bold text-foreground">{service.title}</h3>
+                          <p className="text-primary font-medium">Professioneller Service</p>
                         </div>
                       </div>
-                    </CardContent>
-                  </Card>
+                      <p className="text-lg text-muted-foreground mb-6">{service.description}</p>
+                      <div className="grid grid-cols-1 gap-3 mb-8">
+                        {service.features.map((feature, fIndex) => (
+                          <div key={fIndex} className="flex items-center gap-3 p-3 bg-background rounded-lg border">
+                            <div className="w-2 h-2 bg-primary rounded-full"></div>
+                            <span className="font-medium text-foreground">{feature}</span>
+                          </div>
+                        ))}
+                      </div>
+                      <Button size="lg" className="gap-2">
+                        <IconComponent className="w-5 h-5" />
+                        Service anfragen
+                      </Button>
+                    </div>
+                    <div className={`${!isEven ? 'lg:col-start-1' : ''}`}>
+                      <div className="aspect-video bg-gradient-to-br from-primary/10 to-primary/20 rounded-2xl flex items-center justify-center">
+                        <IconComponent className="w-24 h-24 text-primary" />
+                      </div>
+                    </div>
+                  </div>
                 );
               })}
             </div>
@@ -169,64 +212,56 @@ const Service = () => {
           </div>
         </section>
 
-        {/* Notfall-Service */}
-        <section className="py-20 bg-background">
+        {/* Notfall-Service - Alert Design */}
+        <section className="py-20 bg-gradient-to-r from-red-50 via-orange-50 to-red-50 border-y-4 border-red-200">
           <div className="container mx-auto px-4">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <Badge variant="destructive" className="mb-6">
-                  24/7 Verfügbar
-                </Badge>
-                <h2 className="text-4xl font-bold text-foreground mb-6">
-                  Notfall-Service
-                </h2>
-                <div className="space-y-6">
-                  <p className="text-lg text-muted-foreground">
-                    Heizung ausgefallen? Tank leer? Kein Problem! Unser Notfall-Service 
-                    ist rund um die Uhr für Sie da.
-                  </p>
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-red-500/10 rounded-full flex items-center justify-center">
-                        <Clock className="w-4 h-4 text-red-600" />
-                      </div>
-                      <span className="font-medium">Schnelllieferung innerhalb von 4 Stunden</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-red-500/10 rounded-full flex items-center justify-center">
-                        <Phone className="w-4 h-4 text-red-600" />
-                      </div>
-                      <span className="font-medium">24/7 Hotline: 0228 / 555-NOTFALL</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-red-500/10 rounded-full flex items-center justify-center">
-                        <Shield className="w-4 h-4 text-red-600" />
-                      </div>
-                      <span className="font-medium">Auch an Feiertagen und Wochenenden</span>
-                    </div>
-                  </div>
-                </div>
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-2 bg-red-600 text-white px-6 py-3 rounded-full mb-6 animate-pulse">
+                <div className="w-3 h-3 bg-white rounded-full animate-ping"></div>
+                <span className="font-bold">24/7 NOTFALL-SERVICE</span>
               </div>
-              
-              <Card className="bg-gradient-to-br from-red-50 to-red-100/50 border-red-200">
-                <CardContent className="p-8 text-center">
-                  <div className="w-20 h-20 bg-red-500/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <Phone className="w-10 h-10 text-red-600" />
+              <h2 className="text-5xl font-bold text-red-800 mb-4">
+                Heizung ausgefallen?
+              </h2>
+              <p className="text-xl text-red-700 font-medium">
+                Kein Problem! Wir sind in unter 4 Stunden bei Ihnen.
+              </p>
+            </div>
+
+            <div className="grid lg:grid-cols-3 gap-8">
+              {[
+                { icon: Clock, title: "< 4 Stunden", desc: "Garantierte Schnelllieferung", color: "bg-red-600" },
+                { icon: Phone, title: "0228 / 555-NOTFALL", desc: "Rund um die Uhr erreichbar", color: "bg-orange-600" },
+                { icon: Shield, title: "365 Tage", desc: "Auch an Feiertagen für Sie da", color: "bg-red-600" }
+              ].map((feature, index) => {
+                const IconComponent = feature.icon;
+                return (
+                  <div key={index} className="bg-white rounded-2xl p-8 shadow-xl border border-red-100 hover:shadow-2xl transition-all group">
+                    <div className={`w-20 h-20 ${feature.color} rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform`}>
+                      <IconComponent className="w-10 h-10 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-red-800 mb-3 text-center">{feature.title}</h3>
+                    <p className="text-red-600 text-center font-medium">{feature.desc}</p>
                   </div>
-                  <h3 className="text-2xl font-bold text-foreground mb-4">
-                    Sofort-Hilfe benötigt?
-                  </h3>
-                  <p className="text-muted-foreground mb-6">
-                    Rufen Sie uns an – wir sind da!
-                  </p>
-                  <Button variant="destructive" size="lg" className="w-full mb-4">
-                    Jetzt anrufen
-                  </Button>
-                  <p className="text-sm text-muted-foreground">
-                    Durchschnittliche Antwortzeit: unter 2 Minuten
-                  </p>
-                </CardContent>
-              </Card>
+                );
+              })}
+            </div>
+            
+            <div className="mt-12 text-center">
+              <div className="bg-white rounded-2xl p-12 shadow-2xl border-4 border-red-200 max-w-2xl mx-auto">
+                <div className="w-32 h-32 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-8 animate-bounce">
+                  <Phone className="w-16 h-16 text-white" />
+                </div>
+                <h3 className="text-3xl font-bold text-red-800 mb-4">SOFORT ANRUFEN</h3>
+                <div className="text-4xl font-bold text-red-600 mb-6 tracking-wider">0228 / 555-NOTFALL</div>
+                <Button variant="destructive" size="lg" className="text-xl px-12 py-6 rounded-xl shadow-lg hover:shadow-xl">
+                  <Phone className="w-6 h-6 mr-3" />
+                  Jetzt Hilfe holen
+                </Button>
+                <p className="text-sm text-red-500 mt-4 font-medium">
+                  ⚡ Durchschnittliche Antwortzeit: unter 2 Minuten
+                </p>
+              </div>
             </div>
           </div>
         </section>
