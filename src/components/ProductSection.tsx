@@ -67,7 +67,7 @@ export function ProductSection() {
     
     return (
       <Dialog open={openDialog === productId} onOpenChange={(open) => setOpenDialog(open ? productId : null)}>
-        <DialogContent className="max-w-4xl rounded-[40px] border-0 bg-white/95 backdrop-blur-xl shadow-2xl p-10">
+        <DialogContent className="max-w-4xl rounded-[80px] border-0 bg-white/95 backdrop-blur-xl shadow-2xl p-10">
           <DialogHeader className="pb-10">
             <DialogTitle className="text-4xl font-bold text-primary pr-12">
               {productTitle}
@@ -85,7 +85,7 @@ export function ProductSection() {
                 {details.services.map((service, index) => {
                   const ServiceIcon = service.icon;
                   return (
-                    <div key={index} className="flex items-center justify-between p-6 rounded-[24px] bg-muted/30 border border-border/20">
+                    <div key={index} className="flex items-center justify-between p-6 rounded-[40px] bg-muted/30 border border-border/20">
                       <div className="flex items-center gap-4">
                         <ServiceIcon className="w-6 h-6 text-primary" />
                         <span className="text-lg font-semibold text-foreground">{service.name}</span>
@@ -109,7 +109,7 @@ export function ProductSection() {
                 {details.quality.map((item, index) => {
                   const ItemIcon = item.icon;
                   return (
-                    <div key={index} className="flex items-center justify-between p-6 rounded-[24px] bg-muted/30 border border-border/20">
+                    <div key={index} className="flex items-center justify-between p-6 rounded-[40px] bg-muted/30 border border-border/20">
                       <div className="flex items-center gap-4">
                         <ItemIcon className="w-6 h-6 text-primary" />
                         <span className="text-lg font-semibold text-foreground">{item.name}</span>
