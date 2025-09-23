@@ -122,4 +122,13 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Footer logo styling to keep KNAUBER green and text white */
+  .footer-logo svg .cls-1 {
+    fill: white !important;
+  }
+  
+  .footer-logo svg .cls-2 {
+    fill: hsl(124 80% 49%) !important;
+  }
 }

@@ -29,8 +29,7 @@ export const Footer = () => {
               <img 
                 src={knauberLogo} 
                 alt="Knauber Energie" 
-                className="h-12 w-auto mx-auto md:mx-0 opacity-90"
-                style={{ filter: 'brightness(0) invert(1)' }}
+                className="h-12 w-auto mx-auto md:mx-0 opacity-90 footer-logo"
               />
             </div>
             <p className="text-white/80 text-sm leading-relaxed">
