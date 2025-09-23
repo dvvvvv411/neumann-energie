@@ -12,7 +12,7 @@ export function PersonalContactSection() {
               <h2 className="text-3xl font-bold text-foreground mb-4">
                 Kontakt
               </h2>
-              <p className="text-lg text-muted-foreground mb-6">
+              <p className="text-4xl font-bold text-foreground mb-6">
                 Sie möchten persönlich beraten werden?
               </p>
               <p className="text-lg text-muted-foreground">
