@@ -1,7 +1,9 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Check, Star, Award, Shield, ArrowUpRight, Plus } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Check, Star, Award, Shield, ArrowUpRight, Plus, X, Truck, Leaf, Droplets } from "lucide-react";
+import { useState } from "react";
 
 const products = [
   {
@@ -33,6 +35,115 @@ const products = [
 ];
 
 export function ProductSection() {
+  const [openDialog, setOpenDialog] = useState<string | null>(null);
+
+  const productDetails = {
+    standard: {
+      services: [
+        { name: "Expresslieferung", value: "48h Express", icon: Truck }
+      ],
+      quality: [
+        { name: "DIN Norm", value: true, icon: Shield },
+        { name: "Neutralisierter Geruch", value: false, icon: Droplets },
+        { name: "Anlieferung CO₂-kompensiert", value: "optional zubuchbar", icon: Leaf },
+        { name: "Schwefelarm", value: true, icon: Check }
+      ]
+    },
+    premium: {
+      services: [
+        { name: "Expresslieferung", value: "48h Express", icon: Truck }
+      ],
+      quality: [
+        { name: "Anlieferung CO₂-kompensiert", value: true, icon: Leaf },
+        { name: "Neutralisierter Geruch", value: true, icon: Droplets },
+        { name: "Reduzierter Verbrauch", value: true, icon: Award },
+        { name: "Schwefelarm", value: true, icon: Check }
+      ]
+    }
+  };
+
+  const ProductDetailDialog = ({ productId, productTitle }: { productId: string, productTitle: string }) => {
+    const details = productDetails[productId as keyof typeof productDetails];
+    
+    return (
+      <Dialog open={openDialog === productId} onOpenChange={(open) => setOpenDialog(open ? productId : null)}>
+        <DialogContent className="max-w-2xl rounded-3xl border-0 bg-white/95 backdrop-blur-xl shadow-2xl">
+          <DialogHeader className="pb-6">
+            <DialogTitle className="text-3xl font-bold text-primary pr-8">
+              {productTitle}
+            </DialogTitle>
+          </DialogHeader>
+          
+          <div className="space-y-8">
+            {/* Zubuchbare Leistungen */}
+            <div>
+              <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
+                <Star className="w-5 h-5 text-primary" />
+                Zubuchbare Leistungen
+              </h3>
+              <div className="space-y-3">
+                {details.services.map((service, index) => {
+                  const ServiceIcon = service.icon;
+                  return (
+                    <div key={index} className="flex items-center justify-between p-4 rounded-2xl bg-muted/30 border border-border/20">
+                      <div className="flex items-center gap-3">
+                        <ServiceIcon className="w-5 h-5 text-primary" />
+                        <span className="font-medium text-foreground">{service.name}</span>
+                      </div>
+                      <Badge variant="secondary" className="font-medium rounded-full">
+                        {service.value}
+                      </Badge>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Produktqualität */}
+            <div>
+              <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
+                <Award className="w-5 h-5 text-primary" />
+                Produktqualität
+              </h3>
+              <div className="space-y-3">
+                {details.quality.map((item, index) => {
+                  const ItemIcon = item.icon;
+                  return (
+                    <div key={index} className="flex items-center justify-between p-4 rounded-2xl bg-muted/30 border border-border/20">
+                      <div className="flex items-center gap-3">
+                        <ItemIcon className="w-5 h-5 text-primary" />
+                        <span className="font-medium text-foreground">{item.name}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        {item.value === true && (
+                          <>
+                            <Check className="w-5 h-5 text-green-600" />
+                            <span className="text-green-600 font-medium">Ja</span>
+                          </>
+                        )}
+                        {item.value === false && (
+                          <>
+                            <X className="w-5 h-5 text-red-500" />
+                            <span className="text-red-500 font-medium">Nein</span>
+                          </>
+                        )}
+                        {typeof item.value === 'string' && item.value !== 'true' && item.value !== 'false' && (
+                          <Badge variant="outline" className="font-medium rounded-full">
+                            {item.value}
+                          </Badge>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+    );
+  };
+
   return (
     <section id="produkte" className="py-20 bg-gradient-to-b from-muted/30 to-background">
       <div className="container mx-auto px-4">
@@ -87,12 +198,15 @@ export function ProductSection() {
                       variant="outline" 
                       size="lg"
                       className="w-full py-4 h-auto font-semibold border-2 hover:bg-muted/50 text-xl gap-3 rounded-2xl"
+                      onClick={() => setOpenDialog(product.id)}
                     >
                       Produktdetails
                       <Plus className="w-6 h-6 text-primary" />
                     </Button>
                   </div>
                 </CardContent>
+
+                <ProductDetailDialog productId={product.id} productTitle={product.title} />
               </Card>
             );
           })}
