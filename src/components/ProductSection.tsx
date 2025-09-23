@@ -67,25 +67,25 @@ export function ProductSection() {
     
     return (
       <Dialog open={openDialog === productId} onOpenChange={(open) => setOpenDialog(open ? productId : null)}>
-        <DialogContent className="max-w-3xl rounded-3xl border-0 bg-white/95 backdrop-blur-xl shadow-2xl">
-          <DialogHeader className="pb-8">
-            <DialogTitle className="text-4xl font-bold text-primary pr-8">
+        <DialogContent className="max-w-4xl rounded-[40px] border-0 bg-white/95 backdrop-blur-xl shadow-2xl p-10">
+          <DialogHeader className="pb-10">
+            <DialogTitle className="text-4xl font-bold text-primary pr-12">
               {productTitle}
             </DialogTitle>
           </DialogHeader>
           
-          <div className="space-y-10">
+          <div className="space-y-12">
             {/* Zubuchbare Leistungen */}
             <div>
-              <h3 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-3">
+              <h3 className="text-2xl font-bold text-foreground mb-8 flex items-center gap-3">
                 <Star className="w-6 h-6 text-primary" />
                 Zubuchbare Leistungen
               </h3>
-              <div className="space-y-4">
+              <div className="space-y-6">
                 {details.services.map((service, index) => {
                   const ServiceIcon = service.icon;
                   return (
-                    <div key={index} className="flex items-center justify-between p-5 rounded-2xl bg-muted/30 border border-border/20">
+                    <div key={index} className="flex items-center justify-between p-6 rounded-[24px] bg-muted/30 border border-border/20">
                       <div className="flex items-center gap-4">
                         <ServiceIcon className="w-6 h-6 text-primary" />
                         <span className="text-lg font-semibold text-foreground">{service.name}</span>
@@ -101,15 +101,15 @@ export function ProductSection() {
 
             {/* Produktqualität */}
             <div>
-              <h3 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-3">
+              <h3 className="text-2xl font-bold text-foreground mb-8 flex items-center gap-3">
                 <Award className="w-6 h-6 text-primary" />
                 Produktqualität
               </h3>
-              <div className="space-y-4">
+              <div className="space-y-6">
                 {details.quality.map((item, index) => {
                   const ItemIcon = item.icon;
                   return (
-                    <div key={index} className="flex items-center justify-between p-5 rounded-2xl bg-muted/30 border border-border/20">
+                    <div key={index} className="flex items-center justify-between p-6 rounded-[24px] bg-muted/30 border border-border/20">
                       <div className="flex items-center gap-4">
                         <ItemIcon className="w-6 h-6 text-primary" />
                         <span className="text-lg font-semibold text-foreground">{item.name}</span>
