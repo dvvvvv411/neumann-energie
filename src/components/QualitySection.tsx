@@ -19,8 +19,8 @@ const QualitySection = () => {
             <h2 className="text-4xl font-bold text-foreground">
               Zertifizierte Qualität – mit dem RAL-Gütezeichen
             </h2>
-            <div className="prose prose-lg text-muted-foreground max-w-none">
-              <p className="text-lg leading-relaxed">
+            <div className="prose prose-lg max-w-none">
+              <p className="text-lg leading-relaxed text-foreground">
                 Das RAL-Gütezeichen gilt als das Qualitätsprädikat für den sicheren Energie-Einkauf. 
                 Es weist auf eine hochwertige Produktgüte, zuverlässige Liefermengen, qualifiziertes 
                 Fachpersonal und regelmäßige Sicherheitschecks hin. Knauber trägt das RAL-Gütezeichen 
