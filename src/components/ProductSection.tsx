@@ -40,12 +40,12 @@ export function ProductSection() {
   const productDetails = {
     standard: {
       services: [
-        { name: "Expresslieferung", value: "48h Express", icon: Truck }
+        { name: "Expresslieferung", value: "48h Express", icon: Truck },
+        { name: "Anlieferung CO₂-kompensiert", value: "optional zubuchbar", icon: Leaf }
       ],
       quality: [
         { name: "DIN Norm", value: true, icon: Shield },
         { name: "Neutralisierter Geruch", value: false, icon: Droplets },
-        { name: "Anlieferung CO₂-kompensiert", value: "optional zubuchbar", icon: Leaf },
         { name: "Schwefelarm", value: true, icon: Check }
       ]
     },
