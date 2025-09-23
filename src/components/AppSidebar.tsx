@@ -39,7 +39,7 @@ export function AppSidebar({ isOpen, onOpenChange }: AppSidebarProps) {
       
       <SheetContent 
         side="left" 
-        className="w-80 p-0 bg-background border-border"
+        className="w-80 p-0 bg-background border-border [&>button]:hidden"
       >
         {/* Logo Section */}
         <div className="flex items-center justify-between p-6 border-b border-border">
