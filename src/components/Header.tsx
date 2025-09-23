@@ -15,29 +15,29 @@ export function Header() {
 
   return (
     <header className="bg-background border-b border-border sticky top-0 z-50">
-      <div className="container mx-auto px-4 py-4">
+      <div className="container mx-auto px-4 py-6">
         <div className="flex items-center justify-between">
           {/* Hamburger Menu */}
           <div className="flex items-center">
             <Button
               variant="ghost"
-              size="sm"
+              size="default"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="lg:hidden"
             >
-              {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-              <span className="ml-2 text-sm font-medium">Menü</span>
+              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              <span className="ml-2 text-base font-medium">Menü</span>
             </Button>
             
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex lg:items-center lg:gap-8">
               <Button
                 variant="ghost" 
-                size="sm"
+                size="default"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
               >
-                <Menu className="h-5 w-5" />
-                <span className="ml-2">Menü</span>
+                <Menu className="h-6 w-6" />
+                <span className="ml-2 text-base">Menü</span>
               </Button>
             </nav>
           </div>
@@ -47,7 +47,7 @@ export function Header() {
             <img 
               src={knauberLogo} 
               alt="Knauber Energie" 
-              className="h-12 w-auto"
+              className="h-16 w-auto"
             />
           </div>
 
