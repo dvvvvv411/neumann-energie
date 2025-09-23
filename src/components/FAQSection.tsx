@@ -4,6 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Separator } from "@/components/ui/separator";
 
 const faqData = [
   {
@@ -55,20 +56,24 @@ const FAQSection = () => {
             </p>
           </div>
 
-          <Accordion type="single" collapsible className="w-full space-y-4">
+          <Accordion type="single" collapsible className="w-full">
             {faqData.map((faq, index) => (
-              <AccordionItem 
-                key={index} 
-                value={`item-${index}`}
-                className="bg-background border border-border rounded-lg px-6 shadow-sm hover:shadow-md transition-shadow duration-200"
-              >
-                <AccordionTrigger className="text-left font-semibold text-lg py-6 hover:no-underline">
-                  {faq.question}
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground leading-relaxed pb-6 text-base">
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
+              <div key={index}>
+                <AccordionItem 
+                  value={`item-${index}`}
+                  className="border-none py-2"
+                >
+                  <AccordionTrigger className="text-left font-semibold text-xl py-8 hover:no-underline text-foreground">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground leading-relaxed pb-8 text-lg">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+                {index < faqData.length - 1 && (
+                  <Separator className="my-4" />
+                )}
+              </div>
             ))}
           </Accordion>
         </div>
