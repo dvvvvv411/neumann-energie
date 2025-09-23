@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { toast } from "sonner";
+import { ArrowUpRight } from "lucide-react";
 
 const formSchema = z.object({
   salutation: z.string().min(1, "Bitte wählen Sie eine Anrede"),
@@ -238,17 +239,19 @@ export const ContactSection = () => {
                     )}
                   />
 
-                  {/* Submit Button */}
-                   <div className="pt-6">
-                     <Button 
-                       type="submit" 
-                       variant="default"
-                       size="lg"
-                       className="w-full px-12 py-4 rounded-xl font-semibold text-lg h-16 bg-primary text-primary-foreground hover:bg-primary/90"
-                     >
-                       Anfrage absenden
-                     </Button>
-                   </div>
+                   {/* Submit Button */}
+                    <div className="pt-6">
+                      <Button 
+                        type="submit" 
+                        variant="modern"
+                        size="lg"
+                        className="w-full px-12 py-4 rounded-xl font-semibold text-lg h-16 gap-4 group"
+                        style={{ color: '#0c2a3e' }}
+                      >
+                        Anfrage absenden
+                        <ArrowUpRight className="w-6 h-6 text-white transition-transform duration-300 group-hover:rotate-45" />
+                      </Button>
+                    </div>
                 </form>
               </Form>
             </div>
