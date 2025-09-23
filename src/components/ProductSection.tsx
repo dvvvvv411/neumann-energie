@@ -123,8 +123,8 @@ export function ProductSection() {
                         )}
                         {item.value === false && (
                           <>
-                            <X className="w-6 h-6 text-red-500" />
-                            <span className="text-red-500 font-semibold text-lg">Nein</span>
+                            <X className="w-6 h-6 text-foreground" />
+                            <span className="text-foreground font-semibold text-lg">Nein</span>
                           </>
                         )}
                         {typeof item.value === 'string' && item.value !== 'true' && item.value !== 'false' && (
