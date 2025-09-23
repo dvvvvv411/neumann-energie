@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import knauberLogo from "@/assets/knauber-logo.svg";
 import { AppSidebar } from "@/components/AppSidebar";
 
@@ -19,11 +20,13 @@ export function Header() {
 
           {/* Logo - Centered */}
           <div className="absolute left-1/2 transform -translate-x-1/2">
-            <img 
-              src={knauberLogo} 
-              alt="Knauber Energie" 
-              className="h-16 w-auto"
-            />
+            <Link to="/">
+              <img 
+                src={knauberLogo} 
+                alt="Knauber Energie" 
+                className="h-16 w-auto cursor-pointer"
+              />
+            </Link>
           </div>
 
           {/* Empty div for flex layout */}

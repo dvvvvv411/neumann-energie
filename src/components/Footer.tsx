@@ -26,11 +26,13 @@ export const Footer = () => {
           {/* Company Info */}
           <div className="text-center md:text-left">
             <div className="mb-4">
-              <img 
-                src={knauberLogo} 
-                alt="Knauber Energie" 
-                className="h-12 w-auto mx-auto md:mx-0 opacity-90 footer-logo"
-              />
+              <Link to="/">
+                <img 
+                  src={knauberLogo} 
+                  alt="Knauber Energie" 
+                  className="h-12 w-auto mx-auto md:mx-0 opacity-90 footer-logo cursor-pointer"
+                />
+              </Link>
             </div>
             <p className="text-white/80 text-sm leading-relaxed">
               Ihr zuverlässiger Partner für Heizöl seit über 150 Jahren. 
