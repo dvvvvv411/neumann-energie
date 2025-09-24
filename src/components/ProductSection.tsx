@@ -226,6 +226,7 @@ export function ProductSection() {
                       size="lg"
                       className="w-full text-xl font-bold py-4 h-auto transition-all duration-300 text-white group gap-3 rounded-2xl"
                       style={{ backgroundColor: '#0c2a3e' }}
+                      onClick={() => window.location.href = '/anfrage'}
                     >
                       Jetzt anfragen!
                       <ArrowUpRight className="w-6 h-6 text-primary transition-transform duration-300 group-hover:rotate-45" />

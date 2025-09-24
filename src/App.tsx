@@ -10,6 +10,7 @@ import About from "./pages/About";
 import Service from "./pages/Service";
 import Sustainability from "./pages/Sustainability";
 import References from "./pages/References";
+import Anfrage from "./pages/Anfrage";
 import Impressum from "./pages/Impressum";
 import Datenschutz from "./pages/Datenschutz";
 import Widerrufsrecht from "./pages/Widerrufsrecht";
@@ -31,6 +32,7 @@ const App = () => (
           <Route path="/service" element={<Service />} />
           <Route path="/nachhaltigkeit" element={<Sustainability />} />
           <Route path="/referenzen" element={<References />} />
+          <Route path="/anfrage" element={<Anfrage />} />
           <Route path="/impressum" element={<Impressum />} />
           <Route path="/datenschutz" element={<Datenschutz />} />
           <Route path="/widerrufsrecht" element={<Widerrufsrecht />} />
