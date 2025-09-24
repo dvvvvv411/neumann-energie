@@ -5,9 +5,9 @@ import { Badge } from "@/components/ui/badge";
 
 const Impressum = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex flex-col">
       <Header />
-      <main className="py-16">
+      <main className="py-16 flex-grow">
         <div className="container mx-auto px-4 max-w-4xl">
           {/* Hero Section */}
           <div className="text-center mb-12">
