@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import neumannLogo from "@/assets/neumann-logo.png";
+import knauberLogo from "@/assets/knauber-logo.svg";
 import { AppSidebar } from "@/components/AppSidebar";
 
 export function Header() {
@@ -22,8 +22,8 @@ export function Header() {
           <div className="absolute left-1/2 transform -translate-x-1/2">
             <Link to="/">
               <img 
-                src={neumannLogo} 
-                alt="Neumann Energie"
+                src={knauberLogo} 
+                alt="Knauber Energie" 
                 className="h-16 w-auto cursor-pointer hover-scale"
               />
             </Link>

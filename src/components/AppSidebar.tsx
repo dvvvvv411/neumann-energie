@@ -6,7 +6,7 @@ import {
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-import neumannLogo from "@/assets/neumann-logo.png";
+import knauberLogo from "@/assets/knauber-logo.svg";
 
 const navigationItems = [
   { name: "Startseite", href: "/" },
@@ -42,8 +42,8 @@ export function AppSidebar({ isOpen, onOpenChange }: AppSidebarProps) {
         {/* Logo Section */}
         <div className="flex items-center justify-between p-6 border-b border-border">
           <img 
-            src={neumannLogo} 
-            alt="Neumann Energie"
+            src={knauberLogo} 
+            alt="Knauber Energie" 
             className="h-12 w-auto"
           />
           <SheetClose asChild>
