@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import knauberLogo from "@/assets/knauber-logo.svg";
+// Logo will be referenced directly
 
 export const Footer = () => {
   const legalLinks = [
@@ -28,8 +28,8 @@ export const Footer = () => {
             <div className="mb-4">
               <Link to="/">
                 <img 
-                  src={knauberLogo} 
-                  alt="Knauber Energie" 
+                  src="/lovable-uploads/neumannwhite.png.png" 
+                  alt="Neumann Energie" 
                   className="h-12 w-auto mx-auto md:mx-0 opacity-90 footer-logo cursor-pointer hover-scale"
                 />
               </Link>
@@ -82,7 +82,7 @@ export const Footer = () => {
         {/* Copyright */}
         <div className="border-t border-white/20 pt-6 text-center">
           <p className="text-white/60 text-sm">
-            © {new Date().getFullYear()} Knauber Energie GmbH & Co. KG. Alle Rechte vorbehalten.
+            © {new Date().getFullYear()} Neumann Energie. Alle Rechte vorbehalten.
           </p>
         </div>
       </div>
