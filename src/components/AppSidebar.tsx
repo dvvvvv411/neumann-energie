@@ -6,7 +6,7 @@ import {
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-import knauberLogo from "@/assets/knauber-logo.svg";
+// Logo will be referenced directly
 
 const navigationItems = [
   { name: "Startseite", href: "/" },
@@ -42,8 +42,8 @@ export function AppSidebar({ isOpen, onOpenChange }: AppSidebarProps) {
         {/* Logo Section */}
         <div className="flex items-center justify-between p-6 border-b border-border">
           <img 
-            src={knauberLogo} 
-            alt="Knauber Energie" 
+            src="/lovable-uploads/neumannlogo.png.png" 
+            alt="Neumann Energie" 
             className="h-12 w-auto"
           />
           <SheetClose asChild>
