@@ -43,27 +43,27 @@ const References = () => {
 
   const caseStudies = [
     {
-      title: "Wohnkomplex Bonn-Süd",
-      client: "300 Wohneinheiten",
-      challenge: "Kostensenkung bei gleichbleibender Versorgungssicherheit",
-      solution: "Optimierter Lieferplan mit Sammelbestellungen",
-      result: "25% Kosteneinsparung bei 100% Verfügbarkeit",
-      icon: Building
-    },
-    {
-      title: "Mittelständischer Betrieb",
-      client: "Produktionsunternehmen",
-      challenge: "Planbare Energiekosten für Budgetierung",
-      solution: "Jahresvertrag mit Festpreisgarantie",
-      result: "Kalkulationssicherheit für 12 Monate",
+      title: "Industriekomplex Rhein-Ruhr",
+      client: "12 Produktionsbetriebe",
+      challenge: "Versorgungssicherheit für kritische Industrieprozesse",
+      solution: "Redundante Lieferkette mit 24/7 Notfallservice",
+      result: "100% Ausfallsicherheit, 30% Kosteneinsparung",
       icon: Factory
     },
     {
-      title: "Privatkunden-Portfolio",
-      client: "1.200+ Haushalte",
-      challenge: "Individuelle Betreuung bei hoher Kundenzahl",
-      solution: "Digitaler Lieferplan mit persönlichem Ansprechpartner",
-      result: "98% Kundenzufriedenheit",
+      title: "Wohnkomplex Bonn-Süd",
+      client: "800 Wohneinheiten",
+      challenge: "Kostensenkung bei gleichbleibender Versorgungssicherheit",
+      solution: "Optimierter Lieferplan mit Sammelbestellungen",
+      result: "35% Kosteneinsparung bei 100% Verfügbarkeit",
+      icon: Building
+    },
+    {
+      title: "Krankenhauskette NRW",
+      client: "5 Kliniken",
+      challenge: "Unterbrechungsfreie Energieversorgung für kritische Bereiche",
+      solution: "Priorisierte Lieferung mit Backup-Systemen",
+      result: "Null Ausfallzeiten, 20% Budgeteinsparung",
       icon: Home
     }
   ];
@@ -75,10 +75,10 @@ const References = () => {
   ];
 
   const stats = [
-    { number: "15.000+", label: "Zufriedene Kunden", icon: Users },
-    { number: "98%", label: "Weiterempfehlungsrate", icon: TrendingUp },
-    { number: "25+", label: "Jahre Durchschnittliche Kundenbeziehung", icon: Award },
-    { number: "99.9%", label: "Lieferzuverlässigkeit", icon: Star }
+    { number: "25.000+", label: "Zufriedene Kunden", icon: Users },
+    { number: "96%", label: "Weiterempfehlungsrate", icon: TrendingUp },
+    { number: "12+", label: "Jahre Durchschnittliche Kundenbeziehung", icon: Award },
+    { number: "99.8%", label: "Lieferzuverlässigkeit", icon: Star }
   ];
 
   return (
@@ -91,14 +91,14 @@ const References = () => {
           <div className="container mx-auto px-4">
             <div className="text-center max-w-4xl mx-auto">
               <Badge variant="secondary" className="mb-6">
-                15.000+ zufriedene Kunden
+                25.000+ zufriedene Kunden
               </Badge>
               <h1 className="text-5xl font-bold text-foreground mb-6">
                 Referenzen & Kunden
               </h1>
               <p className="text-xl text-muted-foreground leading-relaxed mb-8">
-                Vertrauen Sie auf die Erfahrungen unserer Kunden. Von Privathaushalten 
-                bis zu Großunternehmen – wir sind der zuverlässige Partner für Ihre Energieversorgung.
+                Vertrauen Sie auf die Erfahrungen unserer Geschäftskunden. Von Industriebetrieben 
+                bis zu Wohnkomplexen – wir sind der zuverlässige Partner für Ihre Energieversorgung.
               </p>
             </div>
           </div>
@@ -138,7 +138,7 @@ const References = () => {
                 Was unsere Kunden sagen
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Über 15.000 zufriedene Kunden sprechen für sich
+                Über 25.000 zufriedene Kunden sprechen für sich
               </p>
             </div>
 
@@ -197,10 +197,10 @@ const References = () => {
                     <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
                       <TrendingUp className="w-10 h-10 text-white" />
                     </div>
-                    <div className="text-4xl font-bold text-primary mb-2">98%</div>
+                    <div className="text-4xl font-bold text-primary mb-2">96%</div>
                     <div className="text-lg font-semibold text-foreground mb-2">Weiterempfehlungsrate</div>
                     <p className="text-muted-foreground text-sm">
-                      98% unserer Kunden würden uns weiterempfehlen
+                      96% unserer Kunden würden uns weiterempfehlen
                     </p>
                   </div>
                 </div>
@@ -299,10 +299,10 @@ const References = () => {
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
-                { name: "Privathaushalte", count: "8.500+", icon: Home },
-                { name: "Wohnungswirtschaft", count: "1.200+", icon: Building },
-                { name: "Industrie & Gewerbe", count: "450+", icon: Factory },
-                { name: "Öffentliche Einrichtungen", count: "85+", icon: Users }
+                { name: "Industrie & Gewerbe", count: "12.500+", icon: Factory },
+                { name: "Wohnungswirtschaft", count: "8.000+", icon: Building },
+                { name: "Öffentliche Einrichtungen", count: "2.500+", icon: Users },
+                { name: "Privathaushalte", count: "2.000+", icon: Home }
               ].map((sector, index) => {
                 const IconComponent = sector.icon;
                 return (
