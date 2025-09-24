@@ -7,40 +7,40 @@ import {
 
 const faqData = [
   {
-    question: "In welchem Gebiet liefern Sie?",
+    question: "Welches Liefergebiet wird abgedeckt?",
     answer: "Wir liefern deutschlandweit. Egal ob München, Berlin, Hamburg oder kleine Gemeinden – unser Lieferservice erreicht Sie überall in Deutschland. Durch unser etabliertes Partnernetzwerk gewährleisten wir zuverlässige und schnelle Lieferungen in allen Bundesländern."
   },
   {
-    question: "Wie schnell können Sie liefern?",
+    question: "Wie schnell erfolgt die Lieferung?",
     answer: "In der Regel liefern wir innerhalb von 3-5 Werktagen. Bei Bedarf bieten wir auch Express-Lieferungen innerhalb von 48 Stunden an. Einen Wunschtermin können Sie kostenlos bei der Bestellung angeben."
   },
   {
-    question: "Wie setzen sich Ihre Preise zusammen?",
-    answer: "Unsere Preise orientieren sich am aktuellen Marktpreis für Heizöl. Der Preis zum Zeitpunkt Ihrer Bestellung ist verbindlich und bleibt bis zur Lieferung garantiert – unabhängig von Marktschwankungen."
+    question: "Wie setzen sich die Preise zusammen?",
+    answer: "Unsere Preise orientieren sich am aktuellen Marktpreis für Heizöl. Der Preis zum Zeitpunkt der Bestellung ist verbindlich und bleibt bis zur Lieferung garantiert – unabhängig von Marktschwankungen."
   },
   {
-    question: "Bieten Sie CO₂-kompensiertes Heizöl an?",
-    answer: "Ja, auf Wunsch liefern wir Ihr Heizöl CO₂-kompensiert. Wir gleichen den CO₂-Ausstoß durch zertifizierte Klimaschutzprojekte aus, sodass Sie klimaneutral heizen können."
+    question: "Gibt es CO₂-kompensiertes Heizöl?",
+    answer: "Ja, auf Wunsch liefern wir das Heizöl CO₂-kompensiert. Wir gleichen den CO₂-Ausstoß durch zertifizierte Klimaschutzprojekte aus, sodass klimaneutral geheizt werden kann."
   },
   {
-    question: "Was muss ich bei der Lieferung beachten?",
-    answer: "Unser Fahrer benötigt freien Zugang zum Tankraum und Füllstutzen. Schalten Sie bitte die Heizung vor der Lieferung aus und erst 1-2 Stunden nach der Befüllung wieder an."
+    question: "Was ist bei der Lieferung zu beachten?",
+    answer: "Unser Fahrer benötigt freien Zugang zum Tankraum und Füllstutzen. Die Heizung sollte vor der Lieferung ausgeschaltet und erst 1-2 Stunden nach der Befüllung wieder angeschaltet werden."
   },
   {
-    question: "Kann ich verschiedene Heizölsorten mischen?",
-    answer: "Ja, alle unsere Heizölsorten sind untereinander mischbar, da sie der DIN-Norm 51603-1 entsprechen. Sie können problemlos nachbestellen, auch wenn noch Rest-Heizöl im Tank ist."
+    question: "Können verschiedene Heizölsorten gemischt werden?",
+    answer: "Ja, alle unsere Heizölsorten sind untereinander mischbar, da sie der DIN-Norm 51603-1 entsprechen. Problemlos kann nachbestellt werden, auch wenn noch Rest-Heizöl im Tank ist."
   },
   {
-    question: "Wie erfahre ich den genauen Liefertermin?",
-    answer: "Wir rufen Sie einige Tage vor der Lieferung an und vereinbaren gemeinsam einen passenden Termin. Dabei planen wir ein Zeitfenster von wenigen Stunden ein."
+    question: "Wie wird der Liefertermin bekannt gegeben?",
+    answer: "Wir rufen einige Tage vor der Lieferung an und vereinbaren gemeinsam einen passenden Termin. Dabei planen wir ein Zeitfenster von wenigen Stunden ein."
   },
   {
     question: "Welche Zahlungsmöglichkeiten gibt es?",
-    answer: "Sie können bequem per Rechnung, Lastschrift oder Kreditkarte bezahlen. Bei Privatkunden ist auch eine Barzahlung bei Lieferung möglich."
+    answer: "Bezahlt werden kann bequem per Rechnung, Lastschrift oder Kreditkarte. Bei Privatkunden ist auch eine Barzahlung bei Lieferung möglich."
   },
   {
-    question: "Sind Sie RAL-zertifiziert?",
-    answer: "Ja, wir tragen das RAL-Gütezeichen und unterliegen regelmäßigen Qualitätskontrollen. Das garantiert Ihnen höchste Standards bei Produktqualität, Liefermengen und Service."
+    question: "Gibt es eine RAL-Zertifizierung?",
+    answer: "Ja, wir tragen das RAL-Gütezeichen und unterliegen regelmäßigen Qualitätskontrollen. Das garantiert höchste Standards bei Produktqualität, Liefermengen und Service."
   }
 ];
 
