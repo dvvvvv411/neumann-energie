@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowUpRight } from "lucide-react";
-import heroImage from "@/assets/hero-image-real.jpg";
+// Logo will be referenced directly
 
 export function HeroSection() {
   return (
@@ -9,7 +9,7 @@ export function HeroSection() {
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ 
-          backgroundImage: `url(${heroImage})`,
+          backgroundImage: `url(/lovable-uploads/neumannbanner.png.png)`,
           backgroundSize: 'cover',
           backgroundPosition: 'center 30%'
         }}
