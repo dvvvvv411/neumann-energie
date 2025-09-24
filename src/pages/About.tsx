@@ -2,6 +2,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Users, Award, MapPin, Calendar } from "lucide-react";
 import ralLogo from "@/assets/ral-logo.webp";
 
@@ -15,10 +16,10 @@ const About = () => {
   ];
 
   const team = [
-    { name: "Martin Bois", role: "Vertrieb Heizöl", department: "Vertrieb" },
-    { name: "Thomas Müller", role: "Geschäftsführer", department: "Leitung" },
-    { name: "Sarah Weber", role: "Kundenservice", department: "Service" },
-    { name: "Michael Schmidt", role: "Technischer Leiter", department: "Technik" },
+    { name: "Martin Bois", role: "Vertrieb Heizöl", department: "Vertrieb", image: "/lovable-uploads/3.webp.png" },
+    { name: "Peter Neumann", role: "Geschäftsführer", department: "Leitung", image: "/lovable-uploads/1.webp.png" },
+    { name: "Sarah Weber", role: "Kundenservice", department: "Service", image: "/lovable-uploads/2.webp.png" },
+    { name: "Michael Schmidt", role: "Technischer Leiter", department: "Technik", image: "/lovable-uploads/4.webp.png" },
   ];
 
   const locations = [
@@ -112,9 +113,12 @@ const About = () => {
               {team.map((member, index) => (
                 <Card key={index} className="group hover:shadow-lg transition-all duration-300">
                   <CardContent className="p-6 text-center">
-                    <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
-                      <Users className="w-10 h-10 text-primary" />
-                    </div>
+                    <Avatar className="w-20 h-20 mx-auto mb-4 group-hover:scale-105 transition-transform">
+                      <AvatarImage src={member.image} alt={member.name} className="object-cover" />
+                      <AvatarFallback>
+                        <Users className="w-10 h-10 text-primary" />
+                      </AvatarFallback>
+                    </Avatar>
                     <h3 className="text-lg font-semibold text-foreground mb-1">{member.name}</h3>
                     <p className="text-sm text-primary font-medium mb-1">{member.role}</p>
                     <Badge variant="outline" className="text-xs">{member.department}</Badge>
