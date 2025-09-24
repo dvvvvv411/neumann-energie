@@ -16,8 +16,8 @@ const References = () => {
       sector: "Wohnungswirtschaft"
     },
     {
-      name: "Dr. Thomas Müller",
-      company: "Maschinenbau Rhein GmbH",
+      name: "Johannes Fritz",
+      company: "FRITZ Maschinenbau GmbH",
       role: "Geschäftsführer",
       rating: 5,
       text: "Als Industriebetrieb sind wir auf eine sichere Energieversorgung angewiesen. Neumann liefert nicht nur zuverlässig, sondern berät uns auch kompetent bei der Optimierung unserer Energiekosten.",
@@ -32,7 +32,7 @@ const References = () => {
       sector: "Privatkunden"
     },
     {
-      name: "Michael König",
+      name: "Jörg Winterfeld",
       company: "Hotel Zur Post",
       role: "Inhaber",
       rating: 5,
