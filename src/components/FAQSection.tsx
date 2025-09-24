@@ -7,6 +7,10 @@ import {
 
 const faqData = [
   {
+    question: "In welchem Gebiet liefern Sie?",
+    answer: "Wir liefern deutschlandweit. Egal ob München, Berlin, Hamburg oder kleine Gemeinden – unser Lieferservice erreicht Sie überall in Deutschland. Durch unser etabliertes Partnernetzwerk gewährleisten wir zuverlässige und schnelle Lieferungen in allen Bundesländern."
+  },
+  {
     question: "Wie schnell können Sie liefern?",
     answer: "In der Regel liefern wir innerhalb von 3-5 Werktagen. Bei Bedarf bieten wir auch Express-Lieferungen innerhalb von 48 Stunden an. Einen Wunschtermin können Sie kostenlos bei der Bestellung angeben."
   },

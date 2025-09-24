@@ -22,7 +22,7 @@ export function HeroSection() {
       <div className="relative z-10 container mx-auto px-4 text-white">
         <div className="max-w-2xl">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-            Ihr regionaler Partner für zuverlässige Heizöl-Lieferung
+            Ihr zuverlässiger Partner für deutschlandweite Heizöl-Lieferung
           </h1>
           
           <p className="text-xl md:text-2xl mb-8 leading-relaxed text-white/90 max-w-3xl">
