@@ -1,5 +1,5 @@
 import { Mail, Phone, Headset, ArrowUpRight } from "lucide-react";
-import martinBoisImage from "@/assets/martin-bois-kontakt.jpg";
+// Using uploaded image directly
 
 export function PersonalContactSection() {
   return (
@@ -55,7 +55,7 @@ export function PersonalContactSection() {
           <div className="flex flex-col items-center text-center space-y-6">
             <div className="relative">
               <img
-                src={martinBoisImage}
+                src="/lovable-uploads/3.webp.png"
                 alt="Martin Bois - Vertrieb Heizöl"
                 className="w-48 h-48 rounded-full object-cover shadow-lg border-4 border-background"
               />
