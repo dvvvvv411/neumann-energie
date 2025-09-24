@@ -4,6 +4,9 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Leaf, Recycle, Target, TrendingUp, Globe, Award } from "lucide-react";
+import co2Kompensation from "@/assets/co2-kompensation.webp";
+import effizienzSteigerung from "@/assets/effizienz-steigerung.png";
+import regionalePartnerschaft from "@/assets/regionale-partnerschaft.svg";
 
 const Sustainability = () => {
   const initiatives = [
@@ -12,21 +15,24 @@ const Sustainability = () => {
       title: "CO₂-Kompensation",
       description: "100% klimaneutrale Heizöl-Lieferungen durch zertifizierte Klimaschutzprojekte",
       impact: "2.500 Tonnen CO₂ kompensiert",
-      color: "bg-green-500/10 text-green-600"
+      color: "bg-green-500/10 text-green-600",
+      image: co2Kompensation
     },
     {
       icon: TrendingUp,
       title: "Effizienz-Steigerung",
       description: "Optimierte Lieferwege reduzieren unseren ökologischen Fußabdruck",
       impact: "25% weniger Fahrtstrecke pro Liter",
-      color: "bg-purple-500/10 text-purple-600"
+      color: "bg-purple-500/10 text-purple-600",
+      image: effizienzSteigerung
     },
     {
       icon: Globe,
       title: "Regionale Partnerschaft",
       description: "Zusammenarbeit mit lokalen Umweltschutzorganisationen",
       impact: "12 lokale Projekte unterstützt",
-      color: "bg-orange-500/10 text-orange-600"
+      color: "bg-orange-500/10 text-orange-600",
+      image: regionalePartnerschaft
     }
   ];
 
@@ -139,8 +145,12 @@ const Sustainability = () => {
                     </div>
                     <div className={`${!isEven ? 'lg:col-start-1' : ''}`}>
                       <div className="relative">
-                        <div className={`aspect-square bg-gradient-to-br ${initiative.color} rounded-3xl flex items-center justify-center shadow-2xl`}>
-                          <IconComponent className="w-32 h-32 text-white/80" />
+                        <div className="aspect-square bg-gradient-to-br from-white to-gray-50 rounded-3xl overflow-hidden shadow-2xl">
+                          <img 
+                            src={initiative.image} 
+                            alt={initiative.title}
+                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                          />
                         </div>
                         <div className="absolute -bottom-4 -right-4 bg-white rounded-2xl p-4 shadow-xl border border-green-100">
                           <div className="text-2xl font-bold text-green-600">{index + 1}</div>
