@@ -212,59 +212,6 @@ const Service = () => {
           </div>
         </section>
 
-        {/* Notfall-Service - Alert Design */}
-        <section className="py-20 bg-gradient-to-r from-red-50 via-orange-50 to-red-50 border-y-4 border-red-200">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 bg-red-600 text-white px-6 py-3 rounded-full mb-6 animate-pulse">
-                <div className="w-3 h-3 bg-white rounded-full animate-ping"></div>
-                <span className="font-bold">24/7 NOTFALL-SERVICE</span>
-              </div>
-              <h2 className="text-5xl font-bold text-red-800 mb-4">
-                Heizung ausgefallen?
-              </h2>
-              <p className="text-xl text-red-700 font-medium">
-                Kein Problem! Wir sind in unter 4 Stunden bei Ihnen.
-              </p>
-            </div>
-
-            <div className="grid lg:grid-cols-3 gap-8">
-              {[
-                { icon: Clock, title: "< 4 Stunden", desc: "Garantierte Schnelllieferung", color: "bg-red-600" },
-                { icon: Phone, title: "0228 / 555-NOTFALL", desc: "Rund um die Uhr erreichbar", color: "bg-orange-600" },
-                { icon: Shield, title: "365 Tage", desc: "Auch an Feiertagen für Sie da", color: "bg-red-600" }
-              ].map((feature, index) => {
-                const IconComponent = feature.icon;
-                return (
-                  <div key={index} className="bg-white rounded-2xl p-8 shadow-xl border border-red-100 hover:shadow-2xl transition-all group">
-                    <div className={`w-20 h-20 ${feature.color} rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform`}>
-                      <IconComponent className="w-10 h-10 text-white" />
-                    </div>
-                    <h3 className="text-2xl font-bold text-red-800 mb-3 text-center">{feature.title}</h3>
-                    <p className="text-red-600 text-center font-medium">{feature.desc}</p>
-                  </div>
-                );
-              })}
-            </div>
-            
-            <div className="mt-12 text-center">
-              <div className="bg-white rounded-2xl p-12 shadow-2xl border-4 border-red-200 max-w-2xl mx-auto">
-                <div className="w-32 h-32 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-8 animate-bounce">
-                  <Phone className="w-16 h-16 text-white" />
-                </div>
-                <h3 className="text-3xl font-bold text-red-800 mb-4">SOFORT ANRUFEN</h3>
-                <div className="text-4xl font-bold text-red-600 mb-6 tracking-wider">0228 / 555-NOTFALL</div>
-                <Button variant="destructive" size="lg" className="text-xl px-12 py-6 rounded-xl shadow-lg hover:shadow-xl">
-                  <Phone className="w-6 h-6 mr-3" />
-                  Jetzt Hilfe holen
-                </Button>
-                <p className="text-sm text-red-500 mt-4 font-medium">
-                  ⚡ Durchschnittliche Antwortzeit: unter 2 Minuten
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* CTA Section */}
         <section className="py-20 bg-primary/5">
