@@ -17,7 +17,7 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    /* Knauber Branding Colors */
+    /* Neumann Branding Colors */
     --primary: 124 80% 49%;
     --primary-foreground: 0 0% 100%;
     --primary-hover: 124 80% 44%;
@@ -127,12 +127,12 @@ All colors MUST be HSL.
     scroll-behavior: smooth;
   }
 
-  /* Footer logo styling to keep KNAUBER green and text white */
+  /* Footer logo styling to keep NEUMANN green and text white */
   .footer-logo svg .cls-1 {
     fill: white !important; /* "Immer weiter: Energie." text */
   }
   
   .footer-logo svg .cls-2 {
-    fill: hsl(124 80% 49%) !important; /* "KNAUBER" text in brand green */
+    fill: hsl(124 80% 49%) !important; /* "NEUMANN" text in brand green */
   }
 }

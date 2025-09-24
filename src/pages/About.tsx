@@ -7,7 +7,7 @@ import ralLogo from "@/assets/ral-logo.webp";
 
 const About = () => {
   const milestones = [
-    { year: "2021", title: "Gründung", description: "Expertenteam mit jahrzehntelanger Branchenerfahrung gründet Knauber Energie" },
+    { year: "2021", title: "Gründung", description: "Expertenteam mit jahrzehntelanger Branchenerfahrung gründet Neumann Energie" },
     { year: "2021", title: "Partnerschaften", description: "Strategische Allianzen mit etablierten Lieferanten und Logistikpartnern" },
     { year: "2022", title: "RAL-Zertifizierung", description: "Schnelle Erlangung des Qualitätssiegels durch erfahrene Gründer" },
     { year: "2023", title: "Expansion", description: "Aufbau der Standorte in Köln und Koblenz, Wachstum auf 15.000+ Kunden" },
@@ -40,7 +40,7 @@ const About = () => {
                 Seit 2021
               </Badge>
               <h1 className="text-5xl font-bold text-foreground mb-6">
-                Über Knauber Energie
+                Über Neumann Energie
               </h1>
               <p className="text-xl text-muted-foreground leading-relaxed">
                 Als innovatives Energieunternehmen bringen wir jahrzehntelange Branchenerfahrung 

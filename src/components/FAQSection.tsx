@@ -7,8 +7,8 @@ import {
 
 const faqData = [
   {
-    question: "Ist die Heizöl-Anlieferung bei Knauber klimaneutral?",
-    answer: "Unsere Anlieferung ist nicht direkt klimaneutral, allerdings kompensieren wir den anfallenden CO₂-Ausstoß unserer mit Diesel angetriebenen Transporter, sodass Ihr Heizöl von Knauber dennoch CO₂-kompensiert bei Ihnen ankommt."
+    question: "Ist die Heizöl-Anlieferung bei Neumann klimaneutral?",
+    answer: "Unsere Anlieferung ist nicht direkt klimaneutral, allerdings kompensieren wir den anfallenden CO₂-Ausstoß unserer mit Diesel angetriebenen Transporter, sodass Ihr Heizöl von Neumann dennoch CO₂-kompensiert bei Ihnen ankommt."
   },
   {
     question: "Wie setzt sich der Heizölpreis zusammen?",
@@ -35,7 +35,7 @@ const faqData = [
     answer: "Unser Fahrer muss ungehindert Zugang zum Tankraum und Tank haben. Das Gesetz verlangt, dass unser Fahrer zudem eine Sichtkontrolle vornimmt. Dafür benötigt er Zugang zum Füllstutzen. Wichtig: Bitte schalten Sie die Heizung vor Lieferung aus und erst 1-2 Stunden nach Lieferung wieder an!"
   },
   {
-    question: "Kann ich Standardheizöl mit Knauber Sparheizöl in einem Tank vermischen?",
+    question: "Kann ich Standardheizöl mit Neumann Sparheizöl in einem Tank vermischen?",
     answer: "Das Mischen unserer Heizöle ist problemlos möglich, alle Sorten sind untereinander mischbar. Basis beider Heizölsorten ist die DIN 51603-1."
   }
 ];

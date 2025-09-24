@@ -12,7 +12,7 @@ const References = () => {
       company: "Wohnungsgenossenschaft Rheinland",
       role: "Geschäftsführerin",
       rating: 5,
-      text: "Seit 15 Jahren verlassen wir uns auf Knauber. Die Qualität stimmt, die Preise sind fair und der Service ist hervorragend. Besonders schätzen wir die zuverlässigen Liefertermine.",
+      text: "Seit 15 Jahren verlassen wir uns auf Neumann. Die Qualität stimmt, die Preise sind fair und der Service ist hervorragend. Besonders schätzen wir die zuverlässigen Liefertermine.",
       sector: "Wohnungswirtschaft"
     },
     {
@@ -20,7 +20,7 @@ const References = () => {
       company: "Maschinenbau Rhein GmbH",
       role: "Geschäftsführer",
       rating: 5,
-      text: "Als Industriebetrieb sind wir auf eine sichere Energieversorgung angewiesen. Knauber liefert nicht nur zuverlässig, sondern berät uns auch kompetent bei der Optimierung unserer Energiekosten.",
+      text: "Als Industriebetrieb sind wir auf eine sichere Energieversorgung angewiesen. Neumann liefert nicht nur zuverlässig, sondern berät uns auch kompetent bei der Optimierung unserer Energiekosten.",
       sector: "Industrie"
     },
     {
@@ -36,7 +36,7 @@ const References = () => {
       company: "Hotel Zur Post",
       role: "Inhaber",
       rating: 5,
-      text: "Im Hotelgewerbe ist Zuverlässigkeit das A und O. Knauber hat uns noch nie im Stich gelassen - auch nicht bei kurzfristigen Notfällen. Top Service!",
+      text: "Im Hotelgewerbe ist Zuverlässigkeit das A und O. Neumann hat uns noch nie im Stich gelassen - auch nicht bei kurzfristigen Notfällen. Top Service!",
       sector: "Gewerbe"
     }
   ];
@@ -329,7 +329,7 @@ const References = () => {
             </h2>
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
               Schließen Sie sich tausenden zufriedenen Kunden an und erleben Sie 
-              selbst, was Knauber Energie ausmacht.
+              selbst, was Neumann Energie ausmacht.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="gap-2" asChild>

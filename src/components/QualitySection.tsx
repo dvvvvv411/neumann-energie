@@ -23,8 +23,8 @@ const QualitySection = () => {
               <p className="text-lg leading-relaxed text-foreground">
                 Das RAL-Gütezeichen gilt als das Qualitätsprädikat für den sicheren Energie-Einkauf. 
                 Es weist auf eine hochwertige Produktgüte, zuverlässige Liefermengen, qualifiziertes 
-                Fachpersonal und regelmäßige Sicherheitschecks hin. Knauber trägt das RAL-Gütezeichen 
-                schon seit vielen Jahren und ist als zuverlässiger Heizöl-Lieferant in der Region bekannt. 
+                Fachpersonal und regelmäßige Sicherheitschecks hin. Neumann trägt das RAL-Gütezeichen 
+                schon seit vielen Jahren und ist als zuverlässiger Heizöl-Lieferant in der Region bekannt.
                 Auf unseren Kundenservice sind wir besonders stolz.
               </p>
             </div>
