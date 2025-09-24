@@ -34,6 +34,12 @@ export function HeroSection() {
             size="lg"
             className="text-2xl px-8 py-6 h-auto gap-4 rounded-2xl group"
             style={{ color: '#0c2a3e' }}
+            onClick={() => {
+              document.getElementById('produkte')?.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+              });
+            }}
           >
             Heizöl kaufen
             <ArrowUpRight className="w-8 h-8 text-white transition-transform duration-300 group-hover:rotate-45" />
