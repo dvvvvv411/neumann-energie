@@ -4,6 +4,9 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Truck, Clock, Shield, Wrench, Phone, MessageSquare, Calendar, Zap } from "lucide-react";
+import heizolLieferung from "@/assets/heizoel-lieferung.webp";
+import tankService from "@/assets/tankservice.jpg";
+import beratung from "@/assets/beratung.jpg";
 
 const Service = () => {
   const services = [
@@ -11,19 +14,22 @@ const Service = () => {
       icon: Truck,
       title: "Heizöl-Lieferung",
       description: "Zuverlässige Belieferung direkt zu Ihnen nach Hause",
-      features: ["Termingerechte Lieferung", "Moderne Tankfahrzeuge", "Saubere Befüllung"]
+      features: ["Termingerechte Lieferung", "Moderne Tankfahrzeuge", "Saubere Befüllung"],
+      image: heizolLieferung
     },
     {
       icon: Wrench,
       title: "Tank-Service",
       description: "Professionelle Wartung und Reinigung Ihrer Heizöltanks",
-      features: ["Tankreinigung", "Dichtheitsprüfung", "Reparaturservice"]
+      features: ["Tankreinigung", "Dichtheitsprüfung", "Reparaturservice"],
+      image: tankService
     },
     {
       icon: MessageSquare,
       title: "Beratung",
       description: "Individuelle Energieberatung für optimale Kosteneinsparung",
-      features: ["Verbrauchsanalyse", "Kostenoptimierung", "Zukunftsplanung"]
+      features: ["Verbrauchsanalyse", "Kostenoptimierung", "Zukunftsplanung"],
+      image: beratung
     }
   ];
 
@@ -157,8 +163,12 @@ const Service = () => {
                       </Button>
                     </div>
                     <div className={`${!isEven ? 'lg:col-start-1' : ''}`}>
-                      <div className="aspect-video bg-gradient-to-br from-primary/10 to-primary/20 rounded-2xl flex items-center justify-center">
-                        <IconComponent className="w-24 h-24 text-primary" />
+                      <div className="aspect-video rounded-2xl overflow-hidden shadow-lg">
+                        <img 
+                          src={service.image} 
+                          alt={service.title}
+                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                        />
                       </div>
                     </div>
                   </div>
