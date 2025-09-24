@@ -73,9 +73,11 @@ const Service = () => {
                 Von der Beratung bis zur Lieferung – wir bieten Ihnen den kompletten 
                 Service rund um Ihre Energieversorgung.
               </p>
-              <Button size="lg" className="gap-2">
-                <Phone className="w-5 h-5" />
-                Jetzt beraten lassen
+              <Button size="lg" className="gap-2" asChild>
+                <a href="/#anfrage">
+                  <Phone className="w-5 h-5" />
+                  Jetzt beraten lassen
+                </a>
               </Button>
             </div>
           </div>
@@ -157,9 +159,11 @@ const Service = () => {
                           </div>
                         ))}
                       </div>
-                      <Button size="lg" className="gap-2">
-                        <IconComponent className="w-5 h-5" />
-                        Service anfragen
+                      <Button size="lg" className="gap-2" asChild>
+                        <a href="/#anfrage">
+                          <IconComponent className="w-5 h-5" />
+                          Service anfragen
+                        </a>
                       </Button>
                     </div>
                     <div className={`${!isEven ? 'lg:col-start-1' : ''}`}>
@@ -228,13 +232,11 @@ const Service = () => {
               direkt ein unverbindliches Angebot an.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="gap-2">
-                <MessageSquare className="w-5 h-5" />
-                Kostenlose Beratung
-              </Button>
-              <Button variant="outline" size="lg" className="gap-2">
-                <Calendar className="w-5 h-5" />
-                Termin vereinbaren
+              <Button size="lg" className="gap-2" asChild>
+                <a href="/#anfrage">
+                  <MessageSquare className="w-5 h-5" />
+                  Kostenlose Beratung
+                </a>
               </Button>
             </div>
           </div>

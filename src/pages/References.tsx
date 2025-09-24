@@ -332,13 +332,11 @@ const References = () => {
               selbst, was Knauber Energie ausmacht.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="gap-2">
-                <Star className="w-5 h-5" />
-                Jetzt Kunde werden
-              </Button>
-              <Button variant="outline" size="lg" className="gap-2">
-                <Quote className="w-5 h-5" />
-                Referenzen anfragen
+              <Button size="lg" className="gap-2" asChild>
+                <a href="/#produkte">
+                  <Star className="w-5 h-5" />
+                  Jetzt Kunde werden
+                </a>
               </Button>
             </div>
           </div>

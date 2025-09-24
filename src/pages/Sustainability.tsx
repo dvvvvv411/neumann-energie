@@ -68,10 +68,6 @@ const Sustainability = () => {
                 Wir übernehmen Verantwortung für die Umwelt. Mit innovativen Lösungen 
                 und nachhaltigen Produkten gestalten wir die Energiezukunft mit.
               </p>
-              <Button size="lg" className="gap-2 bg-green-600 hover:bg-green-700">
-                <Leaf className="w-5 h-5" />
-                CO₂-Kompensation erfahren
-              </Button>
             </div>
           </div>
         </section>
@@ -224,8 +220,8 @@ const Sustainability = () => {
                       </div>
                     </div>
                   </div>
-                  <Button className="w-full bg-green-600 hover:bg-green-700">
-                    Klimaneutral bestellen
+                  <Button className="w-full bg-green-600 hover:bg-green-700" asChild>
+                    <a href="/#produkte">Klimaneutral bestellen</a>
                   </Button>
                 </CardContent>
               </Card>
@@ -305,13 +301,11 @@ const Sustainability = () => {
               klimaneutrales Heizöl und leisten Sie einen aktiven Beitrag zum Umweltschutz.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="gap-2 bg-green-600 hover:bg-green-700">
-                <Leaf className="w-5 h-5" />
-                Klimaneutral bestellen
-              </Button>
-              <Button variant="outline" size="lg" className="gap-2">
-                <Target className="w-5 h-5" />
-                Nachhaltigkeits-Report
+              <Button size="lg" className="gap-2 bg-green-600 hover:bg-green-700" asChild>
+                <a href="/#produkte">
+                  <Leaf className="w-5 h-5" />
+                  Klimaneutral bestellen
+                </a>
               </Button>
             </div>
           </div>
