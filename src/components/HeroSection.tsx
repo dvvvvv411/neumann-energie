@@ -9,7 +9,7 @@ export function HeroSection() {
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ 
-          backgroundImage: `url(/lovable-uploads/neumannbanner.png.png)`,
+          backgroundImage: `url(/lovable-uploads/neumannbanner2.png.png)`,
           backgroundSize: 'cover',
           backgroundPosition: 'center 30%'
         }}
