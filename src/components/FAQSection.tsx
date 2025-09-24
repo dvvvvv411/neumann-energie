@@ -7,36 +7,36 @@ import {
 
 const faqData = [
   {
-    question: "Ist die Heizöl-Anlieferung bei Neumann klimaneutral?",
-    answer: "Unsere Anlieferung ist nicht direkt klimaneutral, allerdings kompensieren wir den anfallenden CO₂-Ausstoß unserer mit Diesel angetriebenen Transporter, sodass Ihr Heizöl von Neumann dennoch CO₂-kompensiert bei Ihnen ankommt."
+    question: "Wie schnell können Sie liefern?",
+    answer: "In der Regel liefern wir innerhalb von 3-5 Werktagen. Bei Bedarf bieten wir auch Express-Lieferungen innerhalb von 48 Stunden an. Einen Wunschtermin können Sie kostenlos bei der Bestellung angeben."
   },
   {
-    question: "Wie setzt sich der Heizölpreis zusammen?",
-    answer: "Rohöl ist ein börsennotiertes Produkt und wird global gehandelt. Es gibt verschiedene Einflussfaktoren: Globale Faktoren (Börsenkurs, Euro-Dollar-Kurs, Nachrichtenlage, Raffineriekapazitäten und Bestandsdaten) und Lokale Faktoren (Verfügbarkeit, Rheinfrachten, Logistikkosten, Rheinpegel, Steuern und Abgaben)."
+    question: "Wie setzen sich Ihre Preise zusammen?",
+    answer: "Unsere Preise orientieren sich am aktuellen Marktpreis für Heizöl. Der Preis zum Zeitpunkt Ihrer Bestellung ist verbindlich und bleibt bis zur Lieferung garantiert – unabhängig von Marktschwankungen."
   },
   {
-    question: "Wie häufig ändert sich der Heizölpreis?",
-    answer: "Der Heizölpreis ändert sich durch die Börsenentwicklung sehr regelmäßig und schnell. Wir aktualisieren werktags die Preise mehrfach täglich – abhängig von den tatsächlichen Marktgegebenheiten – u.a. der Börseneröffnung in den USA um 15 Uhr deutscher Zeit. Erste Preise werktags ab ca. 9 Uhr, um 12 Uhr ermitteln wir den Preis für unseren Heizölchart. In der Regel haben wir den aktuellen Onlinepreis rund um die Uhr abgebildet zu dem bestellt werden kann."
+    question: "Bieten Sie CO₂-kompensiertes Heizöl an?",
+    answer: "Ja, auf Wunsch liefern wir Ihr Heizöl CO₂-kompensiert. Wir gleichen den CO₂-Ausstoß durch zertifizierte Klimaschutzprojekte aus, sodass Sie klimaneutral heizen können."
   },
   {
-    question: "Welcher Heizölpreis gilt bei meiner Lieferung?",
-    answer: "Der Preis zum Bestellzeitpunkt ist verbindlich. Der vereinbarte Preis gilt bis zur Lieferung – egal wie sich der Preis in der Zwischenzeit entwickelt. Wir berechnen weder mehr bei steigenden, noch weniger bei sinkenden Heizölpreisen. Bitte beachten: Beim Heizölkauf besteht das gesetzliche Widerrufsrecht für Verbraucherkunden nicht, weil auf Verträge über die Lieferung von Heizöl der Ausschlussgrund des § 312g Abs.2 Nr.8 BGB anwendbar ist."
+    question: "Was muss ich bei der Lieferung beachten?",
+    answer: "Unser Fahrer benötigt freien Zugang zum Tankraum und Füllstutzen. Schalten Sie bitte die Heizung vor der Lieferung aus und erst 1-2 Stunden nach der Befüllung wieder an."
   },
   {
-    question: "Wann wird mein bestelltes Heizöl geliefert?",
-    answer: "Die Lieferzeiten variieren je nach Auftragslage und Logistiksituation. Wir geben beim Bestellprozess immer eine Standardlieferzeit an und stellen transparent dar, in welchem Zeitrahmen wir liefern werden. Zudem gibt es die Möglichkeit der Expresslieferung innerhalb von 5 Werktagen und der 48-Std-Express Lieferung gegen Aufpreis. Übrigens: Ein Wunschliefertermin ist ohne Zusatzkosten möglich! Geben Sie bei Ihrer Bestellung einfach neben dem Datum auch das gewünschte Zeitfenster an."
+    question: "Kann ich verschiedene Heizölsorten mischen?",
+    answer: "Ja, alle unsere Heizölsorten sind untereinander mischbar, da sie der DIN-Norm 51603-1 entsprechen. Sie können problemlos nachbestellen, auch wenn noch Rest-Heizöl im Tank ist."
   },
   {
-    question: "Wie erfahre ich wann nun genau mein Heizöl geliefert wird?",
-    answer: "Für den genauen Liefertermin rufen wir Sie einige Tage vorher an und stimmen Tag und Uhrzeit nochmal ab. Bitte beachten Sie, dass wir stets ein Zeitfenster von mehreren Stunden vereinbaren müssen, da genauere Vereinbarungen aufgrund der komplexen Logistik und Verkehrssituation nicht möglich sind. Gut zu wissen: Bei der Bestellung können Sie bereits einen Wunschliefertermin inklusive Zeitfenster vereinbaren – natürlich kostenfrei."
+    question: "Wie erfahre ich den genauen Liefertermin?",
+    answer: "Wir rufen Sie einige Tage vor der Lieferung an und vereinbaren gemeinsam einen passenden Termin. Dabei planen wir ein Zeitfenster von wenigen Stunden ein."
   },
   {
-    question: "Was muss ich am Tag der Heizöllieferung beachten?",
-    answer: "Unser Fahrer muss ungehindert Zugang zum Tankraum und Tank haben. Das Gesetz verlangt, dass unser Fahrer zudem eine Sichtkontrolle vornimmt. Dafür benötigt er Zugang zum Füllstutzen. Wichtig: Bitte schalten Sie die Heizung vor Lieferung aus und erst 1-2 Stunden nach Lieferung wieder an!"
+    question: "Welche Zahlungsmöglichkeiten gibt es?",
+    answer: "Sie können bequem per Rechnung, Lastschrift oder Kreditkarte bezahlen. Bei Privatkunden ist auch eine Barzahlung bei Lieferung möglich."
   },
   {
-    question: "Kann ich Standardheizöl mit Neumann Sparheizöl in einem Tank vermischen?",
-    answer: "Das Mischen unserer Heizöle ist problemlos möglich, alle Sorten sind untereinander mischbar. Basis beider Heizölsorten ist die DIN 51603-1."
+    question: "Sind Sie RAL-zertifiziert?",
+    answer: "Ja, wir tragen das RAL-Gütezeichen und unterliegen regelmäßigen Qualitätskontrollen. Das garantiert Ihnen höchste Standards bei Produktqualität, Liefermengen und Service."
   }
 ];
 

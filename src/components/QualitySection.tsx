@@ -17,15 +17,14 @@ const QualitySection = () => {
           {/* Right side - Text content */}
           <div className="space-y-6">
             <h2 className="text-4xl font-bold text-foreground">
-              Zertifizierte Qualität – mit dem RAL-Gütezeichen
+              Qualität, der Sie vertrauen können
             </h2>
             <div className="prose prose-lg max-w-none">
               <p className="text-lg leading-relaxed text-foreground">
-                Das RAL-Gütezeichen gilt als das Qualitätsprädikat für den sicheren Energie-Einkauf. 
-                Es weist auf eine hochwertige Produktgüte, zuverlässige Liefermengen, qualifiziertes 
-                Fachpersonal und regelmäßige Sicherheitschecks hin. Neumann trägt das RAL-Gütezeichen 
-                schon seit vielen Jahren und ist als zuverlässiger Heizöl-Lieferant in der Region bekannt.
-                Auf unseren Kundenservice sind wir besonders stolz.
+                Als RAL-zertifizierter Betrieb stehen wir für höchste Standards in Qualität, Service und Zuverlässigkeit. 
+                Seit über 25 Jahren vertrauen unsere Kunden auf unsere Expertise und unseren persönlichen Service. 
+                Von der Bestellung bis zur Lieferung – bei uns sind Sie in besten Händen. Das RAL-Gütezeichen 
+                bestätigt unsere konsequente Qualitätskontrolle und faire Geschäftspraktiken.
               </p>
             </div>
           </div>
