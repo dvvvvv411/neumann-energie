@@ -35,8 +35,8 @@ export const Footer = () => {
               </Link>
             </div>
             <p className="text-white/80 text-sm leading-relaxed">
-              Ihr zuverlässiger Partner für Heizöl seit über 150 Jahren. 
-              Als Familienunternehmen stehen wir für Qualität und Vertrauen.
+              Ihr moderner Partner für Heizöl mit deutschlandweiter Lieferung. 
+              Als Familienunternehmen stehen wir für Qualität, Service und Vertrauen.
             </p>
           </div>
 

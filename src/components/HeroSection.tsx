@@ -26,7 +26,7 @@ export function HeroSection() {
           </h1>
           
           <p className="text-xl md:text-2xl mb-8 leading-relaxed text-white/90 max-w-3xl">
-            Mit über 25 Jahren Erfahrung beliefern wir Sie schnell, zuverlässig und zu fairen Preisen. Persönlicher Service, höchste Qualität und optional CO₂-kompensiert – so heizen Sie mit gutem Gewissen.
+            Als modernes Energieunternehmen beliefern wir Sie deutschlandweit schnell, zuverlässig und zu fairen Preisen. Persönlicher Service, höchste Qualität und optional CO₂-kompensiert – so heizen Sie mit gutem Gewissen.
           </p>
           
           <Button 
