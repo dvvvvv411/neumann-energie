@@ -7,11 +7,11 @@ import ralLogo from "@/assets/ral-logo.webp";
 
 const About = () => {
   const milestones = [
-    { year: "1920", title: "Gründung", description: "Familienbetrieb startet im Energiehandel" },
-    { year: "1975", title: "Expansion", description: "Erste Tankstellen in der Region" },
-    { year: "1990", title: "RAL-Zertifizierung", description: "Qualitätssiegel für Energiehandel erhalten" },
-    { year: "2010", title: "Modernisierung", description: "Digitalisierung der Prozesse" },
-    { year: "2020", title: "Nachhaltigkeit", description: "CO₂-Kompensationsprogramm gestartet" },
+    { year: "2021", title: "Gründung", description: "Expertenteam mit jahrzehntelanger Branchenerfahrung gründet Knauber Energie" },
+    { year: "2021", title: "Partnerschaften", description: "Strategische Allianzen mit etablierten Lieferanten und Logistikpartnern" },
+    { year: "2022", title: "RAL-Zertifizierung", description: "Schnelle Erlangung des Qualitätssiegels durch erfahrene Gründer" },
+    { year: "2023", title: "Expansion", description: "Aufbau der Standorte in Köln und Koblenz, Wachstum auf 15.000+ Kunden" },
+    { year: "2024", title: "Nachhaltigkeit", description: "CO₂-Kompensationsprogramm und nachhaltige Geschäftspraktiken" },
   ];
 
   const team = [
@@ -37,14 +37,14 @@ const About = () => {
           <div className="container mx-auto px-4">
             <div className="text-center max-w-4xl mx-auto">
               <Badge variant="secondary" className="mb-6">
-                Seit über 100 Jahren
+                Seit 2021
               </Badge>
               <h1 className="text-5xl font-bold text-foreground mb-6">
                 Über Knauber Energie
               </h1>
               <p className="text-xl text-muted-foreground leading-relaxed">
-                Als traditionelles Familienunternehmen verbinden wir seit Generationen 
-                Erfahrung mit Innovation. Vertrauen Sie auf unsere Expertise im Energiehandel.
+                Als innovatives Energieunternehmen bringen wir jahrzehntelange Branchenerfahrung 
+                mit modernen Geschäftspraktiken zusammen. Vertrauen Sie auf unser Expertenteam.
               </p>
             </div>
           </div>
@@ -58,7 +58,7 @@ const About = () => {
                 Unsere Geschichte
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Über 100 Jahre Tradition und Innovation
+                Innovation von Anfang an - mit Branchenerfahrung zum Erfolg
               </p>
             </div>
 
@@ -176,7 +176,7 @@ const About = () => {
                     <div>
                       <h3 className="font-semibold text-foreground mb-2">RAL-Gütezeichen</h3>
                       <p className="text-muted-foreground">
-                        Seit über 30 Jahren zertifiziert für höchste Qualitätsstandards im Energiehandel.
+                        Schnell zertifiziert durch die Branchenerfahrung unseres Expertenteams für höchste Qualitätsstandards.
                       </p>
                     </div>
                   </div>
