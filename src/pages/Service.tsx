@@ -20,12 +20,6 @@ const Service = () => {
       features: ["Tankreinigung", "Dichtheitsprüfung", "Reparaturservice"]
     },
     {
-      icon: Clock,
-      title: "Notfall-Service",
-      description: "24/7 Bereitschaft für Ihre dringenden Energiebedürfnisse",
-      features: ["Schnelllieferung", "Wochenend-Service", "Feiertag-Bereitschaft"]
-    },
-    {
       icon: MessageSquare,
       title: "Beratung",
       description: "Individuelle Energieberatung für optimale Kosteneinsparung",
