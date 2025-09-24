@@ -11,7 +11,7 @@ const About = () => {
     { year: "2021", title: "Gründung", description: "Expertenteam mit jahrzehntelanger Branchenerfahrung gründet Neumann Energie" },
     { year: "2021", title: "Partnerschaften", description: "Strategische Allianzen mit etablierten Lieferanten und Logistikpartnern" },
     { year: "2022", title: "RAL-Zertifizierung", description: "Schnelle Erlangung des Qualitätssiegels durch erfahrene Gründer" },
-    { year: "2023", title: "Expansion", description: "Aufbau der Standorte in Köln und Koblenz, Wachstum auf 15.000+ Kunden" },
+    { year: "2023", title: "Digitalisierung", description: "Einführung moderner Online-Services und digitaler Kundenverwaltung für noch besseren Service" },
     { year: "2024", title: "Nachhaltigkeit", description: "CO₂-Kompensationsprogramm und nachhaltige Geschäftspraktiken" },
   ];
 
@@ -23,9 +23,7 @@ const About = () => {
   ];
 
   const locations = [
-    { city: "Bonn", address: "Hauptstraße 123", type: "Hauptsitz" },
-    { city: "Köln", address: "Industriestraße 45", type: "Niederlassung" },
-    { city: "Koblenz", address: "Am Hafen 78", type: "Tankstelle" },
+    { city: "München", address: "Musterstraße 123, 80331 München", type: "Hauptsitz", phone: "+49 89 123 456 78", email: "info@heizoel-neumann.de" },
   ];
 
   return (
@@ -134,32 +132,48 @@ const About = () => {
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-foreground mb-4">
-                Unsere Standorte
+                Unser Hauptsitz
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Regional stark vertreten in NRW und Rheinland-Pfalz
+                Von München aus deutschlandweit durch unser bewährtes Partnernetzwerk
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="max-w-2xl mx-auto">
               {locations.map((location, index) => (
-                <Card key={index} className="group hover:shadow-lg transition-all duration-300">
-                  <CardContent className="p-6">
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                        <MapPin className="w-6 h-6 text-primary" />
+                <Card key={index} className="group hover:shadow-lg transition-all duration-300 mb-8">
+                  <CardContent className="p-8">
+                    <div className="flex items-start gap-6">
+                      <div className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                        <MapPin className="w-8 h-8 text-primary" />
                       </div>
                       <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-2">
-                          <h3 className="text-lg font-semibold text-foreground">{location.city}</h3>
-                          <Badge variant="secondary" className="text-xs">{location.type}</Badge>
+                        <div className="flex items-center gap-3 mb-4">
+                          <h3 className="text-2xl font-semibold text-foreground">{location.city}</h3>
+                          <Badge variant="secondary" className="text-sm font-medium">{location.type}</Badge>
                         </div>
-                        <p className="text-muted-foreground">{location.address}</p>
+                        <div className="space-y-2 text-muted-foreground">
+                          <p className="text-lg">Heizöl Neumann GmbH</p>
+                          <p>{location.address}</p>
+                          <p>Tel: {location.phone}</p>
+                          <p>E-Mail: {location.email}</p>
+                        </div>
                       </div>
                     </div>
                   </CardContent>
                 </Card>
               ))}
+              
+              <div className="text-center bg-muted/50 rounded-2xl p-8">
+                <h3 className="text-2xl font-semibold text-foreground mb-4">Bundesweites Partnernetzwerk</h3>
+                <p className="text-muted-foreground leading-relaxed text-lg">
+                  Von unserem Hauptsitz in München aus beliefern wir Sie deutschlandweit durch 
+                  unser bewährtes Partnernetzwerk. Unsere zuverlässigen Partner in der ganzen 
+                  Republik gewährleisten eine schnelle und effiziente Lieferung direkt zu Ihnen 
+                  vor Ort - mit der gewohnten Neumann-Qualität und dem persönlichen Service, 
+                  den Sie von uns kennen.
+                </p>
+              </div>
             </div>
           </div>
         </section>
