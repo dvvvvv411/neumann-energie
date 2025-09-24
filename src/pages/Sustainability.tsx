@@ -15,13 +15,6 @@ const Sustainability = () => {
       color: "bg-green-500/10 text-green-600"
     },
     {
-      icon: Recycle,
-      title: "Bio-Heizöl",
-      description: "Nachhaltige Alternative mit bis zu 30% weniger CO₂-Emissionen",
-      impact: "15% unserer Kunden nutzen Bio-Heizöl",
-      color: "bg-blue-500/10 text-blue-600"
-    },
-    {
       icon: TrendingUp,
       title: "Effizienz-Steigerung",
       description: "Optimierte Lieferwege reduzieren unseren ökologischen Fußabdruck",
