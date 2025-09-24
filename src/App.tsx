@@ -9,6 +9,11 @@ import About from "./pages/About";
 import Service from "./pages/Service";
 import Sustainability from "./pages/Sustainability";
 import References from "./pages/References";
+import Impressum from "./pages/Impressum";
+import Datenschutz from "./pages/Datenschutz";
+import Widerrufsrecht from "./pages/Widerrufsrecht";
+import Barrierefreiheit from "./pages/Barrierefreiheit";
+import Cookies from "./pages/Cookies";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +29,11 @@ const App = () => (
           <Route path="/service" element={<Service />} />
           <Route path="/nachhaltigkeit" element={<Sustainability />} />
           <Route path="/referenzen" element={<References />} />
+          <Route path="/impressum" element={<Impressum />} />
+          <Route path="/datenschutz" element={<Datenschutz />} />
+          <Route path="/widerrufsrecht" element={<Widerrufsrecht />} />
+          <Route path="/barrierefreiheit" element={<Barrierefreiheit />} />
+          <Route path="/cookies" element={<Cookies />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
