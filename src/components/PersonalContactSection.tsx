@@ -27,10 +27,10 @@ export function PersonalContactSection() {
                   <Mail className="w-6 h-6 text-primary" />
                 </div>
                 <a 
-                  href="mailto:heizoel@neumann.de"
+                  href="mailto:info@neumann-energie.de"
                   className="group flex items-center gap-2 text-2xl text-foreground hover:text-primary transition-colors font-medium"
                 >
-                  heizoel@neumann.de
+                  info@neumann-energie.de
                   <ArrowUpRight className="w-6 h-6 text-primary group-hover:rotate-45 transition-transform duration-300" />
                 </a>
               </div>
