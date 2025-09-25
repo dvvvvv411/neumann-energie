@@ -11,8 +11,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
-import { ArrowLeft, ArrowRight, Check, MapPin, Package, MessageSquare, Truck, User, Mail, Phone, MapPin as AddressIcon, Shield } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, MapPin, Package, MessageSquare, Truck, User, Mail, Phone, MapPin as AddressIcon, Shield, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const step1Schema = z.object({
   postcode: z.string().min(5, "Postleitzahl muss mindestens 5 Zeichen haben").max(5, "Postleitzahl darf maximal 5 Zeichen haben"),
@@ -42,6 +43,7 @@ type FormData = Step1Data & Step2Data;
 export default function Anfrage() {
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState<Partial<FormData>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
   const step1Form = useForm<Step1Data>({
@@ -65,12 +67,55 @@ export default function Anfrage() {
     setCurrentStep(3);
   };
 
-  const handleFinalSubmit = () => {
-    console.log("Form submitted:", formData);
-    toast({
-      title: "Anfrage gesendet",
-      description: "Vielen Dank für Ihre Anfrage. Wir werden uns schnellstmöglich bei Ihnen melden.",
-    });
+  const handleFinalSubmit = async () => {
+    setIsSubmitting(true);
+    try {
+      const orderData = {
+        postcode: formData.postcode!,
+        product: formData.product!,
+        quantity: parseInt(formData.quantity!),
+        delivery_points: parseInt(formData.deliveryPoints!),
+        delivery_time: formData.deliveryTime!,
+        message: formData.message || null,
+        salutation: formData.salutation!,
+        company: formData.company || null,
+        first_name: formData.firstName!,
+        last_name: formData.lastName!,
+        email: formData.email!,
+        phone: formData.phone!,
+        street: formData.street!,
+        city_postcode: formData.cityPostcode!,
+        privacy_accepted: formData.privacy!,
+        status: 'pending'
+      };
+
+      const { error } = await supabase
+        .from('orders')
+        .insert([orderData]);
+
+      if (error) {
+        throw error;
+      }
+
+      toast({
+        title: "Bestellung erfolgreich übermittelt!",
+        description: "Vielen Dank für Ihre Bestellung. Wir werden uns schnellstmöglich bei Ihnen melden.",
+      });
+
+      // Reset form after successful submission
+      setFormData({});
+      setCurrentStep(1);
+      
+    } catch (error) {
+      console.error('Error submitting order:', error);
+      toast({
+        title: "Fehler beim Senden",
+        description: "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const goToStep = (step: number) => {
@@ -667,12 +712,22 @@ export default function Anfrage() {
               <div className="text-center pt-12">
                 <Button 
                   onClick={handleFinalSubmit} 
+                  disabled={isSubmitting}
                   size="lg"
-                  className="px-20 h-20 text-2xl font-bold shadow-2xl hover:shadow-primary/30 transition-all duration-300 bg-gradient-primary hover:scale-105"
+                  className="px-20 h-20 text-2xl font-bold shadow-2xl hover:shadow-primary/30 transition-all duration-300 bg-gradient-primary hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <Check className="mr-4 h-8 w-8" />
-                  Anfrage jetzt absenden
-                  <ArrowRight className="ml-4 h-8 w-8" />
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="mr-4 h-8 w-8 animate-spin" />
+                      Wird gesendet...
+                    </>
+                  ) : (
+                    <>
+                      <Check className="mr-4 h-8 w-8" />
+                      Bestellung jetzt absenden
+                      <ArrowRight className="ml-4 h-8 w-8" />
+                    </>
+                  )}
                 </Button>
                 <p className="text-lg text-muted-foreground mt-6 max-w-2xl mx-auto">
                   Sie erhalten eine Bestätigung per E-Mail und werden innerhalb von 24 Stunden kontaktiert.

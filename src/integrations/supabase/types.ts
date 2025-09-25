@@ -82,6 +82,72 @@ export type Database = {
         }
         Relationships: []
       }
+      orders: {
+        Row: {
+          city_postcode: string
+          company: string | null
+          created_at: string
+          delivery_points: number
+          delivery_time: string
+          email: string
+          first_name: string
+          id: string
+          last_name: string
+          message: string | null
+          phone: string
+          postcode: string
+          privacy_accepted: boolean
+          product: string
+          quantity: number
+          salutation: string
+          status: string
+          street: string
+          updated_at: string
+        }
+        Insert: {
+          city_postcode: string
+          company?: string | null
+          created_at?: string
+          delivery_points: number
+          delivery_time: string
+          email: string
+          first_name: string
+          id?: string
+          last_name: string
+          message?: string | null
+          phone: string
+          postcode: string
+          privacy_accepted?: boolean
+          product: string
+          quantity: number
+          salutation: string
+          status?: string
+          street: string
+          updated_at?: string
+        }
+        Update: {
+          city_postcode?: string
+          company?: string | null
+          created_at?: string
+          delivery_points?: number
+          delivery_time?: string
+          email?: string
+          first_name?: string
+          id?: string
+          last_name?: string
+          message?: string | null
+          phone?: string
+          postcode?: string
+          privacy_accepted?: boolean
+          product?: string
+          quantity?: number
+          salutation?: string
+          status?: string
+          street?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

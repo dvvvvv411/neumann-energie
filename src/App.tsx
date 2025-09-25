@@ -9,6 +9,7 @@ import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import Admin from "./pages/Admin";
 import AdminAnfragen from "./pages/AdminAnfragen";
+import AdminBestellungen from "./pages/AdminBestellungen";
 import About from "./pages/About";
 import Service from "./pages/Service";
 import Sustainability from "./pages/Sustainability";
@@ -36,6 +37,7 @@ const App = () => (
             <Route path="/auth" element={<Auth />} />
             <Route path="/admin/*" element={<Admin />}>
               <Route path="anfragen" element={<AdminAnfragen />} />
+              <Route path="bestellungen" element={<AdminBestellungen />} />
             </Route>
             <Route path="/ueber-uns" element={<About />} />
             <Route path="/service" element={<Service />} />
