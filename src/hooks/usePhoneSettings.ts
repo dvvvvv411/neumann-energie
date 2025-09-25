@@ -23,7 +23,9 @@ export function usePhoneSettings() {
         .from('phone_settings')
         .select('*')
         .eq('is_active', true)
-        .single();
+        .order('created_at', { ascending: false })
+        .limit(1)
+        .maybeSingle();
 
       if (error) {
         console.error('Error fetching phone settings:', error);
@@ -61,15 +63,20 @@ export function usePhoneSettings() {
       // Format the phone number for tel: link (remove spaces and dashes)
       const telLink = phoneNumber.replace(/[\s-]/g, '');
       
+      // First, set all existing entries to inactive
+      await supabase
+        .from('phone_settings')
+        .update({ is_active: false })
+        .eq('is_active', true);
+
+      // Then insert a new active entry
       const { data, error } = await supabase
         .from('phone_settings')
-        .upsert({
+        .insert({
           phone_number: phoneNumber,
           display_text: phoneNumber,
           tel_link: telLink,
           is_active: true
-        }, {
-          onConflict: 'id'
         })
         .select()
         .single();
