@@ -41,7 +41,7 @@ const Impressum = () => {
               <div>
                 <h3 className="font-semibold text-foreground mb-2">Kontakt</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  Telefon: +49 (0) 89 123456789<br/>
+                  Telefon: 0228 512-710<br/>
                   E-Mail: <a href="mailto:info@neumann-energie.de" className="text-primary hover:underline">info@neumann-energie.de</a><br/>
                   Internet: <a href="https://neumann-energie.de" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">neumann-energie.de</a>
                 </p>
