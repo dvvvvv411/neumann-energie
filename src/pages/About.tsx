@@ -16,7 +16,7 @@ const About = () => {
   ];
 
   const team = [
-    { name: "Martin Bois", role: "Vertrieb Heizöl", department: "Vertrieb", image: "/lovable-uploads/3.webp.png" },
+    { name: "Fabian Baumann", role: "Vertrieb Heizöl", department: "Vertrieb", image: "/lovable-uploads/3.webp.png" },
     { name: "Peter Neumann", role: "Geschäftsführer", department: "Leitung", image: "/lovable-uploads/1.webp.png" },
     { name: "Sarah Weber", role: "Kundenservice", department: "Service", image: "/lovable-uploads/2.webp.png" },
     { name: "Michael Schmidt", role: "Technischer Leiter", department: "Technik", image: "/lovable-uploads/4.webp.png" },

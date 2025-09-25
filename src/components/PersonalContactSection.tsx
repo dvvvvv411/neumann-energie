@@ -56,14 +56,14 @@ export function PersonalContactSection() {
             <div className="relative">
               <img
                 src="/lovable-uploads/3.webp.png"
-                alt="Martin Bois - Vertrieb Heizöl"
+                alt="Fabian Baumann - Vertrieb Heizöl"
                 className="w-48 h-48 rounded-full object-cover shadow-lg border-4 border-background"
               />
             </div>
             
             <div className="space-y-3">
               <h3 className="text-2xl font-bold text-foreground">
-                Martin Bois
+                Fabian Baumann
               </h3>
               <div className="flex items-center justify-center gap-2">
                 <Headset className="w-5 h-5 text-primary" />
