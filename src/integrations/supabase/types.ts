@@ -282,6 +282,36 @@ export type Database = {
         }
         Relationships: []
       }
+      phone_settings: {
+        Row: {
+          created_at: string
+          display_text: string
+          id: string
+          is_active: boolean
+          phone_number: string
+          tel_link: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          display_text: string
+          id?: string
+          is_active?: boolean
+          phone_number: string
+          tel_link: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          display_text?: string
+          id?: string
+          is_active?: boolean
+          phone_number?: string
+          tel_link?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       telegram_chat_ids: {
         Row: {
           chat_id: string

@@ -1,7 +1,8 @@
 import { Mail, Phone, Headset, ArrowUpRight } from "lucide-react";
-// Using uploaded image directly
+import { usePhoneSettings } from "@/hooks/usePhoneSettings";
 
 export function PersonalContactSection() {
+  const { phoneSettings, loading } = usePhoneSettings();
   return (
     <section id="kontakt" className="py-16 bg-muted/50">
       <div className="container mx-auto px-4">
@@ -40,13 +41,19 @@ export function PersonalContactSection() {
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
                   <Phone className="w-6 h-6 text-primary" />
                 </div>
-                <a 
-                  href="tel:0228512710"
-                  className="group flex items-center gap-2 text-2xl text-foreground hover:text-primary transition-colors font-medium"
-                >
-                  0228 512-710
-                  <ArrowUpRight className="w-6 h-6 text-primary group-hover:rotate-45 transition-transform duration-300" />
-                </a>
+                {loading ? (
+                  <div className="text-2xl text-muted-foreground font-medium">
+                    Wird geladen...
+                  </div>
+                ) : (
+                  <a 
+                    href={`tel:${phoneSettings?.tel_link || '0228512710'}`}
+                    className="group flex items-center gap-2 text-2xl text-foreground hover:text-primary transition-colors font-medium"
+                  >
+                    {phoneSettings?.display_text || '0228 512-710'}
+                    <ArrowUpRight className="w-6 h-6 text-primary group-hover:rotate-45 transition-transform duration-300" />
+                  </a>
+                )}
               </div>
             </div>
           </div>

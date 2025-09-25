@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { LayoutDashboard, MessageSquare, ShoppingCart, Mail, Settings, Bot, ChevronDown, Send } from "lucide-react";
+import { LayoutDashboard, MessageSquare, ShoppingCart, Mail, Settings, Bot, ChevronDown, Send, Phone } from "lucide-react";
 import { NavLink, useLocation } from "react-router-dom";
 import {
   Sidebar,
@@ -30,6 +30,7 @@ const mainItems = [
 ];
 
 const settingsItems = [
+  { title: "Telefonnummer", url: "/admin/telefonnummer", icon: Phone },
   { title: "Telegram", url: "/admin/telegram", icon: Bot },
   { title: "Resend", url: "/admin/resend", icon: Send },
 ];

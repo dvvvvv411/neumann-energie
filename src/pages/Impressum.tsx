@@ -2,8 +2,10 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { usePhoneSettings } from "@/hooks/usePhoneSettings";
 
 const Impressum = () => {
+  const { phoneSettings, loading } = usePhoneSettings();
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <Header />
@@ -41,7 +43,7 @@ const Impressum = () => {
               <div>
                 <h3 className="font-semibold text-foreground mb-2">Kontakt</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  Telefon: 0228 512-710<br/>
+                  Telefon: {loading ? 'Wird geladen...' : (phoneSettings?.display_text || '0228 512-710')}<br/>
                   E-Mail: <a href="mailto:info@neumann-energie.de" className="text-primary hover:underline">info@neumann-energie.de</a><br/>
                   Internet: <a href="https://neumann-energie.de" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">neumann-energie.de</a>
                 </p>
