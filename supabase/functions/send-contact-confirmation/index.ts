@@ -63,7 +63,7 @@ const handler = async (req: Request): Promise<Response> => {
     
     <!-- Header -->
     <div style="background: linear-gradient(135deg, #0c2a3e 0%, #1e3a52 100%); padding: 40px 20px; text-align: center;">
-      <h1 style="color: #22c55e; margin: 0; font-size: 28px; font-weight: bold;">
+      <h1 style="color: #19e126; margin: 0; font-size: 28px; font-weight: bold;">
         NEUMANN
       </h1>
       <p style="color: #e2e8f0; margin: 10px 0 0 0; font-size: 16px;">
