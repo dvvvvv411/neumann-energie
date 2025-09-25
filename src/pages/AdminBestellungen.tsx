@@ -387,31 +387,32 @@ export default function AdminBestellungen() {
                 <TableCell>{getDeliveryTime(order.delivery_time)}</TableCell>
                 <TableCell>{getStatusBadge(order.status)}</TableCell>
                 <TableCell>
-                  <div className="flex items-center gap-2">
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => handleAddNote(order)}
-                      className="h-8 w-8 p-0"
-                    >
-                      <Plus className="h-4 w-4" />
-                    </Button>
-                    {notes[order.id] && notes[order.id].length > 0 && (
+                  <div className="space-y-2">
+                    <div className="flex flex-wrap items-center gap-1">
+                      {notes[order.id] && notes[order.id].map((note, index) => (
+                        <Button
+                          key={note.id}
+                          variant="outline"
+                          size="sm"
+                          onClick={() => handleViewNotes(order)}
+                          className="h-6 text-xs px-2"
+                        >
+                          Notiz {index + 1}
+                        </Button>
+                      ))}
                       <Button
                         variant="ghost"
                         size="sm"
-                        onClick={() => handleViewNotes(order)}
-                        className="h-8 w-8 p-0"
+                        onClick={() => handleAddNote(order)}
+                        className="h-6 w-6 p-0 text-muted-foreground hover:text-foreground"
                       >
-                        <FileText className="h-4 w-4" />
-                        <span className="ml-1 text-xs">{notes[order.id].length}</span>
+                        <Plus className="h-3 w-3" />
                       </Button>
-                    )}
+                    </div>
                     {notes[order.id] && notes[order.id].length > 0 && (
-                      <div className="text-xs text-muted-foreground">
-                        <div>Notiz {notes[order.id].length}</div>
-                        <div>{format(new Date(getLatestNoteTimestamp(order.id)!), 'dd.MM.yyyy HH:mm', { locale: de })}</div>
-                      </div>
+                      <p className="text-xs text-muted-foreground">
+                        {format(new Date(getLatestNoteTimestamp(order.id)!), 'dd.MM.yyyy HH:mm', { locale: de })}
+                      </p>
                     )}
                   </div>
                 </TableCell>
