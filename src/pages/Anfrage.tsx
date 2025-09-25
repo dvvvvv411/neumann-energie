@@ -169,11 +169,11 @@ export default function Anfrage() {
                           <FormItem>
                             <FormLabel className="text-lg font-medium">Postleitzahl *</FormLabel>
                             <FormControl>
-                              <Input 
-                                placeholder="12345" 
-                                {...field}
-                                className="h-14 text-lg focus:ring-primary/20 focus:border-primary"
-                              />
+                               <Input 
+                                 placeholder="12345" 
+                                 {...field}
+                                 className="h-14 text-lg placeholder:text-base placeholder:text-muted-foreground/70 focus:ring-primary/20 focus:border-primary"
+                               />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -211,9 +211,9 @@ export default function Anfrage() {
                               <FormLabel className="text-lg font-medium">Produkt *</FormLabel>
                               <Select onValueChange={field.onChange} defaultValue={field.value}>
                                 <FormControl>
-                                  <SelectTrigger className="h-14 text-lg">
-                                    <SelectValue placeholder="Produkt wählen" />
-                                  </SelectTrigger>
+                      <SelectTrigger className="h-14 text-lg">
+                        <SelectValue placeholder="Produkt wählen" className="placeholder:text-base placeholder:text-muted-foreground/70" />
+                      </SelectTrigger>
                                 </FormControl>
                                 <SelectContent>
                                   <SelectItem value="heizoel-din">Heizöl DIN schwefelarm</SelectItem>
@@ -232,12 +232,12 @@ export default function Anfrage() {
                             <FormItem>
                               <FormLabel className="text-lg font-medium">Liefermenge (Liter) *</FormLabel>
                               <FormControl>
-                                <Input 
-                                  placeholder="1000" 
-                                  type="number" 
-                                  {...field}
-                                  className="h-14 text-lg focus:ring-primary/20 focus:border-primary"
-                                />
+                                 <Input 
+                                   placeholder="1000" 
+                                   type="number" 
+                                   {...field}
+                                   className="h-14 text-lg placeholder:text-base placeholder:text-muted-foreground/70 focus:ring-primary/20 focus:border-primary"
+                                 />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -252,9 +252,9 @@ export default function Anfrage() {
                               <FormLabel className="text-lg font-medium">Abladestellen *</FormLabel>
                               <Select onValueChange={field.onChange} defaultValue={field.value}>
                                 <FormControl>
-                                  <SelectTrigger className="h-14 text-lg">
-                                    <SelectValue placeholder="Anzahl wählen" />
-                                  </SelectTrigger>
+                      <SelectTrigger className="h-14 text-lg">
+                        <SelectValue placeholder="Anzahl wählen" className="placeholder:text-base placeholder:text-muted-foreground/70" />
+                      </SelectTrigger>
                                 </FormControl>
                                 <SelectContent>
                                   {Array.from({ length: 24 }, (_, i) => i + 1).map((num) => (
@@ -277,9 +277,9 @@ export default function Anfrage() {
                               <FormLabel className="text-lg font-medium">Lieferfrist *</FormLabel>
                               <Select onValueChange={field.onChange} defaultValue={field.value}>
                                 <FormControl>
-                                  <SelectTrigger className="h-14 text-lg">
-                                    <SelectValue placeholder="Lieferfrist wählen" />
-                                  </SelectTrigger>
+                      <SelectTrigger className="h-14 text-lg">
+                        <SelectValue placeholder="Lieferfrist wählen" className="placeholder:text-base placeholder:text-muted-foreground/70" />
+                      </SelectTrigger>
                                 </FormControl>
                                 <SelectContent>
                                   <SelectItem value="express">48h Express (Aufpreis)</SelectItem>
@@ -316,11 +316,11 @@ export default function Anfrage() {
                         <FormItem>
                           <FormLabel className="text-lg font-medium">Nachricht (optional)</FormLabel>
                           <FormControl>
-                            <Textarea
-                              placeholder="Zusätzliche Informationen, besondere Lieferwünsche, Fragen..."
-                              className="min-h-[140px] text-lg focus:ring-primary/20 focus:border-primary resize-none"
-                              {...field}
-                            />
+                             <Textarea
+                               placeholder="Zusätzliche Informationen, besondere Lieferwünsche, Fragen..."
+                               className="min-h-[140px] text-lg placeholder:text-base placeholder:text-muted-foreground/70 focus:ring-primary/20 focus:border-primary resize-none"
+                               {...field}
+                             />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -371,9 +371,9 @@ export default function Anfrage() {
                             <FormLabel className="text-lg font-medium">Anrede *</FormLabel>
                             <Select onValueChange={field.onChange} defaultValue={field.value}>
                               <FormControl>
-                                <SelectTrigger className="h-14 text-lg">
-                                  <SelectValue placeholder="Anrede wählen" />
-                                </SelectTrigger>
+                        <SelectTrigger className="h-14 text-lg">
+                          <SelectValue placeholder="Anrede wählen" className="placeholder:text-base placeholder:text-muted-foreground/70" />
+                        </SelectTrigger>
                               </FormControl>
                               <SelectContent>
                                 <SelectItem value="herr">Herr</SelectItem>
@@ -393,11 +393,11 @@ export default function Anfrage() {
                           <FormItem>
                             <FormLabel className="text-lg font-medium">Firma (optional)</FormLabel>
                             <FormControl>
-                              <Input 
-                                placeholder="Firmenname" 
-                                {...field}
-                                className="h-14 text-lg focus:ring-primary/20 focus:border-primary"
-                              />
+                               <Input 
+                                 placeholder="Firmenname" 
+                                 {...field}
+                                 className="h-14 text-lg placeholder:text-base placeholder:text-muted-foreground/70 focus:ring-primary/20 focus:border-primary"
+                               />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -411,11 +411,11 @@ export default function Anfrage() {
                           <FormItem>
                             <FormLabel className="text-lg font-medium">Vorname *</FormLabel>
                             <FormControl>
-                              <Input 
-                                placeholder="Max" 
-                                {...field}
-                                className="h-14 text-lg focus:ring-primary/20 focus:border-primary"
-                              />
+                               <Input 
+                                 placeholder="Max" 
+                                 {...field}
+                                 className="h-14 text-lg placeholder:text-base placeholder:text-muted-foreground/70 focus:ring-primary/20 focus:border-primary"
+                               />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -429,11 +429,11 @@ export default function Anfrage() {
                           <FormItem>
                             <FormLabel className="text-lg font-medium">Nachname *</FormLabel>
                             <FormControl>
-                              <Input 
-                                placeholder="Mustermann" 
-                                {...field}
-                                className="h-14 text-lg focus:ring-primary/20 focus:border-primary"
-                              />
+                               <Input 
+                                 placeholder="Mustermann" 
+                                 {...field}
+                                 className="h-14 text-lg placeholder:text-base placeholder:text-muted-foreground/70 focus:ring-primary/20 focus:border-primary"
+                               />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -465,12 +465,12 @@ export default function Anfrage() {
                           <FormItem>
                             <FormLabel className="text-lg font-medium">E-Mail *</FormLabel>
                             <FormControl>
-                              <Input 
-                                placeholder="max@example.com" 
-                                type="email" 
-                                {...field}
-                                className="h-14 text-lg focus:ring-primary/20 focus:border-primary"
-                              />
+                               <Input 
+                                 placeholder="max@example.com" 
+                                 type="email" 
+                                 {...field}
+                                 className="h-14 text-lg placeholder:text-base placeholder:text-muted-foreground/70 focus:ring-primary/20 focus:border-primary"
+                               />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -484,11 +484,11 @@ export default function Anfrage() {
                           <FormItem>
                             <FormLabel className="text-lg font-medium">Telefonnummer *</FormLabel>
                             <FormControl>
-                              <Input 
-                                placeholder="+49 123 456789" 
-                                {...field}
-                                className="h-14 text-lg focus:ring-primary/20 focus:border-primary"
-                              />
+                               <Input 
+                                 placeholder="+49 123 456789" 
+                                 {...field}
+                                 className="h-14 text-lg placeholder:text-base placeholder:text-muted-foreground/70 focus:ring-primary/20 focus:border-primary"
+                               />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -520,11 +520,11 @@ export default function Anfrage() {
                           <FormItem>
                             <FormLabel className="text-lg font-medium">Straße, Hausnummer *</FormLabel>
                             <FormControl>
-                              <Input 
-                                placeholder="Musterstraße 123" 
-                                {...field}
-                                className="h-14 text-lg focus:ring-primary/20 focus:border-primary"
-                              />
+                               <Input 
+                                 placeholder="Musterstraße 123" 
+                                 {...field}
+                                 className="h-14 text-lg placeholder:text-base placeholder:text-muted-foreground/70 focus:ring-primary/20 focus:border-primary"
+                               />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -538,11 +538,11 @@ export default function Anfrage() {
                           <FormItem>
                             <FormLabel className="text-lg font-medium">PLZ, Ort *</FormLabel>
                             <FormControl>
-                              <Input 
-                                placeholder="12345 Musterstadt" 
-                                {...field}
-                                className="h-14 text-lg focus:ring-primary/20 focus:border-primary"
-                              />
+                               <Input 
+                                 placeholder="12345 Musterstadt" 
+                                 {...field}
+                                 className="h-14 text-lg placeholder:text-base placeholder:text-muted-foreground/70 focus:ring-primary/20 focus:border-primary"
+                               />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
