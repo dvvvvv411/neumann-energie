@@ -433,11 +433,11 @@ export default function Anfrage() {
                 </Card>
 
                 {/* Action Button */}
-                <div className="flex justify-end">
+                <div className="flex justify-center sm:justify-end">
                   <Button 
                     type="submit" 
                     size="lg"
-                    className="px-12 h-14 text-lg font-semibold shadow-lg hover:shadow-primary/20 transition-all duration-200"
+                    className="w-full sm:w-auto px-12 h-14 text-lg font-semibold shadow-lg hover:shadow-primary/20 transition-all duration-200"
                   >
                     Weiter zu den Kontaktdaten <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
@@ -641,20 +641,20 @@ export default function Anfrage() {
                 </Card>
 
                 {/* Action Buttons */}
-                <div className="flex justify-between">
+                <div className="flex flex-col sm:flex-row gap-4 sm:justify-between">
                   <Button
                     type="button"
                     variant="outline"
                     size="lg"
                     onClick={() => setCurrentStep(1)}
-                    className="px-10 h-14 text-lg"
+                    className="w-full sm:w-auto px-10 h-14 text-lg"
                   >
                     <ArrowLeft className="mr-3 h-5 w-5" /> Zurück
                   </Button>
                   <Button 
                     type="submit" 
                     size="lg"
-                    className="px-16 h-16 text-xl font-semibold shadow-lg hover:shadow-primary/20 transition-all duration-200"
+                    className="w-full sm:w-auto px-16 h-16 text-xl font-semibold shadow-lg hover:shadow-primary/20 transition-all duration-200"
                   >
                     Zur Zusammenfassung <ArrowRight className="ml-3 h-6 w-6" />
                   </Button>
@@ -768,7 +768,7 @@ export default function Anfrage() {
                   onClick={handleFinalSubmit} 
                   disabled={isSubmitting}
                   size="lg"
-                  className="px-20 h-20 text-2xl font-bold shadow-2xl hover:shadow-primary/30 transition-all duration-300 bg-primary text-white hover:bg-primary-hover hover:scale-105 disabled:bg-primary/70 disabled:text-white/90 disabled:cursor-not-allowed disabled:transform-none"
+                  className="w-full max-w-md px-20 h-20 text-2xl font-bold shadow-2xl hover:shadow-primary/30 transition-all duration-300 bg-primary text-white hover:bg-primary-hover hover:scale-105 disabled:bg-primary/70 disabled:text-white/90 disabled:cursor-not-allowed disabled:transform-none"
                 >
                   {isSubmitting ? (
                     <>
