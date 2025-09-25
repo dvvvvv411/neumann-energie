@@ -31,8 +31,6 @@ const step2Schema = z.object({
   lastName: z.string().min(1, "Nachname ist erforderlich"),
   email: z.string().email("Bitte geben Sie eine gültige E-Mail-Adresse ein"),
   phone: z.string().min(1, "Telefonnummer ist erforderlich"),
-  street: z.string().min(1, "Straße und Hausnummer sind erforderlich"),
-  cityPostcode: z.string().min(1, "PLZ und Ort sind erforderlich"),
   privacy: z.boolean().refine(val => val === true, "Datenschutzerklärung muss akzeptiert werden"),
 });
 
@@ -83,8 +81,8 @@ export default function Anfrage() {
         last_name: formData.lastName!,
         email: formData.email!,
         phone: formData.phone!,
-        street: formData.street!,
-        city_postcode: formData.cityPostcode!,
+        street: '',
+        city_postcode: formData.postcode!,
         privacy_accepted: formData.privacy!,
         status: 'pending'
       };
@@ -696,13 +694,9 @@ export default function Anfrage() {
                         <span className="text-lg font-medium text-muted-foreground">E-Mail</span>
                         <span className="text-lg font-semibold">{formData.email}</span>
                       </div>
-                      <div className="flex justify-between py-3 border-b border-border/50">
+                      <div className="flex justify-between py-3">
                         <span className="text-lg font-medium text-muted-foreground">Telefon</span>
                         <span className="text-lg font-semibold">{formData.phone}</span>
-                      </div>
-                      <div className="flex justify-between py-3">
-                        <span className="text-lg font-medium text-muted-foreground">Adresse</span>
-                        <span className="text-lg font-semibold text-right">{formData.street}, {formData.cityPostcode}</span>
                       </div>
                     </CardContent>
                   </Card>
