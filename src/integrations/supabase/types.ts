@@ -82,6 +82,35 @@ export type Database = {
         }
         Relationships: []
       }
+      order_notes: {
+        Row: {
+          created_at: string
+          id: string
+          note_text: string
+          order_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          note_text: string
+          order_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          note_text?: string
+          order_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fk_order_notes_order_id"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       orders: {
         Row: {
           city_postcode: string

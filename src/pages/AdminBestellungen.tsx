@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { format } from "date-fns";
+import { format, formatDistanceToNow } from "date-fns";
 import { de } from "date-fns/locale";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -8,7 +8,8 @@ import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Eye, Search, Filter, Download, ShoppingCart, Package, User, MapPin, Calendar, MessageSquare } from "lucide-react";
+import { Textarea } from "@/components/ui/textarea";
+import { Eye, Search, Filter, Download, ShoppingCart, Package, User, MapPin, Calendar, MessageSquare, Plus, FileText } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
@@ -34,19 +35,32 @@ interface Order {
   updated_at: string;
 }
 
+interface OrderNote {
+  id: string;
+  order_id: string;
+  note_text: string;
+  created_at: string;
+}
+
 export default function AdminBestellungen() {
   const [orders, setOrders] = useState<Order[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
+  const [notes, setNotes] = useState<{ [key: string]: OrderNote[] }>({});
+  const [showAddNoteDialog, setShowAddNoteDialog] = useState(false);
+  const [showViewNotesDialog, setShowViewNotesDialog] = useState(false);
+  const [currentOrderForNote, setCurrentOrderForNote] = useState<Order | null>(null);
+  const [noteText, setNoteText] = useState("");
   const { toast } = useToast();
 
   useEffect(() => {
     fetchOrders();
+    fetchAllNotes();
 
-    // Subscribe to realtime changes
-    const channel = supabase
+    // Subscribe to realtime changes for orders
+    const ordersChannel = supabase
       .channel('orders-changes')
       .on(
         'postgres_changes',
@@ -61,8 +75,25 @@ export default function AdminBestellungen() {
       )
       .subscribe();
 
+    // Subscribe to realtime changes for order notes
+    const notesChannel = supabase
+      .channel('order-notes-changes')
+      .on(
+        'postgres_changes',
+        {
+          event: 'INSERT',
+          schema: 'public',
+          table: 'order_notes'
+        },
+        () => {
+          fetchAllNotes();
+        }
+      )
+      .subscribe();
+
     return () => {
-      supabase.removeChannel(channel);
+      supabase.removeChannel(ordersChannel);
+      supabase.removeChannel(notesChannel);
     };
   }, []);
 
@@ -84,6 +115,63 @@ export default function AdminBestellungen() {
       });
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const fetchAllNotes = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('order_notes')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+
+      // Group notes by order_id
+      const notesByOrderId = (data || []).reduce((acc: { [key: string]: OrderNote[] }, note: OrderNote) => {
+        if (!acc[note.order_id]) {
+          acc[note.order_id] = [];
+        }
+        acc[note.order_id].push(note);
+        return acc;
+      }, {});
+
+      setNotes(notesByOrderId);
+    } catch (error) {
+      console.error('Error fetching notes:', error);
+    }
+  };
+
+  const addNote = async () => {
+    if (!currentOrderForNote || !noteText.trim()) return;
+
+    try {
+      const { error } = await supabase
+        .from('order_notes')
+        .insert([
+          {
+            order_id: currentOrderForNote.id,
+            note_text: noteText.trim()
+          }
+        ]);
+
+      if (error) throw error;
+
+      toast({
+        title: "Notiz hinzugefügt",
+        description: "Die Notiz wurde erfolgreich gespeichert.",
+      });
+
+      setNoteText("");
+      setShowAddNoteDialog(false);
+      fetchAllNotes();
+    } catch (error) {
+      console.error('Error adding note:', error);
+      toast({
+        title: "Fehler",
+        description: "Die Notiz konnte nicht gespeichert werden.",
+        variant: "destructive",
+      });
     }
   };
 
@@ -143,6 +231,22 @@ export default function AdminBestellungen() {
 
   const getDeliveryTime = (deliveryTime: string) => {
     return deliveryTime === "express" ? "48h Express" : "5-7 Werktage";
+  };
+
+  const handleAddNote = (order: Order) => {
+    setCurrentOrderForNote(order);
+    setShowAddNoteDialog(true);
+  };
+
+  const handleViewNotes = (order: Order) => {
+    setCurrentOrderForNote(order);
+    setShowViewNotesDialog(true);
+  };
+
+  const getLatestNoteTimestamp = (orderId: string) => {
+    const orderNotes = notes[orderId];
+    if (!orderNotes || orderNotes.length === 0) return null;
+    return orderNotes[0].created_at;
   };
 
   if (isLoading) {
@@ -249,10 +353,13 @@ export default function AdminBestellungen() {
             <TableRow>
               <TableHead>Datum</TableHead>
               <TableHead>Kontakt</TableHead>
+              <TableHead>Telefon</TableHead>
+              <TableHead>PLZ</TableHead>
               <TableHead>Produkt</TableHead>
               <TableHead>Menge</TableHead>
               <TableHead>Lieferfrist</TableHead>
               <TableHead>Status</TableHead>
+              <TableHead>Notizen</TableHead>
               <TableHead className="text-right">Aktionen</TableHead>
             </TableRow>
           </TableHeader>
@@ -271,10 +378,40 @@ export default function AdminBestellungen() {
                     )}
                   </div>
                 </TableCell>
+                <TableCell className="text-sm">{order.phone}</TableCell>
+                <TableCell className="text-sm">{order.postcode}</TableCell>
                 <TableCell>{getProductName(order.product)}</TableCell>
                 <TableCell>{order.quantity.toLocaleString('de-DE')} L</TableCell>
                 <TableCell>{getDeliveryTime(order.delivery_time)}</TableCell>
                 <TableCell>{getStatusBadge(order.status)}</TableCell>
+                <TableCell>
+                  <div className="flex items-center gap-2">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => handleAddNote(order)}
+                      className="h-8 w-8 p-0"
+                    >
+                      <Plus className="h-4 w-4" />
+                    </Button>
+                    {notes[order.id] && notes[order.id].length > 0 && (
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => handleViewNotes(order)}
+                        className="h-8 w-8 p-0"
+                      >
+                        <FileText className="h-4 w-4" />
+                        <span className="ml-1 text-xs">{notes[order.id].length}</span>
+                      </Button>
+                    )}
+                    {getLatestNoteTimestamp(order.id) && (
+                      <span className="text-xs text-muted-foreground">
+                        {formatDistanceToNow(new Date(getLatestNoteTimestamp(order.id)!), { addSuffix: true, locale: de })}
+                      </span>
+                    )}
+                  </div>
+                </TableCell>
                 <TableCell className="text-right">
                   <Dialog>
                     <DialogTrigger asChild>
@@ -369,27 +506,6 @@ export default function AdminBestellungen() {
                             </div>
                           </div>
 
-                          {/* Address Information */}
-                          <div className="space-y-4">
-                            <h3 className="text-lg font-semibold flex items-center gap-2">
-                              <MapPin className="h-5 w-5" />
-                              Lieferadresse
-                            </h3>
-                            <div className="grid grid-cols-2 gap-4">
-                              <div>
-                                <span className="text-sm font-medium text-muted-foreground">Straße</span>
-                                <div>{selectedOrder.street}</div>
-                              </div>
-                              <div>
-                                <span className="text-sm font-medium text-muted-foreground">PLZ & Ort</span>
-                                <div>{selectedOrder.city_postcode}</div>
-                              </div>
-                              <div>
-                                <span className="text-sm font-medium text-muted-foreground">Postleitzahl</span>
-                                <div>{selectedOrder.postcode}</div>
-                              </div>
-                            </div>
-                          </div>
 
                           {/* Message */}
                           {selectedOrder.message && (
@@ -437,6 +553,79 @@ export default function AdminBestellungen() {
           </div>
         )}
       </Card>
+
+      {/* Add Note Dialog */}
+      <Dialog open={showAddNoteDialog} onOpenChange={setShowAddNoteDialog}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Notiz hinzufügen</DialogTitle>
+          </DialogHeader>
+          {currentOrderForNote && (
+            <div className="space-y-4">
+              <div>
+                <p className="text-sm text-muted-foreground">
+                  Bestellung für {currentOrderForNote.first_name} {currentOrderForNote.last_name}
+                </p>
+              </div>
+              <Textarea
+                placeholder="Notiz eingeben..."
+                value={noteText}
+                onChange={(e) => setNoteText(e.target.value)}
+                rows={4}
+              />
+              <div className="flex justify-end gap-2">
+                <Button variant="outline" onClick={() => setShowAddNoteDialog(false)}>
+                  Abbrechen
+                </Button>
+                <Button onClick={addNote} disabled={!noteText.trim()}>
+                  Notiz hinzufügen
+                </Button>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
+
+      {/* View Notes Dialog */}
+      <Dialog open={showViewNotesDialog} onOpenChange={setShowViewNotesDialog}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle>Notizen</DialogTitle>
+          </DialogHeader>
+          {currentOrderForNote && (
+            <div className="space-y-4">
+              <div>
+                <p className="text-sm text-muted-foreground">
+                  Bestellung für {currentOrderForNote.first_name} {currentOrderForNote.last_name}
+                </p>
+              </div>
+              <div className="space-y-3 max-h-96 overflow-y-auto">
+                {notes[currentOrderForNote.id] && notes[currentOrderForNote.id].length > 0 ? (
+                  notes[currentOrderForNote.id].map((note) => (
+                    <div key={note.id} className="p-3 border rounded-lg">
+                      <div className="text-sm text-muted-foreground mb-2">
+                        {format(new Date(note.created_at), 'dd.MM.yyyy HH:mm', { locale: de })}
+                      </div>
+                      <div>{note.note_text}</div>
+                    </div>
+                  ))
+                ) : (
+                  <p className="text-muted-foreground">Keine Notizen vorhanden</p>
+                )}
+              </div>
+              <div className="flex justify-between">
+                <Button variant="outline" onClick={() => handleAddNote(currentOrderForNote!)}>
+                  <Plus className="h-4 w-4 mr-2" />
+                  Neue Notiz
+                </Button>
+                <Button onClick={() => setShowViewNotesDialog(false)}>
+                  Schließen
+                </Button>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
