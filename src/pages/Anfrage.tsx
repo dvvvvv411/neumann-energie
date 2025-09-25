@@ -319,7 +319,7 @@ export default function Anfrage() {
                               <FormLabel className="text-lg font-medium">Liefermenge (Liter) *</FormLabel>
                               <FormControl>
                                  <Input 
-                                   placeholder="1000" 
+                                   placeholder="10.000" 
                                    type="number" 
                                    {...field}
                                    className="h-14 text-lg placeholder:text-base placeholder:text-muted-foreground/70 focus:ring-primary/20 focus:border-primary"
