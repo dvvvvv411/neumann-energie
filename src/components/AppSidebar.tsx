@@ -1,73 +1,64 @@
-import { 
-  Sheet, 
-  SheetContent, 
-  SheetTrigger,
-  SheetClose 
-} from "@/components/ui/sheet";
-import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
-// Logo will be referenced directly
+import { useState } from "react";
+import { LayoutDashboard, MessageSquare } from "lucide-react";
+import { NavLink, useLocation } from "react-router-dom";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarTrigger,
+  useSidebar,
+} from "@/components/ui/sidebar";
 
-const navigationItems = [
-  { name: "Startseite", href: "/" },
-  { name: "Über uns", href: "/ueber-uns" },
-  { name: "Service", href: "/service" },
-  { name: "Nachhaltigkeit", href: "/nachhaltigkeit" },
-  { name: "Referenzen", href: "/referenzen" },
+const items = [
+  { title: "Dashboard", url: "/admin", icon: LayoutDashboard },
+  { title: "Anfragen", url: "/admin/anfragen", icon: MessageSquare },
 ];
 
-interface AppSidebarProps {
-  isOpen: boolean;
-  onOpenChange: (open: boolean) => void;
-}
+export function AppSidebar() {
+  const { state } = useSidebar();
+  const location = useLocation();
+  const currentPath = location.pathname;
+  const isCollapsed = state === "collapsed";
 
-export function AppSidebar({ isOpen, onOpenChange }: AppSidebarProps) {
+  const isActive = (path: string) => currentPath === path;
+  const getNavCls = ({ isActive }: { isActive: boolean }) =>
+    isActive ? "bg-accent text-accent-foreground font-medium" : "hover:bg-accent/50";
+
   return (
-    <Sheet open={isOpen} onOpenChange={onOpenChange}>
-      <SheetTrigger asChild>
-        <Button
-          variant="ghost"
-          size="default"
-          className="flex items-center gap-2"
-        >
-          <Menu className="h-6 w-6" />
-          <span className="text-base font-medium hidden sm:inline">Menü</span>
-        </Button>
-      </SheetTrigger>
-      
-      <SheetContent 
-        side="left" 
-        className="w-80 p-0 bg-background border-border [&>button]:hidden"
-      >
-        {/* Logo Section */}
-        <div className="flex items-center justify-between p-6 border-b border-border">
-          <img 
-            src="/lovable-uploads/neumannlogo.png.png" 
-            alt="Neumann Energie" 
-            className="h-12 w-auto"
-          />
-          <SheetClose asChild>
-            <Button variant="ghost" size="icon">
-              <X className="h-5 w-5" />
-            </Button>
-          </SheetClose>
-        </div>
+    <Sidebar>
+      <div className="flex items-center justify-center p-4 border-b border-border">
+        <img 
+          src="/lovable-uploads/neumannlogo.png.png" 
+          alt="Neumann Energie" 
+          className={isCollapsed ? "h-8 w-auto" : "h-10 w-auto"}
+        />
+      </div>
 
-        {/* Navigation */}
-        <nav className="flex flex-col p-6 space-y-2">
-          {navigationItems.map((item) => (
-            <SheetClose key={item.name} asChild>
-              <a
-                href={item.href}
-                className="flex items-center px-4 py-3 text-foreground hover:bg-accent hover:text-accent-foreground rounded-lg transition-colors duration-200 text-base font-medium"
-                onClick={() => onOpenChange(false)}
-              >
-                {item.name}
-              </a>
-            </SheetClose>
-          ))}
-        </nav>
-      </SheetContent>
-    </Sheet>
+      <SidebarContent>
+        <SidebarGroup>
+          <SidebarGroupLabel>Verwaltung</SidebarGroupLabel>
+
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {items.map((item) => (
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton asChild>
+                    <NavLink to={item.url} end className={getNavCls}>
+                      <item.icon className="mr-2 h-4 w-4" />
+                      {!isCollapsed && <span>{item.title}</span>}
+                    </NavLink>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+      </SidebarContent>
+    </Sidebar>
   );
 }

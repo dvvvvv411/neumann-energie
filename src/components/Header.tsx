@@ -1,36 +1,19 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-// Logo will be referenced directly
-import { AppSidebar } from "@/components/AppSidebar";
 
 export function Header() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
   return (
     <header className="bg-background border-b border-border sticky top-0 z-50">
       <div className="container mx-auto px-4 py-6">
-        <div className="flex items-center justify-between">
-          {/* Sidebar Trigger */}
-          <div className="flex items-center">
-            <AppSidebar 
-              isOpen={isSidebarOpen} 
-              onOpenChange={setIsSidebarOpen}
-            />
-          </div>
-
+        <div className="flex items-center justify-center">
           {/* Logo - Centered */}
-          <div className="absolute left-1/2 transform -translate-x-1/2">
-            <Link to="/">
-              <img 
-                src="/lovable-uploads/neumannlogo.png.png" 
-                alt="Neumann Energie" 
-                className="h-16 w-auto cursor-pointer hover-scale"
-              />
-            </Link>
-          </div>
-
-          {/* Empty div for flex layout */}
-          <div className="w-16"></div>
+          <Link to="/">
+            <img 
+              src="/lovable-uploads/neumannlogo.png.png" 
+              alt="Neumann Energie" 
+              className="h-16 w-auto cursor-pointer hover-scale"
+            />
+          </Link>
         </div>
       </div>
     </header>

@@ -10,6 +10,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { toast } from "sonner";
 import { ArrowUpRight } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { useState } from "react";
 
 const formSchema = z.object({
   salutation: z.string().min(1, "Bitte wählen Sie eine Anrede"),
@@ -25,6 +27,8 @@ const formSchema = z.object({
 type FormData = z.infer<typeof formSchema>;
 
 export const ContactSection = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -39,10 +43,35 @@ export const ContactSection = () => {
     },
   });
 
-  const onSubmit = (data: FormData) => {
-    console.log("Form submitted:", data);
-    toast.success("Ihre Anfrage wurde erfolgreich gesendet!");
-    form.reset();
+  const onSubmit = async (data: FormData) => {
+    setIsSubmitting(true);
+    
+    try {
+      const { error } = await supabase
+        .from('contact_requests')
+        .insert({
+          salutation: data.salutation,
+          company: data.company,
+          first_name: data.firstName,
+          last_name: data.lastName,
+          email: data.email,
+          phone: data.phone,
+          message: data.message,
+        });
+
+      if (error) {
+        console.error('Error submitting contact request:', error);
+        toast.error("Fehler beim Senden der Anfrage. Bitte versuchen Sie es erneut.");
+      } else {
+        toast.success("Ihre Anfrage wurde erfolgreich gesendet!");
+        form.reset();
+      }
+    } catch (error) {
+      console.error('Error submitting contact request:', error);
+      toast.error("Fehler beim Senden der Anfrage. Bitte versuchen Sie es erneut.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -247,9 +276,19 @@ export const ContactSection = () => {
                         size="lg"
                         className="w-full px-12 py-4 rounded-xl font-bold text-xl h-16 gap-4 group"
                         style={{ color: '#0c2a3e' }}
+                        disabled={isSubmitting}
                       >
-                        Anfrage absenden
-                        <ArrowUpRight className="w-6 h-6 text-white transition-transform duration-300 group-hover:rotate-45" />
+                        {isSubmitting ? (
+                          <>
+                            <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                            Wird gesendet...
+                          </>
+                        ) : (
+                          <>
+                            Anfrage absenden
+                            <ArrowUpRight className="w-6 h-6 text-white transition-transform duration-300 group-hover:rotate-45" />
+                          </>
+                        )}
                       </Button>
                     </div>
                 </form>
