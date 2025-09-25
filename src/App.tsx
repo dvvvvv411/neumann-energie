@@ -11,6 +11,7 @@ import Admin from "./pages/Admin";
 import AdminAnfragen from "./pages/AdminAnfragen";
 import AdminBestellungen from "./pages/AdminBestellungen";
 import AdminResend from "./pages/AdminResend";
+import AdminEmails from "./pages/AdminEmails";
 import About from "./pages/About";
 import Service from "./pages/Service";
 import Sustainability from "./pages/Sustainability";
@@ -40,6 +41,7 @@ const App = () => (
               <Route path="anfragen" element={<AdminAnfragen />} />
               <Route path="bestellungen" element={<AdminBestellungen />} />
               <Route path="resend" element={<AdminResend />} />
+              <Route path="emails" element={<AdminEmails />} />
             </Route>
             <Route path="/ueber-uns" element={<About />} />
             <Route path="/service" element={<Service />} />

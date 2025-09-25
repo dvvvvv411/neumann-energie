@@ -14,6 +14,48 @@ export type Database = {
   }
   public: {
     Tables: {
+      cached_emails: {
+        Row: {
+          body_html: string | null
+          body_plain: string | null
+          created_at: string
+          folder: string
+          id: string
+          is_read: boolean
+          message_id: string
+          received_date: string | null
+          recipient: string | null
+          sender: string
+          subject: string | null
+        }
+        Insert: {
+          body_html?: string | null
+          body_plain?: string | null
+          created_at?: string
+          folder?: string
+          id?: string
+          is_read?: boolean
+          message_id: string
+          received_date?: string | null
+          recipient?: string | null
+          sender: string
+          subject?: string | null
+        }
+        Update: {
+          body_html?: string | null
+          body_plain?: string | null
+          created_at?: string
+          folder?: string
+          id?: string
+          is_read?: boolean
+          message_id?: string
+          received_date?: string | null
+          recipient?: string | null
+          sender?: string
+          subject?: string | null
+        }
+        Relationships: []
+      }
       contact_request_notes: {
         Row: {
           contact_request_id: string
@@ -106,6 +148,42 @@ export type Database = {
           sender_email?: string
           sender_name?: string
           updated_at?: string
+        }
+        Relationships: []
+      }
+      imap_settings: {
+        Row: {
+          created_at: string
+          host: string
+          id: string
+          is_active: boolean
+          password: string
+          port: number
+          updated_at: string
+          use_tls: boolean
+          username: string
+        }
+        Insert: {
+          created_at?: string
+          host: string
+          id?: string
+          is_active?: boolean
+          password: string
+          port?: number
+          updated_at?: string
+          use_tls?: boolean
+          username: string
+        }
+        Update: {
+          created_at?: string
+          host?: string
+          id?: string
+          is_active?: boolean
+          password?: string
+          port?: number
+          updated_at?: string
+          use_tls?: boolean
+          username?: string
         }
         Relationships: []
       }
