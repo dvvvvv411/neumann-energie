@@ -11,7 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
-import { ArrowLeft, ArrowRight, Check, MapPin, Package, MessageSquare } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, MapPin, Package, MessageSquare, Truck } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const step1Schema = z.object({
@@ -179,6 +179,12 @@ export default function Anfrage() {
                           </FormItem>
                         )}
                       />
+                      
+                      {/* Deutschlandweite Lieferung Badge */}
+                      <div className="mt-4 flex items-center space-x-2 p-3 rounded-lg bg-primary/5 border border-primary/10 hover:bg-primary/10 transition-colors">
+                        <Truck className="h-4 w-4 text-primary" />
+                        <span className="text-sm font-medium text-primary">Deutschlandweite Lieferung</span>
+                      </div>
                     </CardContent>
                   </Card>
 
