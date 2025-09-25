@@ -47,7 +47,7 @@ export function LandingPageSidebar({ open, onClose }: LandingPageSidebarProps) {
                   key={item.href}
                   to={item.href}
                   onClick={handleLinkClick}
-                  className="block px-4 py-3 text-lg font-medium text-foreground hover:bg-muted rounded-lg transition-colors duration-200"
+                  className="story-link relative block px-4 py-3 text-lg font-medium text-foreground hover:bg-muted rounded-lg transition-colors duration-200"
                 >
                   {item.title}
                 </Link>
