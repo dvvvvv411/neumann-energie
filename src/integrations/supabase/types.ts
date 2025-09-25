@@ -14,6 +14,35 @@ export type Database = {
   }
   public: {
     Tables: {
+      contact_request_notes: {
+        Row: {
+          contact_request_id: string
+          created_at: string
+          id: string
+          note_text: string
+        }
+        Insert: {
+          contact_request_id: string
+          created_at?: string
+          id?: string
+          note_text: string
+        }
+        Update: {
+          contact_request_id?: string
+          created_at?: string
+          id?: string
+          note_text?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fk_contact_request_notes_contact_request_id"
+            columns: ["contact_request_id"]
+            isOneToOne: false
+            referencedRelation: "contact_requests"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       contact_requests: {
         Row: {
           company: string
