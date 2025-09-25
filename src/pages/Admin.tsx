@@ -66,7 +66,7 @@ export default function Admin() {
   const isSubRoute = location.pathname !== '/admin';
 
   return (
-    <SidebarProvider>
+    <SidebarProvider defaultOpen={true}>
       <div className="min-h-screen flex w-full">
         <AppSidebar />
         
