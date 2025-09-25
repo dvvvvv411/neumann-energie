@@ -47,6 +47,9 @@ export const ContactSection = () => {
     setIsSubmitting(true);
     
     try {
+      // Ensure we're using an anonymous session for the contact form
+      await supabase.auth.signOut();
+      
       const { error } = await supabase
         .from('contact_requests')
         .insert({
