@@ -8,7 +8,6 @@ const corsHeaders = {
 };
 
 interface ContactEmailRequest {
-  salutation: string;
   company?: string;
   first_name: string;
   last_name: string;
@@ -47,7 +46,7 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    const { salutation, company, first_name, last_name, email, phone, message }: ContactEmailRequest = await req.json();
+    const { company, first_name, last_name, email, phone, message }: ContactEmailRequest = await req.json();
 
     console.log("Sending contact confirmation to:", email);
 
@@ -64,8 +63,8 @@ const handler = async (req: Request): Promise<Response> => {
     
     <!-- Header -->
     <div style="background: linear-gradient(135deg, #0c2a3e 0%, #1e3a52 100%); padding: 40px 20px; text-align: center;">
-      <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: bold;">
-        Neumann Energie
+      <h1 style="color: #0c2a3e; margin: 0; font-size: 28px; font-weight: bold;">
+        NEUMANN
       </h1>
       <p style="color: #e2e8f0; margin: 10px 0 0 0; font-size: 16px;">
         Bestätigung Ihrer Kontaktanfrage
@@ -86,10 +85,6 @@ const handler = async (req: Request): Promise<Response> => {
       <div style="background-color: #f8fafc; padding: 25px; border-radius: 8px; margin: 25px 0; border-left: 4px solid #0c2a3e;">
         <h3 style="color: #0c2a3e; margin: 0 0 15px 0; font-size: 18px;">Ihre übermittelten Daten:</h3>
         
-        <div style="margin: 12px 0;">
-          <strong style="color: #475569;">Anrede:</strong>
-          <span style="color: #64748b; margin-left: 8px;">${salutation}</span>
-        </div>
         
         ${company ? `
         <div style="margin: 12px 0;">

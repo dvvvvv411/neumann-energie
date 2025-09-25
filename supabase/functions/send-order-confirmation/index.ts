@@ -18,7 +18,6 @@ interface OrderEmailRequest {
   delivery_time: string;
   message?: string;
   // Personal details
-  salutation: string;
   company?: string;
   first_name: string;
   last_name: string;
@@ -93,8 +92,8 @@ const handler = async (req: Request): Promise<Response> => {
     
     <!-- Header -->
     <div style="background: linear-gradient(135deg, #0c2a3e 0%, #1e3a52 100%); padding: 40px 20px; text-align: center;">
-      <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: bold;">
-        Neumann Energie
+      <h1 style="color: #0c2a3e; margin: 0; font-size: 28px; font-weight: bold;">
+        NEUMANN
       </h1>
       <p style="color: #e2e8f0; margin: 10px 0 0 0; font-size: 16px;">
         Bestätigung Ihrer Bestellanfrage
@@ -115,13 +114,6 @@ const handler = async (req: Request): Promise<Response> => {
       <div style="background-color: #f8fafc; padding: 25px; border-radius: 8px; margin: 25px 0; border-left: 4px solid #0c2a3e;">
         <h3 style="color: #0c2a3e; margin: 0 0 15px 0; font-size: 18px;">Ihre Bestelldaten:</h3>
         
-        <div style="margin: 12px 0;">
-          <strong style="color: #475569;">Lieferadresse:</strong>
-          <div style="color: #64748b; margin-top: 4px;">
-            ${orderData.street}<br/>
-            ${orderData.postcode} ${orderData.city_postcode}
-          </div>
-        </div>
         
         <div style="margin: 12px 0;">
           <strong style="color: #475569;">Produkt:</strong>
@@ -157,10 +149,6 @@ const handler = async (req: Request): Promise<Response> => {
       <div style="background-color: #f8fafc; padding: 25px; border-radius: 8px; margin: 25px 0; border-left: 4px solid #0c2a3e;">
         <h3 style="color: #0c2a3e; margin: 0 0 15px 0; font-size: 18px;">Ihre Kontaktdaten:</h3>
         
-        <div style="margin: 12px 0;">
-          <strong style="color: #475569;">Anrede:</strong>
-          <span style="color: #64748b; margin-left: 8px;">${orderData.salutation}</span>
-        </div>
         
         ${orderData.company ? `
         <div style="margin: 12px 0;">

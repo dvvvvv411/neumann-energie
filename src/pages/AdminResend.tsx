@@ -28,7 +28,6 @@ const AdminResend = () => {
 
   // Sample data for previews
   const sampleContactData = {
-    salutation: 'Herr',
     company: 'Musterfirma GmbH',
     first_name: 'Max',
     last_name: 'Mustermann',
@@ -46,7 +45,6 @@ const AdminResend = () => {
     delivery_points: 2,
     delivery_time: 'week',
     message: 'Bitte Lieferung zwischen 8-12 Uhr.',
-    salutation: 'Frau',
     company: 'Beispiel AG',
     first_name: 'Anna',
     last_name: 'Beispiel',
@@ -158,11 +156,11 @@ const AdminResend = () => {
 <body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; background-color: #f8fafc;">
   <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
     
-    <!-- Header -->
-    <div style="background: linear-gradient(135deg, #0c2a3e 0%, #1e3a52 100%); padding: 40px 20px; text-align: center;">
-      <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: bold;">
-        Neumann Energie
-      </h1>
+      <!-- Header -->
+      <div style="background: linear-gradient(135deg, #0c2a3e 0%, #1e3a52 100%); padding: 40px 20px; text-align: center;">
+        <h1 style="color: #0c2a3e; margin: 0; font-size: 28px; font-weight: bold;">
+          NEUMANN
+        </h1>
       <p style="color: #e2e8f0; margin: 10px 0 0 0; font-size: 16px;">
         Bestätigung Ihrer Kontaktanfrage
       </p>
@@ -182,11 +180,7 @@ const AdminResend = () => {
       <div style="background-color: #f8fafc; padding: 25px; border-radius: 8px; margin: 25px 0; border-left: 4px solid #0c2a3e;">
         <h3 style="color: #0c2a3e; margin: 0 0 15px 0; font-size: 18px;">Ihre übermittelten Daten:</h3>
         
-        <div style="margin: 12px 0;">
-          <strong style="color: #475569;">Anrede:</strong>
-          <span style="color: #64748b; margin-left: 8px;">${sampleContactData.salutation}</span>
-        </div>
-        
+          
         <div style="margin: 12px 0;">
           <strong style="color: #475569;">Unternehmen:</strong>
           <span style="color: #64748b; margin-left: 8px;">${sampleContactData.company}</span>
@@ -248,11 +242,11 @@ const AdminResend = () => {
 <body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; background-color: #f8fafc;">
   <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
     
-    <!-- Header -->
-    <div style="background: linear-gradient(135deg, #0c2a3e 0%, #1e3a52 100%); padding: 40px 20px; text-align: center;">
-      <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: bold;">
-        Neumann Energie
-      </h1>
+      <!-- Header -->
+      <div style="background: linear-gradient(135deg, #0c2a3e 0%, #1e3a52 100%); padding: 40px 20px; text-align: center;">
+        <h1 style="color: #0c2a3e; margin: 0; font-size: 28px; font-weight: bold;">
+          NEUMANN
+        </h1>
       <p style="color: #e2e8f0; margin: 10px 0 0 0; font-size: 16px;">
         Bestätigung Ihrer Bestellanfrage
       </p>
@@ -271,14 +265,6 @@ const AdminResend = () => {
       <!-- Order Details -->
       <div style="background-color: #f8fafc; padding: 25px; border-radius: 8px; margin: 25px 0; border-left: 4px solid #0c2a3e;">
         <h3 style="color: #0c2a3e; margin: 0 0 15px 0; font-size: 18px;">Ihre Bestelldaten:</h3>
-        
-        <div style="margin: 12px 0;">
-          <strong style="color: #475569;">Lieferadresse:</strong>
-          <div style="color: #64748b; margin-top: 4px;">
-            ${sampleOrderData.street}<br/>
-            ${sampleOrderData.city_postcode}
-          </div>
-        </div>
         
         <div style="margin: 12px 0;">
           <strong style="color: #475569;">Produkt:</strong>
@@ -312,11 +298,7 @@ const AdminResend = () => {
       <div style="background-color: #f8fafc; padding: 25px; border-radius: 8px; margin: 25px 0; border-left: 4px solid #0c2a3e;">
         <h3 style="color: #0c2a3e; margin: 0 0 15px 0; font-size: 18px;">Ihre Kontaktdaten:</h3>
         
-        <div style="margin: 12px 0;">
-          <strong style="color: #475569;">Anrede:</strong>
-          <span style="color: #64748b; margin-left: 8px;">${sampleOrderData.salutation}</span>
-        </div>
-        
+          
         <div style="margin: 12px 0;">
           <strong style="color: #475569;">Unternehmen:</strong>
           <span style="color: #64748b; margin-left: 8px;">${sampleOrderData.company}</span>
