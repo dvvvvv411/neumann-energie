@@ -11,7 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
-import { ArrowLeft, ArrowRight, Check, MapPin, Package, MessageSquare, Truck } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, MapPin, Package, MessageSquare, Truck, User, Mail, Phone, MapPin as AddressIcon, Shield } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const step1Schema = z.object({
@@ -141,16 +141,16 @@ export default function Anfrage() {
         </div>
 
         {/* Step Content */}
-        <div className="max-w-7xl mx-auto px-4 py-12">
+        <div className="max-w-7xl mx-auto px-4 py-16">
           {/* Step 1: Anliegen - Modern Card Layout */}
           {currentStep === 1 && (
             <Form {...step1Form}>
               <form onSubmit={step1Form.handleSubmit(handleStep1Submit)} className="space-y-8">
-                <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-6">
+                <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8">
                   
                   {/* Ihr Standort Card */}
                   <Card className="group hover:shadow-elegant transition-all duration-300 border-border/50 hover:border-primary/20 bg-card/50 backdrop-blur-sm">
-                    <CardHeader className="pb-4">
+                    <CardHeader className="py-8">
                       <div className="flex items-center space-x-3">
                         <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                           <MapPin className="h-5 w-5 text-primary" />
@@ -161,18 +161,18 @@ export default function Anfrage() {
                         </div>
                       </div>
                     </CardHeader>
-                    <CardContent className="pt-0">
+                    <CardContent className="px-8 pb-8">
                       <FormField
                         control={step1Form.control}
                         name="postcode"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-base font-medium">Postleitzahl *</FormLabel>
+                            <FormLabel className="text-lg font-medium">Postleitzahl *</FormLabel>
                             <FormControl>
                               <Input 
                                 placeholder="12345" 
                                 {...field}
-                                className="h-12 text-base focus:ring-primary/20 focus:border-primary"
+                                className="h-14 text-lg focus:ring-primary/20 focus:border-primary"
                               />
                             </FormControl>
                             <FormMessage />
@@ -190,7 +190,7 @@ export default function Anfrage() {
 
                   {/* Produktauswahl Card */}
                   <Card className="lg:col-span-2 group hover:shadow-elegant transition-all duration-300 border-border/50 hover:border-primary/20 bg-card/50 backdrop-blur-sm">
-                    <CardHeader className="pb-4">
+                    <CardHeader className="py-8">
                       <div className="flex items-center space-x-3">
                         <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                           <Package className="h-5 w-5 text-primary" />
@@ -201,17 +201,17 @@ export default function Anfrage() {
                         </div>
                       </div>
                     </CardHeader>
-                    <CardContent className="pt-0">
-                      <div className="grid md:grid-cols-2 gap-6">
+                    <CardContent className="px-8 pb-8">
+                      <div className="grid md:grid-cols-2 gap-8">
                         <FormField
                           control={step1Form.control}
                           name="product"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel className="text-base font-medium">Produkt *</FormLabel>
+                              <FormLabel className="text-lg font-medium">Produkt *</FormLabel>
                               <Select onValueChange={field.onChange} defaultValue={field.value}>
                                 <FormControl>
-                                  <SelectTrigger className="h-12 text-base">
+                                  <SelectTrigger className="h-14 text-lg">
                                     <SelectValue placeholder="Produkt wählen" />
                                   </SelectTrigger>
                                 </FormControl>
@@ -230,13 +230,13 @@ export default function Anfrage() {
                           name="quantity"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel className="text-base font-medium">Liefermenge (Liter) *</FormLabel>
+                              <FormLabel className="text-lg font-medium">Liefermenge (Liter) *</FormLabel>
                               <FormControl>
                                 <Input 
                                   placeholder="1000" 
                                   type="number" 
                                   {...field}
-                                  className="h-12 text-base focus:ring-primary/20 focus:border-primary"
+                                  className="h-14 text-lg focus:ring-primary/20 focus:border-primary"
                                 />
                               </FormControl>
                               <FormMessage />
@@ -249,10 +249,10 @@ export default function Anfrage() {
                           name="deliveryPoints"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel className="text-base font-medium">Abladestellen *</FormLabel>
+                              <FormLabel className="text-lg font-medium">Abladestellen *</FormLabel>
                               <Select onValueChange={field.onChange} defaultValue={field.value}>
                                 <FormControl>
-                                  <SelectTrigger className="h-12 text-base">
+                                  <SelectTrigger className="h-14 text-lg">
                                     <SelectValue placeholder="Anzahl wählen" />
                                   </SelectTrigger>
                                 </FormControl>
@@ -274,10 +274,10 @@ export default function Anfrage() {
                           name="deliveryTime"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel className="text-base font-medium">Lieferfrist *</FormLabel>
+                              <FormLabel className="text-lg font-medium">Lieferfrist *</FormLabel>
                               <Select onValueChange={field.onChange} defaultValue={field.value}>
                                 <FormControl>
-                                  <SelectTrigger className="h-12 text-base">
+                                  <SelectTrigger className="h-14 text-lg">
                                     <SelectValue placeholder="Lieferfrist wählen" />
                                   </SelectTrigger>
                                 </FormControl>
@@ -297,7 +297,7 @@ export default function Anfrage() {
 
                 {/* Zusätzliche Informationen Card */}
                 <Card className="group hover:shadow-elegant transition-all duration-300 border-border/50 hover:border-primary/20 bg-card/50 backdrop-blur-sm">
-                  <CardHeader className="pb-4">
+                  <CardHeader className="py-8">
                     <div className="flex items-center space-x-3">
                       <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                         <MessageSquare className="h-5 w-5 text-primary" />
@@ -308,17 +308,17 @@ export default function Anfrage() {
                       </div>
                     </div>
                   </CardHeader>
-                  <CardContent className="pt-0">
+                  <CardContent className="px-8 pb-8">
                     <FormField
                       control={step1Form.control}
                       name="message"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-base font-medium">Nachricht (optional)</FormLabel>
+                          <FormLabel className="text-lg font-medium">Nachricht (optional)</FormLabel>
                           <FormControl>
                             <Textarea
                               placeholder="Zusätzliche Informationen, besondere Lieferwünsche, Fragen..."
-                              className="min-h-[120px] text-base focus:ring-primary/20 focus:border-primary resize-none"
+                              className="min-h-[140px] text-lg focus:ring-primary/20 focus:border-primary resize-none"
                               {...field}
                             />
                           </FormControl>
@@ -343,28 +343,35 @@ export default function Anfrage() {
             </Form>
           )}
 
-          {/* Step 2: Persönliche Angaben - Modern Layout */}
+          {/* Step 2: Persönliche Angaben - Multiple Cards Layout */}
           {currentStep === 2 && (
             <Form {...step2Form}>
               <form onSubmit={step2Form.handleSubmit(handleStep2Submit)} className="space-y-8">
                 
-                {/* Personal Information Card */}
+                {/* Persönliche Daten Card */}
                 <Card className="group hover:shadow-elegant transition-all duration-300 border-border/50 hover:border-primary/20 bg-card/50 backdrop-blur-sm">
-                  <CardHeader className="pb-6">
-                    <CardTitle className="text-2xl font-bold">Persönliche Angaben</CardTitle>
-                    <p className="text-muted-foreground">Damit wir Ihnen ein individuelles Angebot erstellen können.</p>
+                  <CardHeader className="py-8">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                        <User className="h-6 w-6 text-primary" />
+                      </div>
+                      <div>
+                        <CardTitle className="text-2xl font-bold">Persönliche Daten</CardTitle>
+                        <p className="text-muted-foreground">Grundlegende Informationen zu Ihrer Person</p>
+                      </div>
+                    </div>
                   </CardHeader>
-                  <CardContent className="pt-0">
-                    <div className="grid md:grid-cols-2 gap-6">
+                  <CardContent className="px-8 pb-8">
+                    <div className="grid md:grid-cols-2 gap-8">
                       <FormField
                         control={step2Form.control}
                         name="salutation"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-base font-medium">Anrede *</FormLabel>
+                            <FormLabel className="text-lg font-medium">Anrede *</FormLabel>
                             <Select onValueChange={field.onChange} defaultValue={field.value}>
                               <FormControl>
-                                <SelectTrigger className="h-12 text-base">
+                                <SelectTrigger className="h-14 text-lg">
                                   <SelectValue placeholder="Anrede wählen" />
                                 </SelectTrigger>
                               </FormControl>
@@ -384,12 +391,12 @@ export default function Anfrage() {
                         name="company"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-base font-medium">Firma (optional)</FormLabel>
+                            <FormLabel className="text-lg font-medium">Firma (optional)</FormLabel>
                             <FormControl>
                               <Input 
                                 placeholder="Firmenname" 
                                 {...field}
-                                className="h-12 text-base focus:ring-primary/20 focus:border-primary"
+                                className="h-14 text-lg focus:ring-primary/20 focus:border-primary"
                               />
                             </FormControl>
                             <FormMessage />
@@ -402,12 +409,12 @@ export default function Anfrage() {
                         name="firstName"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-base font-medium">Vorname *</FormLabel>
+                            <FormLabel className="text-lg font-medium">Vorname *</FormLabel>
                             <FormControl>
                               <Input 
                                 placeholder="Max" 
                                 {...field}
-                                className="h-12 text-base focus:ring-primary/20 focus:border-primary"
+                                className="h-14 text-lg focus:ring-primary/20 focus:border-primary"
                               />
                             </FormControl>
                             <FormMessage />
@@ -420,31 +427,49 @@ export default function Anfrage() {
                         name="lastName"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-base font-medium">Nachname *</FormLabel>
+                            <FormLabel className="text-lg font-medium">Nachname *</FormLabel>
                             <FormControl>
                               <Input 
                                 placeholder="Mustermann" 
                                 {...field}
-                                className="h-12 text-base focus:ring-primary/20 focus:border-primary"
+                                className="h-14 text-lg focus:ring-primary/20 focus:border-primary"
                               />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
                         )}
                       />
+                    </div>
+                  </CardContent>
+                </Card>
 
+                {/* Kontaktdaten Card */} 
+                <Card className="group hover:shadow-elegant transition-all duration-300 border-border/50 hover:border-primary/20 bg-card/50 backdrop-blur-sm">
+                  <CardHeader className="py-8">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                        <Mail className="h-6 w-6 text-primary" />
+                      </div>
+                      <div>
+                        <CardTitle className="text-2xl font-bold">Kontaktdaten</CardTitle>
+                        <p className="text-muted-foreground">Wie können wir Sie erreichen?</p>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="px-8 pb-8">
+                    <div className="grid md:grid-cols-2 gap-8">
                       <FormField
                         control={step2Form.control}
                         name="email"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-base font-medium">E-Mail *</FormLabel>
+                            <FormLabel className="text-lg font-medium">E-Mail *</FormLabel>
                             <FormControl>
                               <Input 
                                 placeholder="max@example.com" 
                                 type="email" 
                                 {...field}
-                                className="h-12 text-base focus:ring-primary/20 focus:border-primary"
+                                className="h-14 text-lg focus:ring-primary/20 focus:border-primary"
                               />
                             </FormControl>
                             <FormMessage />
@@ -457,30 +482,48 @@ export default function Anfrage() {
                         name="phone"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-base font-medium">Telefonnummer *</FormLabel>
+                            <FormLabel className="text-lg font-medium">Telefonnummer *</FormLabel>
                             <FormControl>
                               <Input 
                                 placeholder="+49 123 456789" 
                                 {...field}
-                                className="h-12 text-base focus:ring-primary/20 focus:border-primary"
+                                className="h-14 text-lg focus:ring-primary/20 focus:border-primary"
                               />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
                         )}
                       />
+                    </div>
+                  </CardContent>
+                </Card>
 
+                {/* Adressdaten Card */}
+                <Card className="group hover:shadow-elegant transition-all duration-300 border-border/50 hover:border-primary/20 bg-card/50 backdrop-blur-sm">
+                  <CardHeader className="py-8">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                        <AddressIcon className="h-6 w-6 text-primary" />
+                      </div>
+                      <div>
+                        <CardTitle className="text-2xl font-bold">Adressdaten</CardTitle>
+                        <p className="text-muted-foreground">Ihre Lieferadresse</p>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="px-8 pb-8">
+                    <div className="grid md:grid-cols-2 gap-8">
                       <FormField
                         control={step2Form.control}
                         name="street"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-base font-medium">Straße, Hausnummer *</FormLabel>
+                            <FormLabel className="text-lg font-medium">Straße, Hausnummer *</FormLabel>
                             <FormControl>
                               <Input 
                                 placeholder="Musterstraße 123" 
                                 {...field}
-                                className="h-12 text-base focus:ring-primary/20 focus:border-primary"
+                                className="h-14 text-lg focus:ring-primary/20 focus:border-primary"
                               />
                             </FormControl>
                             <FormMessage />
@@ -493,12 +536,12 @@ export default function Anfrage() {
                         name="cityPostcode"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-base font-medium">PLZ, Ort *</FormLabel>
+                            <FormLabel className="text-lg font-medium">PLZ, Ort *</FormLabel>
                             <FormControl>
                               <Input 
                                 placeholder="12345 Musterstadt" 
                                 {...field}
-                                className="h-12 text-base focus:ring-primary/20 focus:border-primary"
+                                className="h-14 text-lg focus:ring-primary/20 focus:border-primary"
                               />
                             </FormControl>
                             <FormMessage />
@@ -506,30 +549,44 @@ export default function Anfrage() {
                         )}
                       />
                     </div>
+                  </CardContent>
+                </Card>
 
-                    <div className="mt-8 pt-6 border-t border-border">
-                      <FormField
-                        control={step2Form.control}
-                        name="privacy"
-                        render={({ field }) => (
-                          <FormItem className="flex flex-row items-start space-x-3 space-y-0">
-                            <FormControl>
-                              <Checkbox
-                                checked={field.value}
-                                onCheckedChange={field.onChange}
-                                className="mt-1"
-                              />
-                            </FormControl>
-                            <div className="space-y-1 leading-relaxed">
-                              <FormLabel className="text-base">
-                                Ich habe die Datenschutzerklärung gelesen und akzeptiere diese. *
-                              </FormLabel>
-                              <FormMessage />
-                            </div>
-                          </FormItem>
-                        )}
-                      />
+                {/* Datenschutz Card */}
+                <Card className="group hover:shadow-elegant transition-all duration-300 border-border/50 hover:border-primary/20 bg-card/50 backdrop-blur-sm">
+                  <CardHeader className="py-8">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                        <Shield className="h-6 w-6 text-primary" />
+                      </div>
+                      <div>
+                        <CardTitle className="text-2xl font-bold">Datenschutz</CardTitle>
+                        <p className="text-muted-foreground">Ihre Zustimmung zur Datenverarbeitung</p>
+                      </div>
                     </div>
+                  </CardHeader>
+                  <CardContent className="px-8 pb-8">
+                    <FormField
+                      control={step2Form.control}
+                      name="privacy"
+                      render={({ field }) => (
+                        <FormItem className="flex flex-row items-start space-x-4 space-y-0">
+                          <FormControl>
+                            <Checkbox
+                              checked={field.value}
+                              onCheckedChange={field.onChange}
+                              className="mt-2 w-5 h-5"
+                            />
+                          </FormControl>
+                          <div className="space-y-2 leading-relaxed">
+                            <FormLabel className="text-lg font-medium">
+                              Ich habe die Datenschutzerklärung gelesen und akzeptiere diese. *
+                            </FormLabel>
+                            <FormMessage />
+                          </div>
+                        </FormItem>
+                      )}
+                    />
                   </CardContent>
                 </Card>
 
@@ -540,85 +597,137 @@ export default function Anfrage() {
                     variant="outline"
                     size="lg"
                     onClick={() => setCurrentStep(1)}
-                    className="px-8 h-12 text-base"
+                    className="px-10 h-14 text-lg"
                   >
-                    <ArrowLeft className="mr-2 h-4 w-4" /> Zurück
+                    <ArrowLeft className="mr-3 h-5 w-5" /> Zurück
                   </Button>
                   <Button 
                     type="submit" 
                     size="lg"
-                    className="px-12 h-14 text-lg font-semibold shadow-lg hover:shadow-primary/20 transition-all duration-200"
+                    className="px-16 h-16 text-xl font-semibold shadow-lg hover:shadow-primary/20 transition-all duration-200"
                   >
-                    Zur Zusammenfassung <ArrowRight className="ml-2 h-5 w-5" />
+                    Zur Zusammenfassung <ArrowRight className="ml-3 h-6 w-6" />
                   </Button>
                 </div>
               </form>
             </Form>
           )}
 
-            {/* Step 3: Zusammenfassung */}
+            {/* Step 3: Zusammenfassung - Enhanced Layout */}
             {currentStep === 3 && (
               <div className="space-y-8">
                 <div className="grid md:grid-cols-2 gap-8">
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="text-lg flex items-center justify-between">
-                        Ihr Anliegen
+                  <Card className="group hover:shadow-elegant transition-all duration-300 border-border/50 hover:border-primary/20 bg-card/50 backdrop-blur-sm">
+                    <CardHeader className="py-8">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-3">
+                          <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                            <Package className="h-6 w-6 text-primary" />
+                          </div>
+                          <CardTitle className="text-2xl font-bold">Ihr Anliegen</CardTitle>
+                        </div>
                         <Button
-                          variant="ghost"
-                          size="sm"
+                          variant="outline"
+                          size="lg"
                           onClick={() => setCurrentStep(1)}
+                          className="h-12 px-6 text-base"
                         >
                           Bearbeiten
                         </Button>
-                      </CardTitle>
+                      </div>
                     </CardHeader>
-                    <CardContent className="space-y-2">
-                      <div><strong>Postleitzahl:</strong> {formData.postcode}</div>
-                      <div><strong>Produkt:</strong> {formData.product === 'heizoel-din' ? 'Heizöl DIN schwefelarm' : 'Sparheizöl schwefelarm'}</div>
-                      <div><strong>Liefermenge:</strong> {formData.quantity} Liter</div>
-                      <div><strong>Abladestellen:</strong> {formData.deliveryPoints}</div>
-                      <div><strong>Lieferfrist:</strong> {formData.deliveryTime === 'express' ? '48h Express (Aufpreis)' : '5 - 7 Werktage'}</div>
-                      {formData.message && <div><strong>Nachricht:</strong> {formData.message}</div>}
+                    <CardContent className="px-8 pb-8 space-y-6">
+                      <div className="flex justify-between py-3 border-b border-border/50">
+                        <span className="text-lg font-medium text-muted-foreground">Postleitzahl</span>
+                        <span className="text-lg font-semibold">{formData.postcode}</span>
+                      </div>
+                      <div className="flex justify-between py-3 border-b border-border/50">
+                        <span className="text-lg font-medium text-muted-foreground">Produkt</span>
+                        <span className="text-lg font-semibold">{formData.product === 'heizoel-din' ? 'Heizöl DIN schwefelarm' : 'Sparheizöl schwefelarm'}</span>
+                      </div>
+                      <div className="flex justify-between py-3 border-b border-border/50">
+                        <span className="text-lg font-medium text-muted-foreground">Liefermenge</span>
+                        <span className="text-lg font-semibold">{formData.quantity} Liter</span>
+                      </div>
+                      <div className="flex justify-between py-3 border-b border-border/50">
+                        <span className="text-lg font-medium text-muted-foreground">Abladestellen</span>
+                        <span className="text-lg font-semibold">{formData.deliveryPoints}</span>
+                      </div>
+                      <div className="flex justify-between py-3 border-b border-border/50">
+                        <span className="text-lg font-medium text-muted-foreground">Lieferfrist</span>
+                        <span className="text-lg font-semibold">{formData.deliveryTime === 'express' ? '48h Express (Aufpreis)' : '5 - 7 Werktage'}</span>
+                      </div>
+                      {formData.message && (
+                        <div className="py-3">
+                          <span className="text-lg font-medium text-muted-foreground block mb-2">Nachricht</span>
+                          <p className="text-base bg-muted/30 p-4 rounded-lg">{formData.message}</p>
+                        </div>
+                      )}
                     </CardContent>
                   </Card>
 
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="text-lg flex items-center justify-between">
-                        Persönliche Angaben
+                  <Card className="group hover:shadow-elegant transition-all duration-300 border-border/50 hover:border-primary/20 bg-card/50 backdrop-blur-sm">
+                    <CardHeader className="py-8">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-3">
+                          <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                            <User className="h-6 w-6 text-primary" />
+                          </div>
+                          <CardTitle className="text-2xl font-bold">Persönliche Angaben</CardTitle>
+                        </div>
                         <Button
-                          variant="ghost"
-                          size="sm"
+                          variant="outline"
+                          size="lg"
                           onClick={() => setCurrentStep(2)}
+                          className="h-12 px-6 text-base"
                         >
                           Bearbeiten
                         </Button>
-                      </CardTitle>
+                      </div>
                     </CardHeader>
-                    <CardContent className="space-y-2">
-                      <div><strong>Anrede:</strong> {formData.salutation === 'herr' ? 'Herr' : formData.salutation === 'frau' ? 'Frau' : 'Divers'}</div>
-                      {formData.company && <div><strong>Firma:</strong> {formData.company}</div>}
-                      <div><strong>Name:</strong> {formData.firstName} {formData.lastName}</div>
-                      <div><strong>E-Mail:</strong> {formData.email}</div>
-                      <div><strong>Telefon:</strong> {formData.phone}</div>
-                      <div><strong>Adresse:</strong> {formData.street}, {formData.cityPostcode}</div>
+                    <CardContent className="px-8 pb-8 space-y-6">
+                      <div className="flex justify-between py-3 border-b border-border/50">
+                        <span className="text-lg font-medium text-muted-foreground">Anrede</span>
+                        <span className="text-lg font-semibold">{formData.salutation === 'herr' ? 'Herr' : formData.salutation === 'frau' ? 'Frau' : 'Divers'}</span>
+                      </div>
+                      {formData.company && (
+                        <div className="flex justify-between py-3 border-b border-border/50">
+                          <span className="text-lg font-medium text-muted-foreground">Firma</span>
+                          <span className="text-lg font-semibold">{formData.company}</span>
+                        </div>
+                      )}
+                      <div className="flex justify-between py-3 border-b border-border/50">
+                        <span className="text-lg font-medium text-muted-foreground">Name</span>
+                        <span className="text-lg font-semibold">{formData.firstName} {formData.lastName}</span>
+                      </div>
+                      <div className="flex justify-between py-3 border-b border-border/50">
+                        <span className="text-lg font-medium text-muted-foreground">E-Mail</span>
+                        <span className="text-lg font-semibold">{formData.email}</span>
+                      </div>
+                      <div className="flex justify-between py-3 border-b border-border/50">
+                        <span className="text-lg font-medium text-muted-foreground">Telefon</span>
+                        <span className="text-lg font-semibold">{formData.phone}</span>
+                      </div>
+                      <div className="flex justify-between py-3">
+                        <span className="text-lg font-medium text-muted-foreground">Adresse</span>
+                        <span className="text-lg font-semibold text-right">{formData.street}, {formData.cityPostcode}</span>
+                      </div>
                     </CardContent>
                   </Card>
                 </div>
 
               {/* Final Action */}
-              <div className="text-center pt-8">
+              <div className="text-center pt-12">
                 <Button 
                   onClick={handleFinalSubmit} 
                   size="lg"
-                  className="px-16 h-16 text-xl font-bold shadow-xl hover:shadow-primary/30 transition-all duration-300 bg-gradient-primary hover:scale-105"
+                  className="px-20 h-20 text-2xl font-bold shadow-2xl hover:shadow-primary/30 transition-all duration-300 bg-gradient-primary hover:scale-105"
                 >
-                  <Check className="mr-3 h-6 w-6" />
+                  <Check className="mr-4 h-8 w-8" />
                   Anfrage jetzt absenden
-                  <ArrowRight className="ml-3 h-6 w-6" />
+                  <ArrowRight className="ml-4 h-8 w-8" />
                 </Button>
-                <p className="text-sm text-muted-foreground mt-4">
+                <p className="text-lg text-muted-foreground mt-6 max-w-2xl mx-auto">
                   Sie erhalten eine Bestätigung per E-Mail und werden innerhalb von 24 Stunden kontaktiert.
                 </p>
               </div>
