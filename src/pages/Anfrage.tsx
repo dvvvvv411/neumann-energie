@@ -97,6 +97,42 @@ export default function Anfrage() {
         throw error;
       }
 
+      // Send order confirmation email to customer
+      try {
+        await supabase.functions.invoke('send-order-confirmation', {
+          body: {
+            salutation: formData.salutation!,
+            company: formData.company || '',
+            first_name: formData.firstName!,
+            last_name: formData.lastName!,
+            email: formData.email!,
+            phone: formData.phone!,
+            postcode: formData.postcode!,
+            product: formData.product!,
+            quantity: formData.quantity!,
+            delivery_points: formData.deliveryPoints!,
+            delivery_time: formData.deliveryTime!,
+            message: formData.message || ''
+          }
+        });
+      } catch (emailError) {
+        console.error('Error sending order confirmation email:', emailError);
+        // Don't show error to user, as the main action (saving) was successful
+      }
+
+      // Send Telegram notification
+      try {
+        await supabase.functions.invoke('send-telegram-notification', {
+          body: {
+            type: 'bestellung',
+            data: orderData
+          }
+        });
+      } catch (telegramError) {
+        console.error('Error sending Telegram notification:', telegramError);
+        // Don't show error to user, as the main action (saving) was successful
+      }
+
       toast({
         title: "Bestellung erfolgreich übermittelt!",
         description: "Vielen Dank für Ihre Bestellung. Wir werden uns schnellstmöglich bei Ihnen melden.",
