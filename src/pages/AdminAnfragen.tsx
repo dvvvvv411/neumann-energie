@@ -114,6 +114,14 @@ export default function AdminAnfragen() {
             title: "Neue Anfrage",
             description: `Neue Anfrage von ${payload.new.first_name} ${payload.new.last_name}`,
           });
+
+          // Send Telegram notification
+          supabase.functions.invoke("send-telegram-notification", {
+            body: {
+              type: "anfrage",
+              data: payload.new
+            }
+          }).catch(error => console.error("Telegram notification error:", error));
         }
       )
       .subscribe();

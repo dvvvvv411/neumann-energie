@@ -65,7 +65,26 @@ export default function AdminBestellungen() {
       .on(
         'postgres_changes',
         {
-          event: '*',
+          event: 'INSERT',
+          schema: 'public',
+          table: 'orders'
+        },
+        (payload) => {
+          fetchOrders();
+          
+          // Send Telegram notification for new order
+          supabase.functions.invoke("send-telegram-notification", {
+            body: {
+              type: "bestellung",
+              data: payload.new
+            }
+          }).catch(error => console.error("Telegram notification error:", error));
+        }
+      )
+      .on(
+        'postgres_changes',
+        {
+          event: 'UPDATE',
           schema: 'public',
           table: 'orders'
         },

@@ -12,6 +12,7 @@ import AdminAnfragen from "./pages/AdminAnfragen";
 import AdminBestellungen from "./pages/AdminBestellungen";
 import AdminResend from "./pages/AdminResend";
 import AdminEmails from "./pages/AdminEmails";
+import AdminTelegram from "./pages/AdminTelegram";
 import About from "./pages/About";
 import Service from "./pages/Service";
 import Sustainability from "./pages/Sustainability";
@@ -40,6 +41,7 @@ const App = () => (
             <Route path="/admin/*" element={<Admin />}>
               <Route path="anfragen" element={<AdminAnfragen />} />
               <Route path="bestellungen" element={<AdminBestellungen />} />
+              <Route path="telegram" element={<AdminTelegram />} />
               <Route path="resend" element={<AdminResend />} />
               <Route path="emails" element={<AdminEmails />} />
             </Route>
