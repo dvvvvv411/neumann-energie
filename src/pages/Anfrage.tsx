@@ -498,59 +498,6 @@ export default function Anfrage() {
                   </CardContent>
                 </Card>
 
-                {/* Adressdaten Card */}
-                <Card className="group hover:shadow-elegant transition-all duration-300 border-border/50 hover:border-primary/20 bg-card/50 backdrop-blur-sm">
-                  <CardHeader className="py-8">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                        <AddressIcon className="h-6 w-6 text-primary" />
-                      </div>
-                      <div>
-                        <CardTitle className="text-2xl font-bold">Adressdaten</CardTitle>
-                        <p className="text-muted-foreground">Ihre Lieferadresse</p>
-                      </div>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="px-8 pb-8">
-                    <div className="grid md:grid-cols-2 gap-8">
-                      <FormField
-                        control={step2Form.control}
-                        name="street"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel className="text-lg font-medium">Straße, Hausnummer *</FormLabel>
-                            <FormControl>
-                               <Input 
-                                 placeholder="Musterstraße 123" 
-                                 {...field}
-                                 className="h-14 text-lg placeholder:text-base placeholder:text-muted-foreground/70 focus:ring-primary/20 focus:border-primary"
-                               />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-
-                      <FormField
-                        control={step2Form.control}
-                        name="cityPostcode"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel className="text-lg font-medium">PLZ, Ort *</FormLabel>
-                            <FormControl>
-                               <Input 
-                                 placeholder="12345 Musterstadt" 
-                                 {...field}
-                                 className="h-14 text-lg placeholder:text-base placeholder:text-muted-foreground/70 focus:ring-primary/20 focus:border-primary"
-                               />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </div>
-                  </CardContent>
-                </Card>
 
                 {/* Datenschutz Card */}
                 <Card className="group hover:shadow-elegant transition-all duration-300 border-border/50 hover:border-primary/20 bg-card/50 backdrop-blur-sm">
