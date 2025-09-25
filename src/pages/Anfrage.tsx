@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -43,6 +44,7 @@ export default function Anfrage() {
   const [formData, setFormData] = useState<Partial<FormData>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const step1Form = useForm<Step1Data>({
     resolver: zodResolver(step1Schema),
@@ -99,6 +101,11 @@ export default function Anfrage() {
         title: "Bestellung erfolgreich übermittelt!",
         description: "Vielen Dank für Ihre Bestellung. Wir werden uns schnellstmöglich bei Ihnen melden.",
       });
+
+      // Navigate to landing page after delay
+      setTimeout(() => {
+        navigate('/');
+      }, 2000);
 
       // Reset form after successful submission
       setFormData({});
