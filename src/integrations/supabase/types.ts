@@ -82,6 +82,33 @@ export type Database = {
         }
         Relationships: []
       }
+      email_settings: {
+        Row: {
+          api_key: string
+          created_at: string
+          id: string
+          sender_email: string
+          sender_name: string
+          updated_at: string
+        }
+        Insert: {
+          api_key: string
+          created_at?: string
+          id?: string
+          sender_email: string
+          sender_name: string
+          updated_at?: string
+        }
+        Update: {
+          api_key?: string
+          created_at?: string
+          id?: string
+          sender_email?: string
+          sender_name?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       order_notes: {
         Row: {
           created_at: string

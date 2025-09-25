@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { LayoutDashboard, MessageSquare, ShoppingCart } from "lucide-react";
+import { LayoutDashboard, MessageSquare, ShoppingCart, Mail } from "lucide-react";
 import { NavLink, useLocation } from "react-router-dom";
 import {
   Sidebar,
@@ -18,6 +18,7 @@ const items = [
   { title: "Dashboard", url: "/admin", icon: LayoutDashboard },
   { title: "Anfragen", url: "/admin/anfragen", icon: MessageSquare },
   { title: "Bestellungen", url: "/admin/bestellungen", icon: ShoppingCart },
+  { title: "Resend", url: "/admin/resend", icon: Mail },
 ];
 
 export function AppSidebar() {

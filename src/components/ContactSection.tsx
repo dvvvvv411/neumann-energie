@@ -67,6 +67,25 @@ export const ContactSection = () => {
         toast.error("Fehler beim Senden der Anfrage. Bitte versuchen Sie es erneut.");
       } else {
         toast.success("Ihre Anfrage wurde erfolgreich gesendet!");
+        
+        // Send confirmation email
+        try {
+          await supabase.functions.invoke('send-contact-confirmation', {
+            body: {
+              salutation: data.salutation,
+              company: data.company,
+              first_name: data.firstName,
+              last_name: data.lastName,
+              email: data.email,
+              phone: data.phone,
+              message: data.message
+            }
+          });
+        } catch (emailError) {
+          console.error('Error sending confirmation email:', emailError);
+          // Don't show error to user, as the main action (saving) was successful
+        }
+        
         form.reset();
       }
     } catch (error) {
