@@ -9,7 +9,7 @@ export function Header() {
 
   return (
     <header className="bg-background border-b border-border sticky top-0 z-50">
-      <div className="container mx-auto px-4 py-6">
+      <div className="container mx-auto px-4 py-4 sm:py-6">
         <div className="flex items-center justify-between">
           {/* Hamburger Menu */}
           <Button 
@@ -19,7 +19,7 @@ export function Header() {
             className="flex items-center gap-2"
           >
             <Menu className="h-5 w-5" />
-            <span className="text-sm font-medium">Menü</span>
+            <span className="text-sm font-medium hidden sm:inline">Menü</span>
           </Button>
 
           {/* Logo - Centered */}
@@ -27,7 +27,7 @@ export function Header() {
             <img 
               src="/lovable-uploads/neumannlogo.png.png" 
               alt="Neumann Energie" 
-              className="h-16 w-auto cursor-pointer hover-scale"
+              className="h-12 sm:h-16 w-auto cursor-pointer hover-scale object-contain"
             />
           </Link>
 
