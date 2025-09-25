@@ -216,9 +216,9 @@ export default function AdminBestellungen() {
     const statusConfig = {
       pending: { label: "Neu", variant: "secondary" as const },
       processing: { label: "In Bearbeitung", variant: "default" as const },
-      shipped: { label: "Versendet", variant: "outline" as const },
-      delivered: { label: "Geliefert", variant: "default" as const },
-      cancelled: { label: "Storniert", variant: "destructive" as const },
+      wants_invoice: { label: "Möchte Rechnung", variant: "outline" as const },
+      invoice_sent: { label: "Rechnung versendet", variant: "default" as const },
+      paid: { label: "Bezahlt", variant: "default" as const },
     };
 
     const config = statusConfig[status as keyof typeof statusConfig] || { label: status, variant: "secondary" as const };
@@ -303,11 +303,11 @@ export default function AdminBestellungen() {
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Geliefert</CardTitle>
+            <CardTitle className="text-sm font-medium">Bezahlt</CardTitle>
             <Calendar className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{orders.filter(o => o.status === 'delivered').length}</div>
+            <div className="text-2xl font-bold">{orders.filter(o => o.status === 'paid').length}</div>
           </CardContent>
         </Card>
       </div>
@@ -336,9 +336,9 @@ export default function AdminBestellungen() {
                   <SelectItem value="all">Alle Status</SelectItem>
                   <SelectItem value="pending">Neu</SelectItem>
                   <SelectItem value="processing">In Bearbeitung</SelectItem>
-                  <SelectItem value="shipped">Versendet</SelectItem>
-                  <SelectItem value="delivered">Geliefert</SelectItem>
-                  <SelectItem value="cancelled">Storniert</SelectItem>
+                  <SelectItem value="wants_invoice">Möchte Rechnung</SelectItem>
+                  <SelectItem value="invoice_sent">Rechnung versendet</SelectItem>
+                  <SelectItem value="paid">Bezahlt</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -385,7 +385,20 @@ export default function AdminBestellungen() {
                 <TableCell>{order.quantity.toLocaleString('de-DE')} L</TableCell>
                 <TableCell>{order.delivery_points}</TableCell>
                 <TableCell>{getDeliveryTime(order.delivery_time)}</TableCell>
-                <TableCell>{getStatusBadge(order.status)}</TableCell>
+                <TableCell>
+                  <Select value={order.status} onValueChange={(newStatus) => updateOrderStatus(order.id, newStatus)}>
+                    <SelectTrigger className="w-[140px] h-8">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="pending">Neu</SelectItem>
+                      <SelectItem value="processing">In Bearbeitung</SelectItem>
+                      <SelectItem value="wants_invoice">Möchte Rechnung</SelectItem>
+                      <SelectItem value="invoice_sent">Rechnung versendet</SelectItem>
+                      <SelectItem value="paid">Bezahlt</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </TableCell>
                 <TableCell>
                   <div className="space-y-2">
                     <div className="flex flex-wrap items-center gap-1">
@@ -446,13 +459,13 @@ export default function AdminBestellungen() {
                               <SelectTrigger className="w-[180px]">
                                 <SelectValue />
                               </SelectTrigger>
-                              <SelectContent>
+                               <SelectContent>
                                 <SelectItem value="pending">Neu</SelectItem>
                                 <SelectItem value="processing">In Bearbeitung</SelectItem>
-                                <SelectItem value="shipped">Versendet</SelectItem>
-                                <SelectItem value="delivered">Geliefert</SelectItem>
-                                <SelectItem value="cancelled">Storniert</SelectItem>
-                              </SelectContent>
+                                <SelectItem value="wants_invoice">Möchte Rechnung</SelectItem>
+                                <SelectItem value="invoice_sent">Rechnung versendet</SelectItem>
+                                <SelectItem value="paid">Bezahlt</SelectItem>
+                               </SelectContent>
                             </Select>
                           </div>
 
