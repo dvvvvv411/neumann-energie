@@ -708,7 +708,7 @@ export default function Anfrage() {
                   onClick={handleFinalSubmit} 
                   disabled={isSubmitting}
                   size="lg"
-                  className="px-20 h-20 text-2xl font-bold shadow-2xl hover:shadow-primary/30 transition-all duration-300 bg-gradient-primary hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="px-20 h-20 text-2xl font-bold shadow-2xl hover:shadow-primary/30 transition-all duration-300 bg-gradient-primary hover:scale-105 disabled:bg-primary/70 disabled:text-white/90 disabled:cursor-not-allowed disabled:transform-none"
                 >
                   {isSubmitting ? (
                     <>
@@ -718,7 +718,7 @@ export default function Anfrage() {
                   ) : (
                     <>
                       <Check className="mr-4 h-8 w-8" />
-                      Bestellung jetzt absenden
+                      Anfrage jetzt absenden
                       <ArrowRight className="ml-4 h-8 w-8" />
                     </>
                   )}
