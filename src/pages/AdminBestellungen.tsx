@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { format, formatDistanceToNow } from "date-fns";
+import { format } from "date-fns";
 import { de } from "date-fns/locale";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -357,6 +357,7 @@ export default function AdminBestellungen() {
               <TableHead>PLZ</TableHead>
               <TableHead>Produkt</TableHead>
               <TableHead>Menge</TableHead>
+              <TableHead>Abladestellen</TableHead>
               <TableHead>Lieferfrist</TableHead>
               <TableHead>Status</TableHead>
               <TableHead>Notizen</TableHead>
@@ -382,6 +383,7 @@ export default function AdminBestellungen() {
                 <TableCell className="text-sm">{order.postcode}</TableCell>
                 <TableCell>{getProductName(order.product)}</TableCell>
                 <TableCell>{order.quantity.toLocaleString('de-DE')} L</TableCell>
+                <TableCell>{order.delivery_points}</TableCell>
                 <TableCell>{getDeliveryTime(order.delivery_time)}</TableCell>
                 <TableCell>{getStatusBadge(order.status)}</TableCell>
                 <TableCell>
@@ -405,10 +407,11 @@ export default function AdminBestellungen() {
                         <span className="ml-1 text-xs">{notes[order.id].length}</span>
                       </Button>
                     )}
-                    {getLatestNoteTimestamp(order.id) && (
-                      <span className="text-xs text-muted-foreground">
-                        {formatDistanceToNow(new Date(getLatestNoteTimestamp(order.id)!), { addSuffix: true, locale: de })}
-                      </span>
+                    {notes[order.id] && notes[order.id].length > 0 && (
+                      <div className="text-xs text-muted-foreground">
+                        <div>Notiz {notes[order.id].length}</div>
+                        <div>{format(new Date(getLatestNoteTimestamp(order.id)!), 'dd.MM.yyyy HH:mm', { locale: de })}</div>
+                      </div>
                     )}
                   </div>
                 </TableCell>
@@ -537,6 +540,51 @@ export default function AdminBestellungen() {
                               </div>
                             </div>
                           </div>
+
+                          {/* Notizen */}
+                          <div className="space-y-4">
+                            <h3 className="text-lg font-semibold flex items-center gap-2">
+                              <MessageSquare className="h-5 w-5" />
+                              Notizen
+                            </h3>
+                            <div className="space-y-3 max-h-60 overflow-y-auto">
+                              {notes[selectedOrder.id] && notes[selectedOrder.id].length > 0 ? (
+                                notes[selectedOrder.id].map((note, index) => (
+                                  <div key={note.id} className="p-3 border rounded-lg">
+                                    <div className="text-sm font-medium mb-1">
+                                      Notiz {notes[selectedOrder.id].length - index}
+                                    </div>
+                                    <div className="text-xs text-muted-foreground mb-2">
+                                      {format(new Date(note.created_at), 'dd.MM.yyyy HH:mm', { locale: de })}
+                                    </div>
+                                    <div>{note.note_text}</div>
+                                  </div>
+                                ))
+                              ) : (
+                                <p className="text-muted-foreground">Keine Notizen vorhanden</p>
+                              )}
+                            </div>
+                            <div className="flex gap-2">
+                              <Textarea
+                                placeholder="Neue Notiz eingeben..."
+                                value={noteText}
+                                onChange={(e) => setNoteText(e.target.value)}
+                                rows={2}
+                              />
+                              <Button 
+                                onClick={() => {
+                                  if (selectedOrder && noteText.trim()) {
+                                    setCurrentOrderForNote(selectedOrder);
+                                    addNote();
+                                  }
+                                }} 
+                                disabled={!noteText.trim()}
+                                size="sm"
+                              >
+                                <Plus className="h-4 w-4" />
+                              </Button>
+                            </div>
+                          </div>
                         </div>
                       )}
                     </DialogContent>
@@ -601,9 +649,12 @@ export default function AdminBestellungen() {
               </div>
               <div className="space-y-3 max-h-96 overflow-y-auto">
                 {notes[currentOrderForNote.id] && notes[currentOrderForNote.id].length > 0 ? (
-                  notes[currentOrderForNote.id].map((note) => (
+                  notes[currentOrderForNote.id].map((note, index) => (
                     <div key={note.id} className="p-3 border rounded-lg">
-                      <div className="text-sm text-muted-foreground mb-2">
+                      <div className="text-sm font-medium mb-1">
+                        Notiz {notes[currentOrderForNote.id].length - index}
+                      </div>
+                      <div className="text-xs text-muted-foreground mb-2">
                         {format(new Date(note.created_at), 'dd.MM.yyyy HH:mm', { locale: de })}
                       </div>
                       <div>{note.note_text}</div>
