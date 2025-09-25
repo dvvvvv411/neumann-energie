@@ -29,7 +29,7 @@ interface TelegramChatId {
   notification_types: string[];
 }
 
-const AdminTelegram: React.FC = () => {
+export default function AdminTelegram() {
   const { user } = useAuth();
   const [settings, setSettings] = useState<TelegramSettings | null>(null);
   const [chatIds, setChatIds] = useState<TelegramChatId[]>([]);
@@ -477,6 +477,4 @@ const AdminTelegram: React.FC = () => {
       </Card>
     </div>
   );
-};
-
-export default AdminTelegram;
+}
