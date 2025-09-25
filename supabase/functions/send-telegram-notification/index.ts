@@ -91,9 +91,7 @@ const handler = async (req: Request): Promise<Response> => {
 💬 **Nachricht:**
 ${data.message}
 
-⏰ **Eingegangen:** ${new Date().toLocaleString('de-DE')}
-
-🔗 [Admin Panel öffnen](${Deno.env.get("SUPABASE_URL")?.replace('supabase.co', 'lovable.app')}/admin/anfragen)`;
+⏰ **Eingegangen:** ${new Date().toLocaleString('de-DE')}`;
     } else if (type === 'bestellung') {
       messageText = `🛒 **Neue Bestellung**
 
@@ -108,9 +106,7 @@ ${data.message}
 🚚 **Abladestellen:** ${data.delivery_points}
 ⚡ **Lieferzeit:** ${data.delivery_time}
 
-${data.message ? `📝 **Nachricht:** ${data.message}\n\n` : ''}⏰ **Bestellt:** ${new Date().toLocaleString('de-DE')}
-
-🔗 [Admin Panel öffnen](${Deno.env.get("SUPABASE_URL")?.replace('supabase.co', 'lovable.app')}/admin/bestellungen)`;
+${data.message ? `📝 **Nachricht:** ${data.message}\n\n` : ''}⏰ **Bestellt:** ${new Date().toLocaleString('de-DE')}`;
     }
 
     // Send message to all active chat IDs
