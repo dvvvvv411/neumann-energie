@@ -13,7 +13,15 @@ import {
 } from "@/components/ui/table";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MessageSquare, Calendar, Mail, Phone, Building, User } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { MessageSquare, Calendar, Mail, Phone, Building, User, Eye } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 import { de } from "date-fns/locale";
 
@@ -34,6 +42,8 @@ export default function AdminAnfragen() {
   const navigate = useNavigate();
   const [contactRequests, setContactRequests] = useState<ContactRequest[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedRequest, setSelectedRequest] = useState<ContactRequest | null>(null);
+  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
 
   useEffect(() => {
     if (!loading && !user) {
@@ -110,6 +120,11 @@ export default function AdminAnfragen() {
     return message.length > maxLength 
       ? message.substring(0, maxLength) + '...' 
       : message;
+  };
+
+  const handleShowDetails = (request: ContactRequest) => {
+    setSelectedRequest(request);
+    setIsDetailsOpen(true);
   };
 
   if (loading || isLoading) {
@@ -209,6 +224,7 @@ export default function AdminAnfragen() {
                     <TableHead>Telefon</TableHead>
                     <TableHead>Anliegen</TableHead>
                     <TableHead>Datum</TableHead>
+                    <TableHead>Aktionen</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -240,7 +256,7 @@ export default function AdminAnfragen() {
                           <Mail className="h-4 w-4 text-muted-foreground" />
                           <a 
                             href={`mailto:${request.email}`}
-                            className="text-primary hover:underline"
+                            className="text-foreground hover:underline"
                           >
                             {request.email}
                           </a>
@@ -251,7 +267,7 @@ export default function AdminAnfragen() {
                           <Phone className="h-4 w-4 text-muted-foreground" />
                           <a 
                             href={`tel:${request.phone}`}
-                            className="text-primary hover:underline"
+                            className="text-foreground hover:underline"
                           >
                             {request.phone}
                           </a>
@@ -277,6 +293,16 @@ export default function AdminAnfragen() {
                           </p>
                         </div>
                       </TableCell>
+                      <TableCell>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleShowDetails(request)}
+                          className="h-8 w-8 p-0"
+                        >
+                          <Eye className="h-4 w-4" />
+                        </Button>
+                      </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -285,6 +311,74 @@ export default function AdminAnfragen() {
           )}
         </CardContent>
       </Card>
+
+      {/* Details Dialog */}
+      <Dialog open={isDetailsOpen} onOpenChange={setIsDetailsOpen}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle>Kontaktanfrage Details</DialogTitle>
+            <DialogDescription>
+              Vollständige Ansicht der Kontaktanfrage
+            </DialogDescription>
+          </DialogHeader>
+          
+          {selectedRequest && (
+            <div className="space-y-6">
+              {/* Contact Information */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-3">
+                  <h3 className="font-semibold text-foreground flex items-center gap-2">
+                    <User className="h-4 w-4" />
+                    Kontaktdaten
+                  </h3>
+                  <div className="space-y-2">
+                    <p><span className="text-muted-foreground">Name:</span> {getSalutationLabel(selectedRequest.salutation)} {selectedRequest.first_name} {selectedRequest.last_name}</p>
+                    <p><span className="text-muted-foreground">E-Mail:</span> 
+                      <a 
+                        href={`mailto:${selectedRequest.email}`}
+                        className="text-foreground hover:underline ml-1"
+                      >
+                        {selectedRequest.email}
+                      </a>
+                    </p>
+                    <p><span className="text-muted-foreground">Telefon:</span> 
+                      <a 
+                        href={`tel:${selectedRequest.phone}`}
+                        className="text-foreground hover:underline ml-1"
+                      >
+                        {selectedRequest.phone}
+                      </a>
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="space-y-3">
+                  <h3 className="font-semibold text-foreground flex items-center gap-2">
+                    <Building className="h-4 w-4" />
+                    Firma & Metadaten
+                  </h3>
+                  <div className="space-y-2">
+                    <p><span className="text-muted-foreground">Firma:</span> {selectedRequest.company}</p>
+                    <p><span className="text-muted-foreground">Eingegangen:</span> {new Date(selectedRequest.created_at).toLocaleString('de-DE')}</p>
+                    <p><span className="text-muted-foreground">ID:</span> <code className="text-xs bg-muted px-1 py-0.5 rounded">{selectedRequest.id}</code></p>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Message */}
+              <div className="space-y-3">
+                <h3 className="font-semibold text-foreground flex items-center gap-2">
+                  <MessageSquare className="h-4 w-4" />
+                  Nachricht
+                </h3>
+                <div className="bg-muted/50 rounded-lg p-4">
+                  <p className="text-foreground whitespace-pre-wrap">{selectedRequest.message}</p>
+                </div>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
