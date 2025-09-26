@@ -27,7 +27,7 @@ export function CookieBanner() {
   const handleSettings = () => {
     localStorage.setItem('cookie-consent', 'settings');
     setIsOpen(false);
-    navigate('/datenschutz');
+    navigate('/cookies');
   };
 
   if (!isOpen) return null;
