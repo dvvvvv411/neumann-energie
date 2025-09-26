@@ -12,3 +12,6 @@ verify_jwt = false
 
 [functions.send-order-confirmation]
 verify_jwt = false
+
+[functions.fetch-emails]
+verify_jwt = false

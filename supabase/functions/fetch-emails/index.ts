@@ -1,5 +1,32 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+// Simple Buffer polyfill for Deno
+(globalThis as any).Buffer = {
+  from: (data: any, encoding?: string) => {
+    if (typeof data === 'string') {
+      return new TextEncoder().encode(data);
+    }
+    return data;
+  },
+  alloc: (size: number) => new Uint8Array(size),
+  allocUnsafe: (size: number) => new Uint8Array(size),
+  isBuffer: (obj: any) => obj instanceof Uint8Array,
+  concat: (list: Uint8Array[]) => {
+    const totalLength = list.reduce((sum, arr) => sum + arr.length, 0);
+    const result = new Uint8Array(totalLength);
+    let offset = 0;
+    for (const arr of list) {
+      result.set(arr, offset);
+      offset += arr.length;
+    }
+    return result;
+  }
+};
+
+// Use crypto from Deno global
+(globalThis as any).crypto = globalThis.crypto || {};
+
 import { ImapFlow } from "https://esm.sh/imapflow@1.0.164";
 
 const corsHeaders = {
