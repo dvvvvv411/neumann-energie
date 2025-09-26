@@ -55,6 +55,15 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
+    // Get phone settings from database
+    const { data: phoneSettings, error: phoneError } = await supabase
+      .from('phone_settings')
+      .select('*')
+      .eq('is_active', true)
+      .single();
+
+    const phoneNumber = phoneSettings?.phone_number || "+49 (0) 89 123456789";
+
     const orderData: OrderEmailRequest = await req.json();
 
     console.log("Sending order confirmation to:", orderData.email);
@@ -185,7 +194,7 @@ const handler = async (req: Request): Promise<Response> => {
       </div>
       <div style="color: #64748b; font-size: 14px; line-height: 1.5;">
         Dachsteinstr. 14 • 81825 München<br/>
-        Telefon: +49 (0) 89 123456789<br/>
+        Telefon: ${phoneNumber}<br/>
         <a href="mailto:info@neumann-energie.de" style="color: #0c2a3e; text-decoration: none;">info@neumann-energie.de</a>
       </div>
     </div>
