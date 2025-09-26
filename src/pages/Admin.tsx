@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, Outlet, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -7,28 +7,123 @@ import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 import { 
-  BarChart3, 
-  Users, 
+  MessageSquare, 
   ShoppingCart, 
-  Settings, 
   LogOut,
-  TrendingUp,
-  Package,
-  Calendar
+  Mail,
+  Clock
 } from "lucide-react";
 import { SidebarProvider, SidebarTrigger, SidebarInset } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
+
+interface DashboardStats {
+  contactRequests: number;
+  orders: number;
+  pendingOrders: number;
+  emails: number;
+}
+
+interface RecentActivity {
+  id: string;
+  type: 'contact' | 'order';
+  name: string;
+  created_at: string;
+  status?: string;
+}
 
 export default function Admin() {
   const { user, loading } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const [stats, setStats] = useState<DashboardStats>({ contactRequests: 0, orders: 0, pendingOrders: 0, emails: 0 });
+  const [recentActivity, setRecentActivity] = useState<RecentActivity[]>([]);
+  const [dataLoading, setDataLoading] = useState(true);
 
   useEffect(() => {
     if (!loading && !user) {
       navigate("/auth");
     }
   }, [user, loading, navigate]);
+
+  useEffect(() => {
+    if (user) {
+      fetchDashboardData();
+    }
+  }, [user]);
+
+  const fetchDashboardData = async () => {
+    try {
+      setDataLoading(true);
+      
+      // Fetch contact requests count
+      const { count: contactRequestsCount } = await supabase
+        .from('contact_requests')
+        .select('*', { count: 'exact', head: true });
+
+      // Fetch orders count and pending orders
+      const { count: ordersCount } = await supabase
+        .from('orders')
+        .select('*', { count: 'exact', head: true });
+
+      const { count: pendingOrdersCount } = await supabase
+        .from('orders')
+        .select('*', { count: 'exact', head: true })
+        .eq('status', 'pending');
+
+      // Fetch emails count
+      const { count: emailsCount } = await supabase
+        .from('cached_emails')
+        .select('*', { count: 'exact', head: true });
+
+      // Fetch recent activities
+      const { data: recentContacts } = await supabase
+        .from('contact_requests')
+        .select('id, first_name, last_name, created_at')
+        .order('created_at', { ascending: false })
+        .limit(3);
+
+      const { data: recentOrders } = await supabase
+        .from('orders')
+        .select('id, first_name, last_name, created_at, status')
+        .order('created_at', { ascending: false })
+        .limit(3);
+
+      // Combine and sort recent activities
+      const activities: RecentActivity[] = [
+        ...(recentContacts?.map(contact => ({
+          id: contact.id,
+          type: 'contact' as const,
+          name: `${contact.first_name} ${contact.last_name}`,
+          created_at: contact.created_at
+        })) || []),
+        ...(recentOrders?.map(order => ({
+          id: order.id,
+          type: 'order' as const,
+          name: `${order.first_name} ${order.last_name}`,
+          created_at: order.created_at,
+          status: order.status
+        })) || [])
+      ].sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()).slice(0, 5);
+
+      setStats({
+        contactRequests: contactRequestsCount || 0,
+        orders: ordersCount || 0,
+        pendingOrders: pendingOrdersCount || 0,
+        emails: emailsCount || 0
+      });
+
+      setRecentActivity(activities);
+    } catch (error) {
+      console.error('Error fetching dashboard data:', error);
+      toast({
+        title: "Fehler beim Laden der Daten",
+        description: "Die Dashboard-Daten konnten nicht geladen werden.",
+        variant: "destructive",
+      });
+    } finally {
+      setDataLoading(false);
+    }
+  };
 
   const handleLogout = async () => {
     const { error } = await supabase.auth.signOut();
@@ -108,169 +203,123 @@ export default function Admin() {
                     Willkommen im Neumann Energie Dashboard
                   </h2>
                   <p className="text-muted-foreground">
-                    Hier finden Sie alle wichtigen Informationen und Funktionen für die Verwaltung.
+                    Hier finden Sie eine Übersicht Ihrer aktuellen Daten und Aktivitäten.
                   </p>
                 </div>
 
-                {/* Stats Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                  <Card className="rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                      <CardTitle className="text-sm font-medium">Gesamtbestellungen</CardTitle>
-                      <ShoppingCart className="h-4 w-4 text-muted-foreground" />
-                    </CardHeader>
-                    <CardContent>
-                      <div className="text-2xl font-bold text-primary">1,234</div>
-                      <p className="text-xs text-muted-foreground">
-                        <TrendingUp className="h-3 w-3 inline mr-1" />
-                        +12% seit letztem Monat
-                      </p>
-                    </CardContent>
-                  </Card>
+                {dataLoading ? (
+                  <div className="flex items-center justify-center py-12">
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                    <span className="ml-3 text-muted-foreground">Lade Statistiken...</span>
+                  </div>
+                ) : (
+                  <>
+                    {/* Stats Cards */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                      <Card className="rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                          <CardTitle className="text-sm font-medium">Kontaktanfragen</CardTitle>
+                          <MessageSquare className="h-4 w-4 text-muted-foreground" />
+                        </CardHeader>
+                        <CardContent>
+                          <div className="text-2xl font-bold text-primary">{stats.contactRequests}</div>
+                          <p className="text-xs text-muted-foreground">
+                            Insgesamt eingegangen
+                          </p>
+                        </CardContent>
+                      </Card>
 
-                  <Card className="rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                      <CardTitle className="text-sm font-medium">Aktive Kunden</CardTitle>
-                      <Users className="h-4 w-4 text-muted-foreground" />
-                    </CardHeader>
-                    <CardContent>
-                      <div className="text-2xl font-bold text-primary">567</div>
-                      <p className="text-xs text-muted-foreground">
-                        <TrendingUp className="h-3 w-3 inline mr-1" />
-                        +8% seit letztem Monat
-                      </p>
-                    </CardContent>
-                  </Card>
+                      <Card className="rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                          <CardTitle className="text-sm font-medium">Bestellungen</CardTitle>
+                          <ShoppingCart className="h-4 w-4 text-muted-foreground" />
+                        </CardHeader>
+                        <CardContent>
+                          <div className="text-2xl font-bold text-primary">{stats.orders}</div>
+                          <p className="text-xs text-muted-foreground">
+                            Gesamtanzahl Aufträge
+                          </p>
+                        </CardContent>
+                      </Card>
 
-                  <Card className="rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                      <CardTitle className="text-sm font-medium">Lagerbestand</CardTitle>
-                      <Package className="h-4 w-4 text-muted-foreground" />
-                    </CardHeader>
-                    <CardContent>
-                      <div className="text-2xl font-bold text-primary">89,432L</div>
-                      <p className="text-xs text-muted-foreground">
-                        Heizöl verfügbar
-                      </p>
-                    </CardContent>
-                  </Card>
+                      <Card className="rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                          <CardTitle className="text-sm font-medium">Ausstehend</CardTitle>
+                          <Clock className="h-4 w-4 text-muted-foreground" />
+                        </CardHeader>
+                        <CardContent>
+                          <div className="text-2xl font-bold text-primary">{stats.pendingOrders}</div>
+                          <p className="text-xs text-muted-foreground">
+                            Bestellungen in Bearbeitung
+                          </p>
+                        </CardContent>
+                      </Card>
 
-                  <Card className="rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                      <CardTitle className="text-sm font-medium">Termine heute</CardTitle>
-                      <Calendar className="h-4 w-4 text-muted-foreground" />
-                    </CardHeader>
-                    <CardContent>
-                      <div className="text-2xl font-bold text-primary">12</div>
-                      <p className="text-xs text-muted-foreground">
-                        Liefertermine geplant
-                      </p>
-                    </CardContent>
-                  </Card>
-                </div>
+                      <Card className="rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                          <CardTitle className="text-sm font-medium">E-Mails</CardTitle>
+                          <Mail className="h-4 w-4 text-muted-foreground" />
+                        </CardHeader>
+                        <CardContent>
+                          <div className="text-2xl font-bold text-primary">{stats.emails}</div>
+                          <p className="text-xs text-muted-foreground">
+                            Gespeicherte E-Mails
+                          </p>
+                        </CardContent>
+                      </Card>
+                    </div>
 
-                {/* Dashboard Sections */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  {/* Recent Orders */}
-                  <Card className="rounded-xl shadow-sm">
-                    <CardHeader>
-                      <CardTitle className="flex items-center">
-                        <ShoppingCart className="h-5 w-5 mr-2 text-primary" />
-                        Letzte Bestellungen
-                      </CardTitle>
-                      <CardDescription>
-                        Übersicht der neuesten Kundenbestellungen
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-4">
-                        {[1, 2, 3].map((i) => (
-                          <div key={i} className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
-                            <div>
-                              <p className="font-medium">Bestellung #{2000 + i}</p>
-                              <p className="text-sm text-muted-foreground">Kunde: Max Mustermann</p>
-                            </div>
-                            <Badge variant="secondary" className="rounded-lg">
-                              In Bearbeitung
-                            </Badge>
+                    {/* Recent Activities */}
+                    <Card className="rounded-xl shadow-sm">
+                      <CardHeader>
+                        <CardTitle className="flex items-center">
+                          <Clock className="h-5 w-5 mr-2 text-primary" />
+                          Letzte Aktivitäten
+                        </CardTitle>
+                        <CardDescription>
+                          Übersicht der neuesten Anfragen und Bestellungen
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        {recentActivity.length > 0 ? (
+                          <div className="space-y-4">
+                            {recentActivity.map((activity) => (
+                              <div key={activity.id} className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
+                                <div className="flex items-center space-x-3">
+                                  {activity.type === 'contact' ? (
+                                    <MessageSquare className="h-4 w-4 text-blue-500" />
+                                  ) : (
+                                    <ShoppingCart className="h-4 w-4 text-green-500" />
+                                  )}
+                                  <div>
+                                    <p className="font-medium">{activity.name}</p>
+                                    <p className="text-sm text-muted-foreground">
+                                      {activity.type === 'contact' ? 'Kontaktanfrage' : 'Bestellung'} • {' '}
+                                      {new Date(activity.created_at).toLocaleDateString('de-DE', {
+                                        day: '2-digit',
+                                        month: '2-digit',
+                                        year: 'numeric'
+                                      })}
+                                    </p>
+                                  </div>
+                                </div>
+                                {activity.status && (
+                                  <Badge variant="secondary" className="rounded-lg">
+                                    {activity.status === 'pending' ? 'Ausstehend' : activity.status}
+                                  </Badge>
+                                )}
+                              </div>
+                            ))}
                           </div>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  {/* Analytics */}
-                  <Card className="rounded-xl shadow-sm">
-                    <CardHeader>
-                      <CardTitle className="flex items-center">
-                        <BarChart3 className="h-5 w-5 mr-2 text-primary" />
-                        Verkaufsanalyse
-                      </CardTitle>
-                      <CardDescription>
-                        Monatliche Umsatzentwicklung
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="h-40 bg-muted/30 rounded-lg flex items-center justify-center">
-                        <p className="text-muted-foreground">Diagramm-Platzhalter</p>
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  {/* Customer Management */}
-                  <Card className="rounded-xl shadow-sm">
-                    <CardHeader>
-                      <CardTitle className="flex items-center">
-                        <Users className="h-5 w-5 mr-2 text-primary" />
-                        Kundenverwaltung
-                      </CardTitle>
-                      <CardDescription>
-                        Aktuelle Kundendaten und -aktivitäten
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-3">
-                        {[1, 2, 3].map((i) => (
-                          <div key={i} className="flex items-center space-x-3 p-3 bg-muted/50 rounded-lg">
-                            <div className="h-8 w-8 bg-primary/20 rounded-full flex items-center justify-center">
-                              <span className="text-sm font-medium text-primary">MM</span>
-                            </div>
-                            <div className="flex-1">
-                              <p className="font-medium">Max Mustermann</p>
-                              <p className="text-sm text-muted-foreground">Letzte Bestellung: vor 2 Tagen</p>
-                            </div>
+                        ) : (
+                          <div className="text-center py-8">
+                            <p className="text-muted-foreground">Keine aktuellen Aktivitäten</p>
                           </div>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  {/* Settings */}
-                  <Card className="rounded-xl shadow-sm">
-                    <CardHeader>
-                      <CardTitle className="flex items-center">
-                        <Settings className="h-5 w-5 mr-2 text-primary" />
-                        System-Einstellungen
-                      </CardTitle>
-                      <CardDescription>
-                        Konfiguration und Verwaltung
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-3">
-                        <Button variant="outline" className="w-full justify-start rounded-lg">
-                          Preise verwalten
-                        </Button>
-                        <Button variant="outline" className="w-full justify-start rounded-lg">
-                          Liefergebiete konfigurieren
-                        </Button>
-                        <Button variant="outline" className="w-full justify-start rounded-lg">
-                          Benutzer verwalten
-                        </Button>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
+                        )}
+                      </CardContent>
+                    </Card>
+                  </>
+                )}
               </div>
             )}
           </main>
