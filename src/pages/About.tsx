@@ -4,9 +4,12 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Users, Award, MapPin, Calendar } from "lucide-react";
+import { usePhoneSettings } from "@/hooks/usePhoneSettings";
 import ralLogo from "@/assets/ral-logo.webp";
 
 const About = () => {
+  const { phoneSettings, loading } = usePhoneSettings();
+  
   const milestones = [
     { year: "2021", title: "Gründung", description: "Expertenteam mit jahrzehntelanger Branchenerfahrung gründet Neumann Energie" },
     { year: "2021", title: "Partnerschaften", description: "Strategische Allianzen mit etablierten Lieferanten und Logistikpartnern" },
@@ -23,7 +26,7 @@ const About = () => {
   ];
 
   const locations = [
-    { city: "München", address: "Musterstraße 123, 80331 München", type: "Hauptsitz", phone: "+49 89 123 456 78", email: "info@heizoel-neumann.de" },
+    { city: "München", address: "Dachsteinstr. 14, 81825 München", type: "Hauptsitz", phone: phoneSettings?.display_text || "0228 512-710", email: "info@neumann-energie.de" },
   ];
 
   return (
@@ -153,9 +156,9 @@ const About = () => {
                           <Badge variant="secondary" className="text-sm font-medium">{location.type}</Badge>
                         </div>
                         <div className="space-y-2 text-muted-foreground">
-                          <p className="text-lg">Heizöl Neumann GmbH</p>
+                          <p className="text-lg">Neumann Lubrikat GmbH</p>
                           <p>{location.address}</p>
-                          <p>Tel: {location.phone}</p>
+                          <p>Tel: {loading ? "Lädt..." : location.phone}</p>
                           <p>E-Mail: {location.email}</p>
                         </div>
                       </div>
