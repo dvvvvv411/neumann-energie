@@ -25,7 +25,7 @@ export const Footer = () => {
     <footer className="py-12 px-4" style={{ backgroundColor: '#0c2a3e' }}>
       <div className="container mx-auto max-w-6xl">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           
           {/* Company Info */}
           <div className="text-center md:text-left">
@@ -64,22 +64,21 @@ export const Footer = () => {
                 Anmelden
               </Button>
             </form>
+            
+            {/* Telefonnummer - nur anzeigen wenn aktiviert */}
+            {hasPhoneNumber && (
+              <div className="mt-4">
+                <a
+                  href={`tel:${phoneSettings?.tel_link}`}
+                  className="inline-flex items-center gap-2 px-4 py-2 border-2 border-primary bg-transparent text-primary hover:bg-primary/10 rounded-lg transition-colors duration-200"
+                  aria-label="Telefonnummer anrufen"
+                >
+                  <Phone className="h-4 w-4" />
+                  <span className="font-medium">{phoneSettings?.display_text}</span>
+                </a>
+              </div>
+            )}
           </div>
-
-          {/* Telefonnummer - nur anzeigen wenn aktiviert */}
-          {hasPhoneNumber && (
-            <div className="text-center">
-              <h3 className="text-primary font-semibold mb-3">Direkt anrufen</h3>
-              <a
-                href={`tel:${phoneSettings?.tel_link}`}
-                className="inline-flex items-center gap-2 px-4 py-2 border-2 border-primary bg-transparent text-primary hover:bg-primary/10 rounded-lg transition-colors duration-200"
-                aria-label="Telefonnummer anrufen"
-              >
-                <Phone className="h-4 w-4" />
-                <span className="font-medium">{phoneSettings?.display_text}</span>
-              </a>
-            </div>
-          )}
 
           {/* Legal Links */}
           <div className="text-center md:text-right">
