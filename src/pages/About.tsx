@@ -8,7 +8,7 @@ import { usePhoneSettings } from "@/hooks/usePhoneSettings";
 import ralLogo from "@/assets/ral-logo.webp";
 
 const About = () => {
-  const { phoneSettings, loading } = usePhoneSettings();
+  const { phoneSettings, loading, hasPhoneNumber } = usePhoneSettings();
   
   const milestones = [
     { year: "2021", title: "Gründung", description: "Expertenteam mit jahrzehntelanger Branchenerfahrung gründet Neumann Energie" },
@@ -26,7 +26,7 @@ const About = () => {
   ];
 
   const locations = [
-    { city: "München", address: "Dachsteinstr. 14, 81825 München", type: "Hauptsitz", phone: phoneSettings?.display_text || "0228 512-710", email: "info@neumann-energie.de" },
+    { city: "München", address: "Dachsteinstr. 14, 81825 München", type: "Hauptsitz", phone: phoneSettings?.display_text, email: "info@neumann-energie.de" },
   ];
 
   return (
@@ -158,7 +158,9 @@ const About = () => {
                         <div className="space-y-2 text-muted-foreground">
                           <p className="text-lg">Neumann Lubrikat GmbH</p>
                           <p>{location.address}</p>
-                          <p>Tel: {loading ? "Lädt..." : location.phone}</p>
+                          {(loading || hasPhoneNumber) && (
+                            <p>Tel: {loading ? "Lädt..." : location.phone}</p>
+                          )}
                           <p>E-Mail: {location.email}</p>
                         </div>
                       </div>

@@ -30,14 +30,7 @@ export function usePhoneSettings() {
       if (error) {
         console.error('Error fetching phone settings:', error);
         setError(error.message);
-        // Fallback to default values
-        setPhoneSettings({
-          id: '',
-          phone_number: '0228 512-710',
-          display_text: '0228 512-710',
-          tel_link: '0228512710',
-          is_active: true
-        });
+        setPhoneSettings(null);
       } else {
         setPhoneSettings(data);
         setError(null);
@@ -45,14 +38,7 @@ export function usePhoneSettings() {
     } catch (err) {
       console.error('Error fetching phone settings:', err);
       setError('Failed to load phone settings');
-      // Fallback to default values
-      setPhoneSettings({
-        id: '',
-        phone_number: '0228 512-710',
-        display_text: '0228 512-710',
-        tel_link: '0228512710',
-        is_active: true
-      });
+      setPhoneSettings(null);
     } finally {
       setLoading(false);
     }
@@ -107,10 +93,15 @@ export function usePhoneSettings() {
     fetchPhoneSettings();
   }, []);
 
+  const hasPhoneNumber = phoneSettings && 
+    phoneSettings.phone_number && 
+    phoneSettings.phone_number.trim() !== '';
+
   return {
     phoneSettings,
     loading,
     error,
+    hasPhoneNumber,
     updatePhoneSettings,
     refetch: fetchPhoneSettings
   };
