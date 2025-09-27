@@ -3,25 +3,34 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
 import { Phone, Save, Loader2 } from "lucide-react";
 import { usePhoneSettings } from "@/hooks/usePhoneSettings";
 
 export default function AdminTelefonnummer() {
-  const { phoneSettings, loading, updatePhoneSettings } = usePhoneSettings();
+  const { phoneSettings, loading, updatePhoneSettings, deactivatePhoneSettings } = usePhoneSettings();
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [isPhoneEnabled, setIsPhoneEnabled] = useState(true);
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
     if (phoneSettings) {
-      setPhoneNumber(phoneSettings.phone_number);
+      setPhoneNumber(phoneSettings.phone_number || "");
+      setIsPhoneEnabled(phoneSettings.is_active && phoneSettings.phone_number?.trim() !== "");
+    } else {
+      setIsPhoneEnabled(false);
     }
   }, [phoneSettings]);
 
   const handleSave = async () => {
-    if (!phoneNumber.trim()) return;
-    
     setSaving(true);
-    const success = await updatePhoneSettings(phoneNumber);
+    
+    if (isPhoneEnabled && phoneNumber.trim()) {
+      await updatePhoneSettings(phoneNumber);
+    } else {
+      await deactivatePhoneSettings();
+    }
+    
     setSaving(false);
   };
 
@@ -55,19 +64,30 @@ export default function AdminTelefonnummer() {
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
-          <div className="space-y-2">
-            <Label htmlFor="phone">Telefonnummer</Label>
-            <Input
-              id="phone"
-              type="tel"
-              value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
-              placeholder="z.B. 0228 512-710"
-              className="max-w-md"
+          <div className="flex items-center space-x-2">
+            <Switch
+              id="phone-enabled"
+              checked={isPhoneEnabled}
+              onCheckedChange={setIsPhoneEnabled}
             />
+            <Label htmlFor="phone-enabled">Telefonnummer auf Website anzeigen</Label>
           </div>
 
-          {phoneNumber && (
+          {isPhoneEnabled && (
+            <div className="space-y-2">
+              <Label htmlFor="phone">Telefonnummer</Label>
+              <Input
+                id="phone"
+                type="tel"
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)}
+                placeholder="z.B. 0228 512-710"
+                className="max-w-md"
+              />
+            </div>
+          )}
+
+          {isPhoneEnabled && phoneNumber && (
             <div className="space-y-2">
               <Label>Vorschau</Label>
               <div className="p-3 bg-muted rounded-md max-w-md">
@@ -79,9 +99,17 @@ export default function AdminTelefonnummer() {
             </div>
           )}
 
+          {!isPhoneEnabled && (
+            <div className="p-3 bg-muted rounded-md max-w-md">
+              <p className="text-sm text-muted-foreground">
+                Die Telefonnummer wird auf der Website nicht angezeigt. Alle Telefon-Elemente werden ausgeblendet.
+              </p>
+            </div>
+          )}
+
           <Button 
             onClick={handleSave} 
-            disabled={saving || !phoneNumber.trim()}
+            disabled={saving || (isPhoneEnabled && !phoneNumber.trim())}
             className="flex items-center gap-2"
           >
             {saving ? (

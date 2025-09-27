@@ -89,6 +89,36 @@ export function usePhoneSettings() {
     }
   };
 
+  const deactivatePhoneSettings = async () => {
+    try {
+      // Set all existing entries to inactive
+      const { error } = await supabase
+        .from('phone_settings')
+        .update({ is_active: false })
+        .eq('is_active', true);
+
+      if (error) {
+        throw error;
+      }
+
+      setPhoneSettings(null);
+      toast({
+        title: "Telefonnummer deaktiviert",
+        description: "Die Telefonnummer wird nicht mehr auf der Website angezeigt.",
+      });
+
+      return true;
+    } catch (err) {
+      console.error('Error deactivating phone settings:', err);
+      toast({
+        title: "Fehler",
+        description: "Telefonnummer konnte nicht deaktiviert werden.",
+        variant: "destructive",
+      });
+      return false;
+    }
+  };
+
   useEffect(() => {
     fetchPhoneSettings();
   }, []);
@@ -103,6 +133,7 @@ export function usePhoneSettings() {
     error,
     hasPhoneNumber,
     updatePhoneSettings,
+    deactivatePhoneSettings,
     refetch: fetchPhoneSettings
   };
 }
